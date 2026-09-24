@@ -22,6 +22,10 @@ const instant = { duration: 0 };
 /** Dark inset ring only — never CSS border (avoids white/default flash on first paint). */
 const CHROME_RING = "inset 0 0 0 1px rgba(34,34,34,1)";
 
+/** Pill cluster gaps: open at rest, tight when scrolled (Rare-like). */
+const GAP_TOP = 40;
+const GAP_SCROLLED = 6;
+
 function RunexMark({ className = "" }: { className?: string }) {
   return (
     <span className={`relative flex items-center justify-center ${className}`}>
@@ -98,8 +102,8 @@ export function Header() {
         }}
         transition={t}
       >
-        {/* Always three separated pills — dense ~4px gaps, no outer parent shell */}
-        <div className="relative flex w-full items-center justify-between gap-1">
+        {/* Mobile: logo left, hamburger right — simple spacing */}
+        <div className="flex w-full items-center justify-between md:hidden">
           <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
             <Link
               href="/"
@@ -112,11 +116,50 @@ export function Header() {
             </Link>
           </Pill>
 
-          <Pill
-            reduce={reduce}
-            elevated={scrolled}
-            className="absolute left-1/2 hidden -translate-x-1/2 md:flex"
-          >
+          <Pill reduce={reduce} elevated={scrolled}>
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="inline-flex h-8 w-8 items-center justify-center text-foreground outline-none ring-0"
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="sr-only">Menu</span>
+              <div className="flex w-3.5 flex-col gap-1">
+                <span
+                  className={`h-0.5 w-full bg-foreground transition ${open ? "translate-y-1.5 rotate-45" : ""}`}
+                />
+                <span
+                  className={`h-0.5 w-full bg-foreground transition ${open ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`h-0.5 w-full bg-foreground transition ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
+                />
+              </div>
+            </button>
+          </Pill>
+        </div>
+
+        {/* Desktop: three separate pills in a flex row — gap animates open↔tight */}
+        <motion.div
+          className="hidden w-full items-center justify-center md:flex"
+          initial={false}
+          animate={{ gap: scrolled ? GAP_SCROLLED : GAP_TOP }}
+          transition={t}
+        >
+          <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
+            <Link
+              href="/"
+              className="group flex items-center gap-2.5 outline-none"
+            >
+              <RunexMark className="h-4 w-4" />
+              <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
+                Runex
+              </span>
+            </Link>
+          </Pill>
+
+          <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
             <nav className="flex items-center" aria-label="Primary">
               {navLinks.map((link, i) => (
                 <span key={link.href} className="flex items-center">
@@ -137,53 +180,28 @@ export function Header() {
             </nav>
           </Pill>
 
-          <div className="flex items-center gap-1">
-            <Pill
-              reduce={reduce}
-              elevated={scrolled}
-              className="hidden gap-1.5 md:flex"
+          <Pill
+            reduce={reduce}
+            elevated={scrolled}
+            className="shrink-0 gap-1.5"
+          >
+            <Button
+              href={appSignInUrl()}
+              variant="ghost"
+              external
+              className="!px-3 !py-1 text-[13px]"
             >
-              <Button
-                href={appSignInUrl()}
-                variant="ghost"
-                external
-                className="!px-3 !py-1 text-[13px]"
-              >
-                Login
-              </Button>
-              <Button
-                href={appSignUpUrl()}
-                external
-                className="!px-3.5 !py-1.5 text-[13px]"
-              >
-                Deploy
-              </Button>
-            </Pill>
-
-            <Pill reduce={reduce} elevated={scrolled} className="md:hidden">
-              <button
-                type="button"
-                aria-label={open ? "Close menu" : "Open menu"}
-                aria-expanded={open}
-                className="inline-flex h-8 w-8 items-center justify-center text-foreground outline-none ring-0"
-                onClick={() => setOpen((v) => !v)}
-              >
-                <span className="sr-only">Menu</span>
-                <div className="flex w-3.5 flex-col gap-1">
-                  <span
-                    className={`h-0.5 w-full bg-foreground transition ${open ? "translate-y-1.5 rotate-45" : ""}`}
-                  />
-                  <span
-                    className={`h-0.5 w-full bg-foreground transition ${open ? "opacity-0" : ""}`}
-                  />
-                  <span
-                    className={`h-0.5 w-full bg-foreground transition ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
-                  />
-                </div>
-              </button>
-            </Pill>
-          </div>
-        </div>
+              Login
+            </Button>
+            <Button
+              href={appSignUpUrl()}
+              external
+              className="!px-3.5 !py-1.5 text-[13px]"
+            >
+              Deploy
+            </Button>
+          </Pill>
+        </motion.div>
       </motion.div>
 
       {open && (
