@@ -53,7 +53,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Runex — Easy Deployment Platform for Developers",
     description: siteConfig.description,
+    site: siteConfig.twitter,
   },
+  alternates: { canonical: siteConfig.url },
   robots: { index: true, follow: true },
   icons: {
     icon: [{ url: "/runex-mark.svg", type: "image/svg+xml" }],

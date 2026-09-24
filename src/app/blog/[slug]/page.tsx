@@ -13,7 +13,7 @@ import {
   getPostBySlug,
   slugifyHeading,
 } from "@/lib/blog";
-import { absoluteUrl, buildMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -90,6 +90,13 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd data={articleLd} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
       {hookSections.length >= 2 ? (
         <HookSidebar sections={hookSections} />
       ) : null}

@@ -1,14 +1,28 @@
+import fs from "fs";
+import path from "path";
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
+/** Prefer real page.tsx mtime; never stamp every URL with build-time `new Date()`. */
+function pageLastModified(routePath: string): Date {
+  const rel =
+    routePath === "/"
+      ? path.join("src", "app", "page.tsx")
+      : path.join("src", "app", ...routePath.split("/").filter(Boolean), "page.tsx");
+  const full = path.join(/*turbopackIgnore: true*/ process.cwd(), rel);
+  try {
+    return fs.statSync(full).mtime;
+  } catch {
+    return new Date("2026-09-24T00:00:00.000Z");
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  const now = new Date();
 
   const highPriority = new Set(["/", "/what-is-runex"]);
-  const deployPriority = (path: string) =>
-    path === "/deploy" || path.startsWith("/deploy/");
+  const isDeploy = (p: string) => p === "/deploy" || p.startsWith("/deploy/");
 
   const staticPaths = [
     "/",
@@ -43,27 +57,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/compare/runex-vs-vps",
   ];
 
-  const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => {
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.map((routePath) => {
     let priority = 0.7;
-    if (highPriority.has(path)) priority = 1;
-    else if (deployPriority(path)) priority = 0.8;
-    else if (path.startsWith("/docs")) priority = 0.75;
-    else if (path.startsWith("/use-cases")) priority = 0.75;
+    if (highPriority.has(routePath)) priority = 1;
+    else if (isDeploy(routePath)) priority = 0.9;
+    else if (routePath.startsWith("/docs")) priority = 0.75;
+    else if (routePath.startsWith("/use-cases")) priority = 0.75;
+    else if (routePath === "/features" || routePath === "/pricing" || routePath === "/security")
+      priority = 0.8;
 
     return {
-      url: `${base}${path === "/" ? "" : path}`,
-      lastModified: now,
-      changeFrequency: path === "/" || path === "/what-is-runex" ? "weekly" : "monthly",
+      url: `${base}${routePath === "/" ? "" : routePath}`,
+      lastModified: pageLastModified(routePath),
+      changeFrequency:
+        routePath === "/" || routePath === "/what-is-runex" ? "weekly" : "monthly",
       priority,
     };
   });
 
-  const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
-    url: `${base}/blog/${post.slug}`,
-    lastModified: post.updated ? new Date(post.updated) : new Date(post.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => {
+    const mdxPath = path.join(/*turbopackIgnore: true*/ process.cwd(), "content", "blog", `${post.slug}.mdx`);
+    let lastModified: Date;
+    if (post.updated) lastModified = new Date(post.updated);
+    else if (post.date) lastModified = new Date(post.date);
+    else {
+      try {
+        lastModified = fs.statSync(mdxPath).mtime;
+      } catch {
+        lastModified = new Date("2026-09-24T00:00:00.000Z");
+      }
+    }
+
+    return {
+      url: `${base}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    };
+  });
 
   return [...staticEntries, ...blogEntries];
 }

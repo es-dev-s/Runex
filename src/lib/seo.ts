@@ -29,7 +29,8 @@ export function buildMetadata({
         : `${title} | Runex`;
 
   return {
-    title: fullTitle,
+    // absolute: avoid layout title.template doubling ("Features | Runex | Runex")
+    title: { absolute: fullTitle },
     description,
     metadataBase: new URL(siteConfig.url),
     alternates: { canonical: url },
@@ -45,6 +46,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
+      site: siteConfig.twitter,
     },
     robots: noIndex
       ? { index: false, follow: false }
@@ -62,11 +64,13 @@ export function softwareApplicationJsonLd() {
     operatingSystem: "Web",
     url: siteConfig.url,
     description: siteConfig.description,
+    // Free tier is real; no invented paid amounts, ratings, or awards
     offers: {
       "@type": "Offer",
-      price: "0",
       priceCurrency: "USD",
-      description: "Free tier available; paid plans for production workloads",
+      description:
+        "Free tier available; current paid plan prices and quotas are shown in the Runex dashboard",
+      availability: "https://schema.org/InStock",
     },
   };
 }
@@ -78,6 +82,7 @@ export function organizationJsonLd() {
     name: "Runex",
     alternateName: siteConfig.alternateName,
     url: siteConfig.url,
+    logo: absoluteUrl("/runex-mark.svg"),
     description: siteConfig.description,
     slogan: siteConfig.slogan,
   };

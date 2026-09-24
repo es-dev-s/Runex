@@ -15,8 +15,14 @@ import {
   type ProximitySection,
 } from "@/components/ProximitySidebar";
 import { stackIconMap, type StackName } from "@/components/StackIcons";
-import { faqJsonLd } from "@/lib/seo";
+import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
+
+export const metadata = buildMetadata({
+  title: siteConfig.name,
+  description: siteConfig.description,
+  path: "/",
+});
 
 const faqs = [
   {
@@ -114,9 +120,24 @@ const learn = [
     body: "GitHub, Docker, and framework landings in one place.",
   },
   {
+    href: "/deploy/github",
+    title: "Deploy from GitHub",
+    body: "Install the GitHub App, pick a branch, and ship to *.runex.cloud.",
+  },
+  {
     href: "/docs/getting-started",
     title: "Getting started",
     body: "Create an account, connect GitHub, and ship your first deployment.",
+  },
+  {
+    href: "/docs/custom-domains",
+    title: "Custom domains",
+    body: "Point a CNAME to cname.runex.cloud and attach HTTPS to your brand domain.",
+  },
+  {
+    href: "/security",
+    title: "Security",
+    body: "Container isolation, HTTPS/TLS, webhooks, and what we do not overclaim.",
   },
 ];
 
@@ -166,9 +187,9 @@ export default function HomePage() {
 
           <HeroReveal delay={0.22} className="mt-7 max-w-xl">
             <p className="body-muted text-[15px] sm:text-[17px] sm:leading-relaxed">
-              Runex is a cloud deployment platform that helps developers deploy
-              applications without manually managing deployment infrastructure —
-              from GitHub to HTTPS on *.runex.cloud.
+              Runex is an easy cloud deployment platform for developers. Deploy
+              applications from GitHub or Docker to HTTPS on *.runex.cloud —
+              without manually managing deployment infrastructure.
             </p>
           </HeroReveal>
 
@@ -217,8 +238,8 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Capabilities"
-            title="Exhibits, not icon waffle."
-            description="A live deploy surface up front — supporting tiles for the controls that actually ship."
+            title="GitHub deploy, HTTPS, domains, and isolation."
+            description="Deploy from GitHub or Docker, ship HTTPS on *.runex.cloud, attach custom domains, and run apps in isolated containers."
           />
 
           <div className="grid gap-3.5 lg:grid-cols-12">
@@ -237,6 +258,12 @@ export default function HomePage() {
                     Repository access, branch selection, and push-triggered
                     redeploys when webhooks are active.
                   </p>
+                  <Link
+                    href="/deploy/github"
+                    className="mt-4 inline-block text-sm text-accent hover:text-accent-soft"
+                  >
+                    Deploy from GitHub →
+                  </Link>
                 </article>
               </FadeIn>
               <FadeIn delay={0.1}>
@@ -249,6 +276,12 @@ export default function HomePage() {
                     Production HTTPS out of the box. Custom domains via CNAME to{" "}
                     {siteConfig.cnameTarget}.
                   </p>
+                  <Link
+                    href="/docs/custom-domains"
+                    className="mt-4 inline-block text-sm text-accent hover:text-accent-soft"
+                  >
+                    Custom domains docs →
+                  </Link>
                 </article>
               </FadeIn>
             </div>
@@ -321,7 +354,7 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="How it works"
-            title="Four quiet steps."
+            title="From GitHub to HTTPS in four steps."
             description="Connect, configure, deploy, and ship — without operating a VPS for every application."
           />
           <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
@@ -349,8 +382,8 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Stacks"
-            title="Deploy what you already write."
-            description="Start at the deploy hub, or jump to Next.js, Node.js, Python, Go, Docker, and GitHub."
+            title="Next.js, Node.js, Python, Go, and Docker."
+            description="Start at the deploy hub, or jump straight to GitHub, Next.js, Node.js, Python, Go, or Docker."
           />
           <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {tech.map((t) => {
@@ -380,10 +413,10 @@ export default function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Learn"
-            title="Docs before slogans."
-            description="Getting started, GitHub deploys, custom domains, and practical guides."
+            title="Docs, deploy guides, and getting started."
+            description="Getting started, GitHub deploys, custom domains, security, and practical guides."
           />
-          <div className="grid gap-3.5 sm:grid-cols-3">
+          <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
             {learn.map((card) => (
               <Link
                 key={card.href}
@@ -406,7 +439,7 @@ export default function HomePage() {
       {/* FAQ */}
       <section id="faq" className="scroll-mt-28 py-24 sm:py-28">
         <Container>
-          <SectionHeading eyebrow="FAQ" title="Straight answers." />
+          <SectionHeading eyebrow="FAQ" title="Frequently asked questions." />
           <FAQ items={faqs} />
         </Container>
       </section>

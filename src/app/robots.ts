@@ -9,10 +9,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",
-          "/dashboard",
+          "/dashboard/",
+          "/auth/",
           "/sign-in",
           "/sign-up",
-          "/settings",
+          "/settings/",
         ],
       },
     ],

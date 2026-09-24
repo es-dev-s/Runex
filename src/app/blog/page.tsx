@@ -6,7 +6,8 @@ import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, Stagger, StaggerItem } from "@/components/Motion";
 import { getAllPosts } from "@/lib/blog";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Blog",
@@ -25,6 +26,12 @@ export default function BlogIndexPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ])}
+      />
       <BouncyIndicator sections={bouncySections} />
       <PageHero
         eyebrow="Blog"
@@ -70,6 +77,14 @@ export default function BlogIndexPage() {
             Looking for product docs? Start at{" "}
             <Link href="/docs" className="text-accent hover:text-accent-soft">
               /docs
+            </Link>
+            {" · "}
+            <Link href="/deploy" className="text-accent hover:text-accent-soft">
+              deploy hub
+            </Link>
+            {" · "}
+            <Link href="/deploy/github" className="text-accent hover:text-accent-soft">
+              deploy from GitHub
             </Link>
             .
           </FadeIn>
