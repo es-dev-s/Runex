@@ -26,15 +26,16 @@ const CHROME_RING = "inset 0 0 0 1px rgba(34,34,34,1)";
 const GAP_TOP = 40;
 const GAP_SCROLLED = 6;
 
-function RunexMark({ className = "" }: { className?: string }) {
+function RunexMark({ className = "h-[18px] w-[18px]" }: { className?: string }) {
   return (
-    <span className={`relative flex items-center justify-center ${className}`}>
-      <svg viewBox="0 0 24 24" className="h-full w-full text-accent" aria-hidden>
-        <path
-          fill="currentColor"
-          d="M12 2.5 19.5 7v10L12 21.5 4.5 17V7L12 2.5Zm0 2.3L6.8 8v8L12 18.9 17.2 16V8L12 4.8Z"
-        />
-      </svg>
+    <span className={`relative inline-flex shrink-0 items-center justify-center ${className}`}>
+      <img
+        src="/runex-mark.svg"
+        alt=""
+        className="h-full w-full object-contain"
+        draggable={false}
+        aria-hidden
+      />
     </span>
   );
 }
@@ -109,7 +110,7 @@ export function Header() {
               href="/"
               className="group flex items-center gap-2.5 outline-none"
             >
-              <RunexMark className="h-4 w-4" />
+              <RunexMark className="h-[18px] w-[18px]" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
                 Runex
               </span>
@@ -152,7 +153,7 @@ export function Header() {
               href="/"
               className="group flex items-center gap-2.5 outline-none"
             >
-              <RunexMark className="h-4 w-4" />
+              <RunexMark className="h-[18px] w-[18px]" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
                 Runex
               </span>

@@ -39,6 +39,7 @@ export function ComparePage({
         eyebrow="Compare"
         title={`Runex vs ${competitor}`}
         description={summary}
+        auraPlacement="bl"
       >
         <Button href={appSignUpUrl()} external>
           Try Runex

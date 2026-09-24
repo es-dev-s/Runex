@@ -51,7 +51,12 @@ export function DeployPage({
           { name, path },
         ])}
       />
-      <PageHero eyebrow={`Deploy ${name}`} title={headline} description={summary}>
+      <PageHero
+        eyebrow={`Deploy ${name}`}
+        title={headline}
+        description={summary}
+        auraPlacement="br"
+      >
         <Button href={appSignUpUrl()} external>
           Deploy a {name} app
         </Button>

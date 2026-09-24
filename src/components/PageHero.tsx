@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { BrandAura, type BrandAuraPlacement } from "./BrandAura";
 import { Container } from "./Container";
 import { FadeIn } from "./Motion";
 
@@ -7,11 +8,14 @@ export function PageHero({
   title,
   description,
   children,
+  auraPlacement = "tr",
 }: {
   eyebrow?: string;
   title: string;
   description: string;
   children?: ReactNode;
+  /** Subtle faded logo placement; omit-style default top-right. */
+  auraPlacement?: BrandAuraPlacement | false;
 }) {
   return (
     <section className="relative overflow-hidden pb-14 pt-28 sm:pb-16 sm:pt-32">
@@ -19,7 +23,14 @@ export function PageHero({
         className="accent-bloom absolute right-[-10%] top-[-20%] h-[380px] w-[380px] opacity-50"
         aria-hidden
       />
-      <Container className="relative">
+      {auraPlacement !== false && (
+        <BrandAura
+          placement={auraPlacement}
+          opacity={0.14}
+          blurPx={30}
+        />
+      )}
+      <Container className="relative z-10">
         <FadeIn>
           <div className="frame max-w-4xl px-6 py-8 sm:px-9 sm:py-10">
             {eyebrow && <p className="micro-label text-accent">{eyebrow}</p>}

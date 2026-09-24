@@ -1,4 +1,6 @@
-/** Premium atmospheric hero depth — soft blooms + vignette (no rings/orbits, no line grids). */
+import { BrandAura } from "./BrandAura";
+
+/** Premium atmospheric hero depth — soft blooms + vignette + faded brand mark (no rings/orbits). */
 export function HeroDepth({ className = "" }: { className?: string }) {
   return (
     <div
@@ -12,6 +14,14 @@ export function HeroDepth({ className = "" }: { className?: string }) {
           background:
             "radial-gradient(ellipse 68% 52% at 50% 50%, rgba(252,76,1,0.16) 0%, rgba(252,76,1,0.06) 38%, rgba(252,76,1,0.02) 58%, transparent 74%)",
         }}
+      />
+
+      {/* Brand watermark — offset right of H1, under content, SaaS aura feel */}
+      <BrandAura
+        placement="hero-right"
+        opacity={0.2}
+        blurPx={32}
+        className="z-[1]"
       />
 
       {/* Secondary depth spots — max two, soft, offset */}
@@ -53,7 +63,7 @@ export function HeroDepth({ className = "" }: { className?: string }) {
 
       {/* Edge vignette — fall into #070707 */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-[2]"
         style={{
           background: [
             "radial-gradient(ellipse 75% 65% at 50% 42%, transparent 35%, rgba(7,7,7,0.55) 78%, #070707 100%)",
@@ -64,7 +74,7 @@ export function HeroDepth({ className = "" }: { className?: string }) {
 
       {/* Ultra-subtle film grain (~3%) — CSS SVG filter, no assets */}
       <div
-        className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+        className="absolute inset-0 z-[2] opacity-[0.03] mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",

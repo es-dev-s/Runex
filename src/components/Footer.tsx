@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerLinks, siteConfig } from "@/lib/site";
+import { BrandAura } from "./BrandAura";
 
 const linkColumns = [
   ["Product", footerLinks.product],
@@ -23,6 +24,7 @@ export function Footer() {
         }}
         aria-hidden
       />
+      <BrandAura placement="bl" opacity={0.1} blurPx={36} />
 
       {/* Full-bleed shell — wide padding, not cramped max-w-7xl */}
       <div className="relative mx-auto w-full max-w-[1600px] px-6 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-16 lg:px-12 xl:px-16">

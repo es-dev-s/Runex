@@ -55,6 +55,10 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: "/runex-mark.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/runex-mark.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({

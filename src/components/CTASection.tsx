@@ -1,6 +1,7 @@
 import { appSignUpUrl } from "@/lib/site";
 import { Button } from "./Button";
 import { Container } from "./Container";
+import { BrandAura } from "./BrandAura";
 import { FadeIn } from "./Motion";
 
 export function CTASection({
@@ -28,6 +29,7 @@ export function CTASection({
               }}
               aria-hidden
             />
+            <BrandAura placement="br" opacity={0.12} blurPx={26} className="opacity-90" />
             <div className="relative grid gap-8 lg:grid-cols-[1.4fr_auto] lg:items-end">
               <div>
                 <p className="micro-label text-accent">Next step</p>
