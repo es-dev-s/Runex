@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
-    "border border-transparent bg-accent text-white hover:bg-accent-soft",
+    "border border-transparent bg-accent text-black hover:bg-accent-soft",
   secondary:
     "bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03]",
   ghost: "border border-transparent text-muted hover:text-foreground",

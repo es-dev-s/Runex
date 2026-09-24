@@ -65,13 +65,14 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
 ## Design system
 
 - Canvas: near-black RareUI craft (`--background: #070707`, charcoal cards/borders)
-- Accent: **premium forest green** (replaces prior orange `#ff4d00`)
-  - `--accent: #228B5A`
-  - `--accent-soft: #2d8a5f` (hover)
-  - `--accent-dim` / `--accent-glow`: rgba(34, 139, 90, …)
-  - Primary buttons: `bg-accent text-white` (not black) for contrast on forest fill
+- Accent: **Runex orange `#FC4C01`** (original brand accent)
+  - `--accent: #FC4C01`
+  - `--accent-soft: #ff6a2b` (hover)
+  - `--accent-dim` / `--accent-glow`: rgba(252, 76, 1, …)
+  - Primary buttons: `bg-accent text-black` for readable contrast on orange fill
 - Nav chrome: inset `boxShadow` rings only — no CSS `borderWidth` on Header clusters (avoids white border blink on hard reload)
-- Hero depth (`HeroDepth`): soft forest bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
+- Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
+- Homepage testimonials marquee: six sample customer voices are placeholders; replace with real quotes before launch. No review/rating schema.
 
 ## Stack
 

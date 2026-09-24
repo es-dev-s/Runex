@@ -19,7 +19,7 @@ export function CTASection({
               className="pointer-events-none absolute -right-20 -top-24 h-72 w-[28rem] opacity-50"
               style={{
                 background:
-                  "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(34,139,90,0.18) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(252,76,1,0.18) 0%, transparent 70%)",
               }}
               aria-hidden
             />

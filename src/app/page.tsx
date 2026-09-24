@@ -5,6 +5,7 @@ import { CTASection } from "@/components/CTASection";
 import { DeployExhibit } from "@/components/DeployExhibit";
 import { FAQ } from "@/components/FAQ";
 import { SectionHeading } from "@/components/FeatureGrid";
+import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
 import { HeroCommand } from "@/components/HeroCommand";
 import { HeroDepth } from "@/components/HeroDepth";
 import { JsonLd } from "@/components/JsonLd";
@@ -188,6 +189,9 @@ export default function HomePage() {
           </HeroReveal>
         </Container>
       </section>
+
+      {/* Social proof — placeholder voices to replace with real customer quotes */}
+      <TestimonialsMarquee />
 
       {/* Bento capabilities */}
       <section className="pb-24 sm:pb-28">
