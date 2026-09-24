@@ -61,7 +61,7 @@ function Pill({
     <motion.div
       className={`pointer-events-auto flex items-center outline-none ${
         circle
-          ? "relative h-10 w-10 shrink-0 items-center justify-center overflow-hidden !p-0"
+          ? "relative h-10 w-10 shrink-0 items-center justify-center overflow-visible !p-0"
           : ""
       } ${className}`}
       initial={false}
@@ -177,7 +177,7 @@ export function Header() {
               aria-label="Runex home"
               className="group absolute inset-0 flex items-center justify-center outline-none transition-opacity hover:opacity-90"
             >
-              <RunexMark className="h-[22px] w-[22px]" />
+              <RunexMark className="h-[20px] w-[20px]" />
             </Link>
           </Pill>
 
