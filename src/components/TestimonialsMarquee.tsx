@@ -95,9 +95,12 @@ function MarqueeColumn({
   );
 }
 
-export function TestimonialsMarquee() {
+export function TestimonialsMarquee({ id }: { id?: string }) {
   return (
-    <section className="overflow-hidden py-20 sm:py-24">
+    <section
+      id={id}
+      className={`overflow-hidden py-20 sm:py-24${id ? " scroll-mt-28" : ""}`}
+    >
       <Container>
         <FadeIn>
           <div className="max-w-2xl">

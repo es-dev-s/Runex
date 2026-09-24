@@ -70,17 +70,19 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
   - `--accent-soft: #ff6a2b` (hover)
   - `--accent-dim` / `--accent-glow`: rgba(252, 76, 1, …)
   - Primary buttons: `bg-accent text-black` for readable contrast on orange fill
-- Nav chrome: inset `boxShadow` rings only — no CSS `borderWidth` on Header clusters (avoids white border blink on hard reload)
+- Nav chrome: **always-split** three floating dark-glass pills (logo | links | Login+Deploy); dense ~4px gaps; no joined outer parent / no join↔split scroll animation. Inset `boxShadow` rings only — no CSS `borderWidth` (avoids white border blink). Subtle top-pad / shadow when scrolled.
 - Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
-- Homepage testimonials: Rare-style **3-column vertical marquee** (2 cards/col, duplicated for seamless loop); top/bottom `mask-image` fades; independent speeds/directions (col1 ↑ 42s, col2 ↓ 28s, col3 ↑ 20s); pause on hover; `prefers-reduced-motion` → static grid. Placeholders — replace before launch. No review/rating schema.
-- Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer keeps a restrained top edge. Card/frame borders on tiles unchanged.
+- Homepage proximity sidebar (`ProximitySidebar`): left-side Rare-style section nav (lg+ only); Introduction → Deploy; nearest label in `#FC4C01`, neighbors graduated opacity/scale; `aria-current`; reduced-motion skips scale. Overlay (pointer-events on links only) so 1280px content is not crushed.
+- Homepage testimonials: Rare-style **3-column vertical marquee** — placed **after FAQ, before final CTA**. Placeholders — replace before launch. No review/rating schema.
+- Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer: full-bleed wider shell (`max-w-7xl`), soft top hairline + accent bloom + oversized RUNEX wordmark; no harsh double borders. Card/frame borders on tiles unchanged.
+- Homepage section ids (sidebar): `introduction`, `capabilities`, `how-it-works`, `stacks`, `learn`, `faq`, `voices`, `deploy` (`scroll-mt-28`).
 
 ## Stack
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
 - `framer-motion` for scroll/entrance motion
 - `next-mdx-remote` + `gray-matter` + `reading-time` for blog
-- RareUI craft Header / HeroDepth (atmospheric blooms + vignette, no line grids or rings) — SEO work is content + structure
+- RareUI craft: always-split Header, ProximitySidebar, HeroDepth, wide Footer, bottom marquee — SEO work is content + structure
 
 ## Do not
 

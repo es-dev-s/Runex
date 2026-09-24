@@ -7,16 +7,10 @@ import {
   useReducedMotion,
   useScroll,
 } from "framer-motion";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { appSignInUrl, appSignUpUrl, navLinks } from "@/lib/site";
 import { Button } from "./Button";
 
-const spring = {
-  type: "spring" as const,
-  stiffness: 380,
-  damping: 36,
-  mass: 0.72,
-};
 const softSpring = {
   type: "spring" as const,
   stiffness: 280,
@@ -27,7 +21,6 @@ const instant = { duration: 0 };
 
 /** Dark inset ring only — never CSS border (avoids white/default flash on first paint). */
 const CHROME_RING = "inset 0 0 0 1px rgba(34,34,34,1)";
-const NO_RING = "none";
 
 function RunexMark({ className = "" }: { className?: string }) {
   return (
@@ -42,39 +35,41 @@ function RunexMark({ className = "" }: { className?: string }) {
   );
 }
 
-function Cluster({
+/** Always-on floating dark glass pill — no join/split parent chrome. */
+function Pill({
   children,
   className = "",
-  split,
   reduce,
+  elevated,
 }: {
   children: ReactNode;
   className?: string;
-  split: boolean;
   reduce: boolean | null;
+  elevated: boolean;
 }) {
   return (
     <motion.div
-      layout
       className={`pointer-events-auto flex items-center outline-none ${className}`}
       initial={false}
       animate={{
         borderRadius: 9999,
-        backgroundColor: split
-          ? "rgba(12,12,12,0.88)"
-          : "rgba(12,12,12,0)",
-        // Dense pills when split — premium tight, not airy
-        paddingLeft: split ? 10 : 0,
-        paddingRight: split ? 10 : 0,
-        paddingTop: split ? 6 : 0,
-        paddingBottom: split ? 6 : 0,
-        // Joined: zero ring (children sit inside outer shell). Split: dark inset only.
-        boxShadow: split
-          ? `${CHROME_RING}, 0 12px 40px rgba(0,0,0,0.45)`
-          : NO_RING,
+        backgroundColor: "rgba(12,12,12,0.88)",
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 6,
+        paddingBottom: 6,
+        boxShadow: elevated
+          ? `${CHROME_RING}, 0 14px 44px rgba(0,0,0,0.5)`
+          : `${CHROME_RING}, 0 10px 32px rgba(0,0,0,0.38)`,
       }}
-      transition={reduce ? instant : spring}
-      style={{ borderWidth: 0, borderStyle: "none", borderColor: "transparent" }}
+      transition={reduce ? instant : softSpring}
+      style={{
+        borderWidth: 0,
+        borderStyle: "none",
+        borderColor: "transparent",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+      }}
     >
       {children}
     </motion.div>
@@ -83,108 +78,43 @@ function Cluster({
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  /** SSR + first paint: joined + flush-top — avoids hydration flash. */
-  const [entered, setEntered] = useState(false);
-  const [split, setSplit] = useState(false);
-  const lastY = useRef(0);
+  const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
-
-  useEffect(() => {
-    let raf2 = 0;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setEntered(true));
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
-    };
-  }, []);
+  const t = reduce ? instant : softSpring;
 
   useMotionValueEvent(scrollY, "change", (next) => {
-    const prev = lastY.current;
-    const delta = next - prev;
-    lastY.current = next;
-
-    // Near top: always joined (wider bar story)
-    if (next < 20) {
-      setSplit(false);
-      return;
-    }
-    if (Math.abs(delta) < 1.5) return;
-    if (delta > 0) setSplit(true);
-    else setSplit(false);
+    setScrolled(next > 24);
   });
-
-  const joined = !split;
-  /**
-   * inset rules (clear story — no re-attach hop):
-   * - pre-entrance: flush (2)
-   * - post-entrance joined at top: floating (16) — wider bar
-   * - split: compact (12)
-   */
-  let paddingTop = 16;
-  if (!entered) paddingTop = 2;
-  else if (split) paddingTop = 12;
-  else paddingTop = 16;
-
-  /** Floating joined chrome only after entrance — no borderWidth; inset ring after showJoinedChrome. */
-  const showJoinedChrome = joined && entered;
-  const t = reduce ? instant : softSpring;
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <motion.div
-        className="relative mx-auto w-full px-3 sm:px-5"
+        className="relative mx-auto w-full max-w-5xl px-3 sm:px-5"
         initial={false}
         animate={{
-          paddingTop,
-          // Wider joined at top; compact shell when split
-          maxWidth: split ? 1024 : 1280,
+          // Subtle float: slightly more top pad at rest, tighter when scrolled
+          paddingTop: scrolled ? 10 : 14,
         }}
         transition={t}
       >
-        <motion.div
-          layout
-          className="relative flex w-full items-center justify-between outline-none"
-          initial={false}
-          animate={{
-            // Tight premium gaps between split pills (~4px)
-            gap: split ? 4 : 0,
-            borderRadius: 9999,
-            backgroundColor: showJoinedChrome
-              ? "rgba(12,12,12,0.78)"
-              : "rgba(12,12,12,0)",
-            paddingLeft: joined ? (showJoinedChrome ? 20 : 16) : 0,
-            paddingRight: joined ? (showJoinedChrome ? 18 : 14) : 0,
-            paddingTop: joined ? 10 : 0,
-            paddingBottom: joined ? 10 : 0,
-            // Inset dark ring + soft shadow once floating — never CSS border
-            boxShadow: showJoinedChrome
-              ? `${CHROME_RING}, 0 16px 48px rgba(0,0,0,0.35)`
-              : NO_RING,
-          }}
-          transition={reduce ? instant : spring}
-          style={{
-            borderWidth: 0,
-            borderStyle: "none",
-            borderColor: "transparent",
-            backdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
-            WebkitBackdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
-          }}
-        >
-          <Cluster split={split} reduce={reduce} className="shrink-0">
-            <Link href="/" className="group flex items-center gap-2.5 outline-none">
+        {/* Always three separated pills — dense ~4px gaps, no outer parent shell */}
+        <div className="relative flex w-full items-center justify-between gap-1">
+          <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
+            <Link
+              href="/"
+              className="group flex items-center gap-2.5 outline-none"
+            >
               <RunexMark className="h-4 w-4" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
                 Runex
               </span>
             </Link>
-          </Cluster>
+          </Pill>
 
-          <Cluster
-            split={split}
+          <Pill
             reduce={reduce}
+            elevated={scrolled}
             className="absolute left-1/2 hidden -translate-x-1/2 md:flex"
           >
             <nav className="flex items-center" aria-label="Primary">
@@ -205,12 +135,12 @@ export function Header() {
                 </span>
               ))}
             </nav>
-          </Cluster>
+          </Pill>
 
-          <div className="flex items-center gap-2">
-            <Cluster
-              split={split}
+          <div className="flex items-center gap-1">
+            <Pill
               reduce={reduce}
+              elevated={scrolled}
               className="hidden gap-1.5 md:flex"
             >
               <Button
@@ -228,9 +158,9 @@ export function Header() {
               >
                 Deploy
               </Button>
-            </Cluster>
+            </Pill>
 
-            <Cluster split={split} reduce={reduce} className="md:hidden">
+            <Pill reduce={reduce} elevated={scrolled} className="md:hidden">
               <button
                 type="button"
                 aria-label={open ? "Close menu" : "Open menu"}
@@ -251,9 +181,9 @@ export function Header() {
                   />
                 </div>
               </button>
-            </Cluster>
+            </Pill>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
 
       {open && (

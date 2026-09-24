@@ -10,6 +10,10 @@ import { HeroCommand } from "@/components/HeroCommand";
 import { HeroDepth } from "@/components/HeroDepth";
 import { JsonLd } from "@/components/JsonLd";
 import { FadeIn, HeroReveal, Stagger, StaggerItem } from "@/components/Motion";
+import {
+  ProximitySidebar,
+  type ProximitySection,
+} from "@/components/ProximitySidebar";
 import { faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
 
@@ -115,6 +119,18 @@ const learn = [
   },
 ];
 
+
+const proximitySections: readonly ProximitySection[] = [
+  { id: "introduction", label: "Introduction" },
+  { id: "capabilities", label: "Capabilities" },
+  { id: "how-it-works", label: "How it works" },
+  { id: "stacks", label: "Stacks" },
+  { id: "learn", label: "Learn" },
+  { id: "faq", label: "FAQ" },
+  { id: "voices", label: "Voices" },
+  { id: "deploy", label: "Deploy" },
+];
+
 export default function HomePage() {
   const host = siteConfig.url.replace("https://", "");
 
@@ -123,7 +139,10 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd(faqs)} />
 
       {/* Hero — RareUI scale: display type, blackspace, atmospheric depth (no circles) */}
-      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
+      <section
+        id="introduction"
+        className="relative flex min-h-[100svh] scroll-mt-28 items-center justify-center overflow-hidden"
+      >
         <HeroDepth />
 
         <Container className="relative z-10 flex flex-col items-center pb-28 pt-32 text-center sm:pb-36 sm:pt-36">
@@ -190,11 +209,10 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Social proof — placeholder voices to replace with real customer quotes */}
-      <TestimonialsMarquee />
+      <ProximitySidebar sections={proximitySections} />
 
       {/* Bento capabilities */}
-      <section className="pb-24 sm:pb-28">
+      <section id="capabilities" className="scroll-mt-28 pb-24 sm:pb-28">
         <Container>
           <SectionHeading
             eyebrow="Capabilities"
@@ -298,7 +316,7 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="py-24 sm:py-28">
+      <section id="how-it-works" className="scroll-mt-28 py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="How it works"
@@ -326,7 +344,7 @@ export default function HomePage() {
       </section>
 
       {/* Technologies */}
-      <section className="py-24 sm:py-28">
+      <section id="stacks" className="scroll-mt-28 py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Stacks"
@@ -349,7 +367,7 @@ export default function HomePage() {
       </section>
 
       {/* Learn */}
-      <section className="py-24 sm:py-28">
+      <section id="learn" className="scroll-mt-28 py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Learn"
@@ -377,14 +395,17 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 sm:py-28">
+      <section id="faq" className="scroll-mt-28 py-24 sm:py-28">
         <Container>
           <SectionHeading eyebrow="FAQ" title="Straight answers." />
           <FAQ items={faqs} />
         </Container>
       </section>
 
-      <CTASection />
+      {/* Social proof — near end, above final CTA */}
+      <TestimonialsMarquee id="voices" />
+
+      <CTASection id="deploy" />
     </>
   );
 }

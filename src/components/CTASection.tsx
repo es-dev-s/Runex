@@ -6,12 +6,17 @@ import { FadeIn } from "./Motion";
 export function CTASection({
   title = "Deploy your first application",
   description = "Connect a GitHub repository, deploy with Runex, and get a production HTTPS URL on *.runex.cloud.",
+  id,
 }: {
   title?: string;
   description?: string;
+  id?: string;
 }) {
   return (
-    <section className="py-20 sm:py-24">
+    <section
+      id={id}
+      className={`py-20 sm:py-24${id ? " scroll-mt-28" : ""}`}
+    >
       <Container>
         <FadeIn>
           <div className="relative overflow-hidden rounded-[1.85rem] border border-card-border bg-card px-7 py-12 sm:px-12 sm:py-16">
