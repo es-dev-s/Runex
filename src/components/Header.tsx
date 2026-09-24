@@ -28,11 +28,13 @@ const GAP_SCROLLED = 6;
 
 function RunexMark({ className = "h-[18px] w-[18px]" }: { className?: string }) {
   return (
-    <span className={`relative inline-flex shrink-0 items-center justify-center ${className}`}>
+    <span
+      className={`relative inline-flex shrink-0 items-center justify-center leading-none ${className}`}
+    >
       <img
         src="/runex-mark.svg"
         alt=""
-        className="h-full w-full object-contain"
+        className="pointer-events-none block h-full w-full select-none object-contain"
         draggable={false}
         aria-hidden
       />
@@ -57,7 +59,11 @@ function Pill({
 }) {
   return (
     <motion.div
-      className={`pointer-events-auto flex items-center outline-none ${circle ? "h-10 w-10 shrink-0 justify-center overflow-hidden p-0" : ""} ${className}`}
+      className={`pointer-events-auto flex items-center outline-none ${
+        circle
+          ? "relative h-10 w-10 shrink-0 items-center justify-center overflow-hidden !p-0"
+          : ""
+      } ${className}`}
       initial={false}
       animate={{
         borderRadius: 9999,
@@ -83,7 +89,11 @@ function Pill({
               height: 40,
               minWidth: 40,
               minHeight: 40,
+              padding: 0,
               borderRadius: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }
           : {}),
       }}
@@ -165,7 +175,7 @@ export function Header() {
             <Link
               href="/"
               aria-label="Runex home"
-              className="group inline-flex h-full w-full items-center justify-center outline-none transition-opacity hover:opacity-90"
+              className="group absolute inset-0 flex items-center justify-center outline-none transition-opacity hover:opacity-90"
             >
               <RunexMark className="h-[22px] w-[22px]" />
             </Link>
