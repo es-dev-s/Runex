@@ -5,8 +5,9 @@ import { CTASection } from "@/components/CTASection";
 import { DeployExhibit } from "@/components/DeployExhibit";
 import { FAQ } from "@/components/FAQ";
 import { SectionHeading } from "@/components/FeatureGrid";
+import { HeroCommand } from "@/components/HeroCommand";
 import { JsonLd } from "@/components/JsonLd";
-import { FadeIn, Stagger, StaggerItem } from "@/components/Motion";
+import { FadeIn, HeroReveal, Stagger, StaggerItem } from "@/components/Motion";
 import { OrbitMotif } from "@/components/OrbitMotif";
 import { faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
@@ -104,47 +105,59 @@ export default function HomePage() {
     <>
       <JsonLd data={faqJsonLd(faqs)} />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <OrbitMotif className="right-[-8%] top-8 hidden h-[420px] w-[420px] opacity-80 lg:block xl:right-[2%]" />
+      {/* Hero — RareUI craft: centered, watermark, badge, command + orange CTA */}
+      <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden">
+        <OrbitMotif
+          variant="watermark"
+          className="left-1/2 top-[48%] h-[min(92vw,620px)] w-[min(92vw,620px)] -translate-x-1/2 -translate-y-1/2"
+        />
         <div
-          className="accent-bloom absolute left-1/2 top-0 h-[480px] w-[640px] -translate-x-1/2 opacity-40"
+          className="accent-bloom absolute left-1/2 top-[42%] h-[520px] w-[720px] -translate-x-1/2 -translate-y-1/2 opacity-30"
           aria-hidden
         />
-        <Container className="relative pb-16 pt-16 sm:pb-24 sm:pt-24">
-          <FadeIn className="relative z-10 max-w-3xl">
-            <p className="micro-label text-accent">Cloud deployment platform</p>
-            <h1 className="display mt-5 text-[2.6rem] text-foreground sm:text-6xl lg:text-[4.25rem]">
+
+        <Container className="relative z-10 flex flex-col items-center pb-24 pt-28 text-center sm:pb-32 sm:pt-32">
+          <HeroReveal delay={0.04}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-card-border bg-[#0c0c0c]/80 px-3.5 py-1.5 backdrop-blur-md">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
+                Deploy from GitHub
+              </span>
+            </div>
+          </HeroReveal>
+
+          <HeroReveal delay={0.12} className="mt-8 max-w-3xl">
+            <h1 className="display text-[2.75rem] text-foreground sm:text-6xl lg:text-[4.5rem]">
               From GitHub
               <br />
               to production.
             </h1>
-            <p className="body-muted mt-6 max-w-xl text-[15px] sm:text-base">
+          </HeroReveal>
+
+          <HeroReveal delay={0.22} className="mt-6 max-w-xl">
+            <p className="body-muted text-[15px] sm:text-base">
               Runex deploys your applications from GitHub into isolated
               containers and gives you a public HTTPS URL — without babysitting
               a VPS for every ship.
             </p>
+          </HeroReveal>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-stretch">
-              <div className="terminal-surface flex min-w-0 flex-1 items-center gap-3 overflow-x-auto px-4 py-3 font-mono text-[12px] text-zinc-400 sm:text-[13px]">
-                <span className="text-accent">$</span>
-                <span className="whitespace-nowrap">
-                  connect github → select repo → deploy
-                </span>
-                <span className="hidden text-zinc-600 sm:inline">·</span>
-                <span className="hidden whitespace-nowrap text-zinc-500 sm:inline">
-                  https://&lt;app&gt;.{host}
-                </span>
-              </div>
-              <Button
-                href={appSignUpUrl()}
-                external
-                className="shrink-0 !rounded-2xl !px-6 !py-3"
-              >
-                Deploy now
-              </Button>
-            </div>
-          </FadeIn>
+          <HeroReveal
+            delay={0.34}
+            className="mt-10 flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+          >
+            <HeroCommand
+              command="connect github → select repo → deploy"
+              copyText={`connect github → select repo → deploy · https://<app>.${host}`}
+            />
+            <Button
+              href={appSignUpUrl()}
+              external
+              className="shrink-0 !rounded-full !px-6 !py-2.5"
+            >
+              Deploy
+            </Button>
+          </HeroReveal>
         </Container>
       </section>
 
@@ -176,7 +189,7 @@ export default function HomePage() {
                 </article>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <article className="artboard-surface h-full p-5 sm:p-6">
+                <article className="artboard-surface h-full p-5 sm:p-6 transition hover:border-zinc-500">
                   <p className="micro-label">HTTPS + domains</p>
                   <h3 className="mt-3 text-[15px] font-semibold tracking-tight">
                     *.runex.cloud, then your name.
@@ -231,7 +244,7 @@ export default function HomePage() {
               <a
                 href={appSignUpUrl()}
                 rel="noopener noreferrer"
-                className="flex h-full min-h-[180px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:bg-accent-soft sm:px-6"
+                className="flex h-full min-h-[180px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:-translate-y-0.5 hover:bg-accent-soft sm:px-6"
               >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
                   Start
@@ -332,10 +345,7 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="border-t border-card-border py-20 sm:py-24">
         <Container>
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Straight answers."
-          />
+          <SectionHeading eyebrow="FAQ" title="Straight answers." />
           <FAQ items={faqs} />
         </Container>
       </section>

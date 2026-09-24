@@ -70,19 +70,19 @@ These are called out in the strategy as Phase 2–3 or optional — not blockers
 - Push remotes unless asked (local git commit only)
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
 
-## Design system (2026-09-24 redesign)
+## Design system (2026-09-24 redesign → RareUI landing craft)
 
 Rare-inspired premium dark UI (not generic AI SaaS):
 
 - Near-black canvas `#070707` + hot orange accent `#ff4d00`
-- Floating segmented pill `Header` (sticky/compact on scroll)
-- Hero: two-line operational promise + Runex hex/orbit motif (`OrbitMotif`)
-- Above-fold: dark command strip + high-contrast orange Deploy CTA
-- Bento capabilities with live `DeployExhibit` + orange CTA tile
+- Floating **three-pill** `Header` (brand | links | utilities), fixed with generous top inset
+- Scroll craft: spacious at top; **shrink on scroll-down**; **expand on scroll-up** (framer-motion springs; reduced-motion = instant)
+- Centered hero: huge low-contrast Runex hex/orbit watermark, badge pill, 2-line headline, muted subcopy, command pill + orange Deploy
+- Bento capabilities with live `DeployExhibit` + hover-lift tiles
 - Exhibit frames (`.frame` / `.frame-tight`), terminal/artboard surfaces
 - Motion honors `prefers-reduced-motion`
 - Huge typographic `Footer` with restrained orange bloom
-- Shared shells: `PageHero`, `FeatureGrid`, `CTASection`, docs/blog/pricing/compare/deploy
+- Shared shells: `PageHero`, `FeatureGrid`, `CTASection`, docs/blog/pricing/compare/deploy inherit Header
 
 SEO routes, MDX blog/docs, sitemap/robots, JSON-LD unchanged.
 Login → `NEXT_PUBLIC_APP_URL/sign-in`; Deploy → `/sign-up`.

@@ -55,7 +55,7 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd data={articleLd} />
-      <article className="border-b border-card-border pb-16 pt-14">
+      <article className="border-b border-card-border pb-16 pt-28 sm:pt-32">
         <Container className="max-w-3xl">
           <p className="micro-label text-accent">Blog</p>
           <h1 className="display mt-3 text-3xl text-foreground sm:text-4xl">

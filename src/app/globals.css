@@ -77,12 +77,29 @@ body {
   border: 1px solid var(--card-border);
   background: var(--card);
   border-radius: var(--radius-frame);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease;
+}
+
+.frame:hover {
+  border-color: #333;
 }
 
 .frame-tight {
   border: 1px solid var(--card-border);
   background: var(--card);
   border-radius: var(--radius-tile);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.frame-tight:hover {
+  transform: translateY(-2px);
+  border-color: #3a3a3a;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 .terminal-surface {
@@ -162,6 +179,11 @@ body {
   .orbit-pulse,
   .deploy-pulse {
     animation: none;
+  }
+
+  .frame-tight:hover,
+  .frame:hover {
+    transform: none;
   }
 }
 
