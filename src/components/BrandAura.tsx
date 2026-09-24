@@ -6,7 +6,8 @@ export type BrandAuraPlacement =
   | "br"
   | "bl"
   | "center"
-  | "hero-right";
+  | "hero-right"
+  | "hero-center";
 
 const placementClass: Record<BrandAuraPlacement, string> = {
   tr: "right-[-8%] top-[-6%] h-[min(52vw,340px)] w-[min(58vw,420px)]",
@@ -17,6 +18,8 @@ const placementClass: Record<BrandAuraPlacement, string> = {
     "left-1/2 top-1/2 h-[min(60vw,420px)] w-[min(70vw,520px)] -translate-x-1/2 -translate-y-1/2",
   "hero-right":
     "right-[-4%] top-[18%] h-[min(72vw,560px)] w-[min(80vw,680px)] sm:right-[2%] sm:top-[12%]",
+  "hero-center":
+    "left-1/2 top-[38%] h-[min(88vw,720px)] w-[min(92vw,780px)] -translate-x-1/2 -translate-y-1/2",
 };
 
 export function BrandAura({

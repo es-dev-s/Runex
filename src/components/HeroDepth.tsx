@@ -16,11 +16,11 @@ export function HeroDepth({ className = "" }: { className?: string }) {
         }}
       />
 
-      {/* Brand watermark — offset right of H1, under content, SaaS aura feel */}
+      {/* Brand watermark — centered behind H1, a bit larger, soft clean blur */}
       <BrandAura
-        placement="hero-right"
-        opacity={0.2}
-        blurPx={32}
+        placement="hero-center"
+        opacity={0.22}
+        blurPx={28}
         className="z-[1]"
       />
 
