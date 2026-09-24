@@ -121,7 +121,7 @@ export default function HomePage() {
     <>
       <JsonLd data={faqJsonLd(faqs)} />
 
-      {/* Hero — RareUI scale: display type, blackspace, angular depth (no circles) */}
+      {/* Hero — RareUI scale: display type, blackspace, atmospheric depth (no circles) */}
       <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
         <HeroDepth />
 

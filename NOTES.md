@@ -71,13 +71,14 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
   - `--accent-dim` / `--accent-glow`: rgba(34, 139, 90, …)
   - Primary buttons: `bg-accent text-white` (not black) for contrast on forest fill
 - Nav chrome: inset `boxShadow` rings only — no CSS `borderWidth` on Header clusters (avoids white border blink on hard reload)
+- Hero depth (`HeroDepth`): soft forest bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
 
 ## Stack
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
 - `framer-motion` for scroll/entrance motion
 - `next-mdx-remote` + `gray-matter` + `reading-time` for blog
-- RareUI craft Header / HeroDepth preserved — SEO work is content + structure
+- RareUI craft Header / HeroDepth (atmospheric blooms + vignette, no line grids or rings) — SEO work is content + structure
 
 ## Do not
 
