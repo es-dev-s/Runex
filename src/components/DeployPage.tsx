@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { FAQ, type FAQItem } from "@/components/FAQ";
@@ -40,6 +41,13 @@ export function DeployPage({
   related,
 }: DeployPageProps) {
   const relatedLinks = related ?? defaultRelated.filter((r) => r.href !== path);
+  const bouncySections = [
+    { id: "steps", label: "Steps" },
+    { id: "notes", label: "Notes" },
+    ...(relatedLinks.length > 0 ? [{ id: "related", label: "Related" }] : []),
+    { id: "faq", label: "FAQ" },
+    { id: "deploy", label: "Deploy" },
+  ];
 
   return (
     <>
@@ -51,6 +59,7 @@ export function DeployPage({
           { name, path },
         ])}
       />
+      <BouncyIndicator sections={bouncySections} />
       <PageHero
         eyebrow={`Deploy ${name}`}
         title={headline}
@@ -68,7 +77,10 @@ export function DeployPage({
       <section className="border-b border-card-border py-16">
         <Container className="max-w-3xl">
           <FadeIn>
-            <h2 className="display text-2xl text-foreground">
+            <h2
+              id="steps"
+              className="display scroll-mt-28 text-2xl text-foreground"
+            >
               How to deploy {name} on Runex
             </h2>
             <ol className="mt-6 space-y-4">
@@ -82,7 +94,10 @@ export function DeployPage({
               ))}
             </ol>
 
-            <h2 className="mt-12 display text-2xl text-foreground">
+            <h2
+              id="notes"
+              className="mt-12 display scroll-mt-28 text-2xl text-foreground"
+            >
               Practical notes
             </h2>
             <ul className="mt-4 space-y-2">
@@ -96,7 +111,10 @@ export function DeployPage({
 
             {relatedLinks.length > 0 && (
               <>
-                <h2 className="mt-12 display text-2xl text-foreground">
+                <h2
+                  id="related"
+                  className="mt-12 display scroll-mt-28 text-2xl text-foreground"
+                >
                   Related
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -114,7 +132,10 @@ export function DeployPage({
               </>
             )}
 
-            <h2 className="mt-12 display text-2xl text-foreground">
+            <h2
+              id="faq"
+              className="mt-12 display scroll-mt-28 text-2xl text-foreground"
+            >
               FAQ
             </h2>
             <div className="mt-4">
@@ -124,7 +145,7 @@ export function DeployPage({
         </Container>
       </section>
 
-      <CTASection title={`Deploy ${name} with Runex`} />
+      <CTASection id="deploy" title={`Deploy ${name} with Runex`} />
     </>
   );
 }

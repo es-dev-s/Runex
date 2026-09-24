@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { Container } from "@/components/Container";
+import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, Stagger, StaggerItem } from "@/components/Motion";
 import { getAllPosts } from "@/lib/blog";
@@ -13,18 +15,24 @@ export const metadata: Metadata = buildMetadata({
   path: "/blog",
 });
 
+const bouncySections = [
+  { id: "posts", label: "Posts" },
+  { id: "deploy", label: "Deploy" },
+] as const;
+
 export default function BlogIndexPage() {
   const posts = getAllPosts();
 
   return (
     <>
+      <BouncyIndicator sections={bouncySections} />
       <PageHero
         eyebrow="Blog"
         title="Guides for deploying applications."
         description="Practical articles that answer real questions — what a deployment platform is, how to deploy from GitHub, and how custom domains work on Runex."
       />
 
-      <section className="pb-20">
+      <section id="posts" className="scroll-mt-28 pb-20">
         <Container>
           {posts.length === 0 ? (
             <p className="text-muted">No posts yet.</p>
@@ -67,6 +75,7 @@ export default function BlogIndexPage() {
           </FadeIn>
         </Container>
       </section>
+      <CTASection id="deploy" title="Ship what you just read about" />
     </>
   );
 }

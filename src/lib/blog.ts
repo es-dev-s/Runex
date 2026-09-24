@@ -65,3 +65,35 @@ export function getPostBySlug(slug: string): BlogPost | null {
 export function getAllSlugs(): string[] {
   return ensureBlogDir().map((f) => f.replace(/\.mdx$/, ""));
 }
+
+export function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export type BlogHeading = { id: string; label: string };
+
+/** Extract ## headings from MDX/markdown body for on-page nav. */
+export function extractMarkdownHeadings(content: string): BlogHeading[] {
+  const headings: BlogHeading[] = [];
+  const seen = new Set<string>();
+  for (const match of content.matchAll(/^##\s+(.+)$/gm)) {
+    const label = match[1].trim();
+    let id = slugifyHeading(label);
+    if (!id) continue;
+    if (seen.has(id)) {
+      let n = 2;
+      while (seen.has(`${id}-${n}`)) n += 1;
+      id = `${id}-${n}`;
+    }
+    seen.add(id);
+    headings.push({ id, label });
+  }
+  return headings;
+}
+

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
@@ -13,6 +14,12 @@ export type CompareRow = {
   runex: string;
   other: string;
 };
+
+const bouncySections = [
+  { id: "comparison", label: "Compare" },
+  { id: "notes", label: "Notes" },
+  { id: "deploy", label: "Deploy" },
+] as const;
 
 export function ComparePage({
   competitor,
@@ -35,6 +42,7 @@ export function ComparePage({
           { name: `Runex vs ${competitor}`, path },
         ])}
       />
+      <BouncyIndicator sections={bouncySections} />
       <PageHero
         eyebrow="Compare"
         title={`Runex vs ${competitor}`}
@@ -49,7 +57,10 @@ export function ComparePage({
         </Button>
       </PageHero>
 
-      <section className="border-b border-card-border py-16">
+      <section
+        id="comparison"
+        className="scroll-mt-28 border-b border-card-border py-16"
+      >
         <Container>
           <FadeIn>
             <div className="overflow-x-auto rounded-[1.25rem] border border-card-border bg-card">
@@ -84,7 +95,7 @@ export function ComparePage({
               </table>
             </div>
 
-            <div className="mt-10 max-w-3xl">
+            <div id="notes" className="mt-10 max-w-3xl scroll-mt-28">
               <h2 className="text-xl font-semibold tracking-tight text-foreground">
                 How to read this comparison
               </h2>
@@ -114,7 +125,7 @@ export function ComparePage({
         </Container>
       </section>
 
-      <CTASection />
+      <CTASection id="deploy" />
     </>
   );
 }

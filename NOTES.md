@@ -120,3 +120,18 @@ Local Legion only (no clone, no push).
 | Accent | Unchanged `#FC4C01` |
 
 Verify: `npm run build`. Commit: `feat: runex.svg brand watermark on hero and pages`.
+
+## Scrollbar + section indicators polish (2026-09-24)
+
+Local Legion only (no clone, no push). Accent unchanged `#FC4C01`.
+
+| Item | Detail |
+| --- | --- |
+| Custom scrollbar | `globals.css`: Firefox `scrollbar-width: thin` + `scrollbar-color` (zinc thumb / `#070707` track); WebKit 8px rounded thumb (`zinc-700` rest, soft `#FC4C01`-tinted hover), track matches canvas; applies to `html` + overflow containers (`*`). `scroll-behavior: smooth` retained; reduced-motion respected |
+| Bouncy rail | Default **right** side (progress rail); damper spring (360/30); footer gate uses opacity+visibility; soft accent glow on thumb |
+| Hook / Proximity | Same footer-gate visibility polish; still left-side labeled nav (lg+) |
+| Newly wired | `DeployPage` (all `/deploy/{stack}`), `/deploy/github`, `ComparePage` (all compares), `/use-cases`, `/blog`, `/blog/[slug]` (Hook from `##` headings) |
+| Intentionally none | `/docs/*` — `DocsNav` already present (avoid double nav) |
+
+Verify: `npm run build`. Commit: `style: premium scrollbar + consistent section indicators`.
+

@@ -104,8 +104,8 @@ export function ProximitySidebar({
     <nav
       aria-label="Page sections"
       aria-hidden={gated || undefined}
-      className={`pointer-events-none fixed left-0 top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-300 ease-out lg:block ${
-        gated ? "opacity-0" : "opacity-100"
+      className={`pointer-events-none fixed left-0 top-1/2 z-40 hidden -translate-y-1/2 transition-[opacity,visibility] duration-300 ease-out lg:block ${
+        gated ? "pointer-events-none opacity-0 invisible" : "opacity-100 visible"
       } ${className}`}
     >
       <ul

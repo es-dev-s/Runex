@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import type { ReactNode } from "react";
 import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
+import { HookSidebar } from "@/components/HookSidebar";
 import { JsonLd } from "@/components/JsonLd";
-import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import {
+  extractMarkdownHeadings,
+  getAllSlugs,
+  getPostBySlug,
+  slugifyHeading,
+} from "@/lib/blog";
 import { absoluteUrl, buildMetadata } from "@/lib/seo";
 
 type Params = { slug: string };
@@ -29,6 +36,28 @@ export async function generateMetadata({
   });
 }
 
+function childrenToText(children: ReactNode): string {
+  if (typeof children === "string" || typeof children === "number") {
+    return String(children);
+  }
+  if (Array.isArray(children)) {
+    return children.map(childrenToText).join("");
+  }
+  if (
+    children &&
+    typeof children === "object" &&
+    "props" in children &&
+    children.props &&
+    typeof children.props === "object" &&
+    "children" in children.props
+  ) {
+    return childrenToText(
+      (children.props as { children?: ReactNode }).children,
+    );
+  }
+  return "";
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -37,6 +66,12 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+
+  const headings = extractMarkdownHeadings(post.content);
+  const hookSections = [
+    ...headings,
+    { id: "deploy", label: "Deploy" },
+  ];
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -55,6 +90,9 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd data={articleLd} />
+      {hookSections.length >= 2 ? (
+        <HookSidebar sections={hookSections} />
+      ) : null}
       <article className="border-b border-card-border pb-16 pt-28 sm:pt-32">
         <Container className="max-w-3xl">
           <p className="micro-label text-accent">Blog</p>
@@ -89,6 +127,15 @@ export default async function BlogPostPage({
                     </a>
                   );
                 },
+                h2: ({ children, ...props }) => {
+                  const text = childrenToText(children);
+                  const id = slugifyHeading(text);
+                  return (
+                    <h2 {...props} id={id || undefined} className="scroll-mt-28">
+                      {children}
+                    </h2>
+                  );
+                },
               }}
             />
           </div>
@@ -100,7 +147,7 @@ export default async function BlogPostPage({
           </p>
         </Container>
       </article>
-      <CTASection />
+      <CTASection id="deploy" />
     </>
   );
 }

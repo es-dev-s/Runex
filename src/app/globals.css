@@ -41,6 +41,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #52525b #070707;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -54,6 +56,43 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Premium thin scrollbar — near-black track, muted zinc thumb, soft accent hover */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #52525b #0a0a0a;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #070707;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3f3f46;
+  border-radius: 999px;
+  border: 2px solid #070707;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, #fc4c01 42%, #71717a);
+}
+
+*::-webkit-scrollbar-corner {
+  background: #070707;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *::-webkit-scrollbar-thumb {
+    transition: none;
   }
 }
 

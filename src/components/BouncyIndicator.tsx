@@ -12,22 +12,22 @@ export type BouncySection = SectionNavItem;
 
 type BouncyIndicatorProps = {
   sections: readonly BouncySection[];
-  /** Prefer left on long pages; right keeps clear of content gutters */
+  /** Right-side progress rail by default; left when content needs clear right gutter */
   side?: "left" | "right";
   className?: string;
 };
 
 const DOT = 8;
-const GAP = 14;
+const GAP = 16;
 const TRACK = DOT + GAP;
 
 /**
- * Compact bouncy section rail — spring thumb to active section.
+ * Compact spring section rail — premium right-side progress by default.
  * Desktop (lg+) only; muted over footer. Instant jump when reduced-motion.
  */
 export function BouncyIndicator({
   sections,
-  side = "left",
+  side = "right",
   className = "",
 }: BouncyIndicatorProps) {
   const reduce = useReducedMotion();
@@ -66,8 +66,8 @@ export function BouncyIndicator({
     <nav
       aria-label="Page sections"
       aria-hidden={gated || undefined}
-      className={`pointer-events-none fixed top-1/2 z-40 hidden -translate-y-1/2 transition-opacity duration-300 ease-out lg:flex lg:flex-col ${sideClass} ${
-        gated ? "opacity-0" : "opacity-100"
+      className={`pointer-events-none fixed top-1/2 z-40 hidden -translate-y-1/2 transition-[opacity,visibility] duration-300 ease-out lg:flex lg:flex-col ${sideClass} ${
+        gated ? "pointer-events-none opacity-0 invisible" : "opacity-100 visible"
       } ${className}`}
     >
       <div
@@ -83,7 +83,7 @@ export function BouncyIndicator({
 
         {/* Spring thumb */}
         <motion.span
-          className="absolute left-1/2 z-10 block rounded-full bg-accent"
+          className="absolute left-1/2 z-10 block rounded-full bg-accent shadow-[0_0_12px_rgba(252,76,1,0.35)]"
           style={{
             width: DOT,
             height: DOT,
@@ -93,7 +93,7 @@ export function BouncyIndicator({
           transition={
             reduce
               ? { duration: 0 }
-              : { type: "spring", stiffness: 420, damping: 22, mass: 0.55 }
+              : { type: "spring", stiffness: 360, damping: 30, mass: 0.55 }
           }
           aria-hidden
         />
@@ -121,7 +121,7 @@ export function BouncyIndicator({
                   style={{ top: 0 }}
                 >
                   <span
-                    className={`block rounded-full border transition-colors duration-200 ${
+                    className={`block rounded-full border transition-colors duration-300 ease-out ${
                       active
                         ? "border-accent bg-transparent"
                         : "border-white/20 bg-white/10 group-hover:border-white/40"
@@ -130,7 +130,7 @@ export function BouncyIndicator({
                     aria-hidden
                   />
                   <span
-                    className={`max-w-0 overflow-hidden whitespace-nowrap text-[10px] font-medium tracking-[0.06em] opacity-0 transition-all duration-200 group-hover:max-w-[9rem] group-hover:opacity-100 ${
+                    className={`max-w-0 overflow-hidden whitespace-nowrap text-[10px] font-medium tracking-[0.06em] opacity-0 transition-all duration-300 ease-out group-hover:max-w-[9rem] group-hover:opacity-100 ${
                       side === "right" ? "mr-2.5 text-right" : "ml-2.5"
                     } ${
                       active

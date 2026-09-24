@@ -6,6 +6,7 @@ import { CTASection } from "@/components/CTASection";
 import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { FadeIn } from "@/components/Motion";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
@@ -35,9 +36,19 @@ const faqs = [
   },
 ];
 
+
+const bouncySections = [
+  { id: "how", label: "How it works" },
+  { id: "app", label: "GitHub App" },
+  { id: "stacks", label: "Stacks" },
+  { id: "faq", label: "FAQ" },
+  { id: "deploy", label: "Deploy" },
+] as const;
+
 export default function DeployGitHubPage() {
   return (
     <>
+      <BouncyIndicator sections={bouncySections} />
       <JsonLd data={faqJsonLd(faqs)} />
       <JsonLd
         data={breadcrumbJsonLd([
@@ -63,7 +74,7 @@ export default function DeployGitHubPage() {
       <section className="border-b border-card-border py-16">
         <Container className="max-w-3xl">
           <FadeIn>
-            <h2 className="display text-2xl text-foreground">
+            <h2 id="how" className="display scroll-mt-28 text-2xl text-foreground">
               How GitHub deployment works
             </h2>
             <ol className="mt-6 space-y-4">
@@ -84,7 +95,7 @@ export default function DeployGitHubPage() {
               ))}
             </ol>
 
-            <h2 className="mt-12 display text-2xl text-foreground">
+            <h2 id="app" className="mt-12 display scroll-mt-28 text-2xl text-foreground">
               What the GitHub App provides
             </h2>
             <ul className="mt-4 space-y-2">
@@ -101,7 +112,7 @@ export default function DeployGitHubPage() {
               ))}
             </ul>
 
-            <h2 className="mt-12 display text-2xl text-foreground">
+            <h2 id="stacks" className="mt-12 display scroll-mt-28 text-2xl text-foreground">
               Stacks that ship from GitHub
             </h2>
             <ul className="mt-4 space-y-2 text-sm">
@@ -143,7 +154,7 @@ export default function DeployGitHubPage() {
               .
             </p>
 
-            <h2 className="mt-12 display text-2xl text-foreground">FAQ</h2>
+            <h2 id="faq" className="mt-12 display scroll-mt-28 text-2xl text-foreground">FAQ</h2>
             <div className="mt-4">
               <FAQ items={faqs} />
             </div>
@@ -151,7 +162,7 @@ export default function DeployGitHubPage() {
         </Container>
       </section>
 
-      <CTASection title="Connect GitHub and deploy" />
+      <CTASection id="deploy" title="Connect GitHub and deploy" />
     </>
   );
 }

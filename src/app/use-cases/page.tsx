@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -15,9 +16,15 @@ export const metadata: Metadata = buildMetadata({
   path: "/use-cases",
 });
 
+const bouncySections = [
+  { id: "featured", label: "Featured" },
+  { id: "deploy", label: "Deploy" },
+] as const;
+
 export default function UseCasesIndexPage() {
   return (
     <>
+      <BouncyIndicator sections={bouncySections} />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
@@ -36,7 +43,7 @@ export default function UseCasesIndexPage() {
           Deploy hub
         </Button>
       </PageHero>
-      <section className="border-b border-card-border py-16">
+      <section id="featured" className="scroll-mt-28 border-b border-card-border py-16">
         <Container>
           <Link
             href="/use-cases/full-stack-apps"
@@ -56,7 +63,7 @@ export default function UseCasesIndexPage() {
           </Link>
         </Container>
       </section>
-      <CTASection />
+      <CTASection id="deploy" />
     </>
   );
 }
