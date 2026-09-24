@@ -93,7 +93,7 @@ export function Header() {
   });
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]">
       <motion.div
         className="relative mx-auto w-full max-w-5xl px-3 sm:px-5"
         initial={false}
@@ -108,7 +108,8 @@ export function Header() {
           <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
             <Link
               href="/"
-              className="group flex items-center gap-2.5 outline-none"
+              aria-label="Runex home"
+              className="group flex min-h-11 items-center gap-2.5 px-0.5 outline-none"
             >
               <RunexMark className="h-[18px] w-[18px]" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
@@ -122,7 +123,7 @@ export function Header() {
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="inline-flex h-8 w-8 items-center justify-center text-foreground outline-none ring-0"
+              className="inline-flex h-11 w-11 items-center justify-center text-foreground outline-none ring-0"
               onClick={() => setOpen((v) => !v)}
             >
               <span className="sr-only">Menu</span>
@@ -151,12 +152,10 @@ export function Header() {
           <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
             <Link
               href="/"
-              className="group flex items-center gap-2.5 outline-none"
+              aria-label="Runex home"
+              className="group inline-flex h-9 w-9 items-center justify-center outline-none transition-opacity hover:opacity-90"
             >
               <RunexMark className="h-[18px] w-[18px]" />
-              <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
-                Runex
-              </span>
             </Link>
           </Pill>
 
@@ -172,7 +171,7 @@ export function Header() {
                   )}
                   <Link
                     href={link.href}
-                    className="rounded-full px-2 py-1 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]"
+                    className="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]"
                   >
                     {link.label}
                   </Link>
@@ -206,24 +205,29 @@ export function Header() {
       </motion.div>
 
       {open && (
-        <div className="pointer-events-auto mx-3 mt-2 overflow-hidden rounded-[1.5rem] border border-card-border bg-[#0c0c0c]/95 px-4 py-4 backdrop-blur-xl sm:mx-5 md:hidden">
+        <div className="pointer-events-auto mx-3 mt-2 max-h-[min(78dvh,calc(100dvh-5.5rem))] overflow-y-auto overflow-x-hidden rounded-[1.5rem] border border-card-border bg-[#0c0c0c]/95 px-3 py-3 backdrop-blur-xl sm:mx-5 md:hidden">
           <nav className="flex flex-col gap-0.5" aria-label="Mobile">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-2.5 text-sm text-muted hover:bg-white/[0.04] hover:text-foreground"
+                className="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div className="mt-3 flex flex-col gap-2">
-            <Button href={appSignInUrl()} variant="secondary" external>
+          <div className="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
+            <Button
+              href={appSignInUrl()}
+              variant="secondary"
+              external
+              className="min-h-11 w-full"
+            >
               Login
             </Button>
-            <Button href={appSignUpUrl()} external>
+            <Button href={appSignUpUrl()} external className="min-h-11 w-full">
               Deploy
             </Button>
           </div>

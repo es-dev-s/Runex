@@ -47,13 +47,22 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: "Runex",
     title: "Runex — Easy Deployment Platform for Developers",
-    description: siteConfig.description,
+    description: "Deploy applications easily with Runex.",
+    images: [
+      {
+        url: "/og/runex-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Runex — Easy Deployment Platform for Developers",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Runex — Easy Deployment Platform for Developers",
     description: siteConfig.description,
     site: siteConfig.twitter,
+    images: ["/og/runex-og.png"],
   },
   alternates: { canonical: siteConfig.url },
   robots: { index: true, follow: true },

@@ -167,7 +167,7 @@ export default function HomePage() {
       >
         <HeroDepth />
 
-        <Container className="relative z-10 flex flex-col items-center pb-28 pt-32 text-center sm:pb-36 sm:pt-36">
+        <Container className="relative z-10 flex flex-col items-center px-1 pb-24 pt-28 text-center sm:pb-36 sm:pt-36">
           <HeroReveal delay={0.04}>
             <div className="inline-flex items-center gap-2.5 rounded-full border border-card-border bg-[#0c0c0c]/85 px-4 py-1.5 backdrop-blur-md">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -178,7 +178,7 @@ export default function HomePage() {
           </HeroReveal>
 
           <HeroReveal delay={0.12} className="mt-10 max-w-4xl">
-            <h1 className="display text-[3.15rem] text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
+            <h1 className="display text-[2.45rem] text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
               Easy deployment
               <br />
               for developers.
@@ -195,7 +195,7 @@ export default function HomePage() {
 
           <HeroReveal
             delay={0.34}
-            className="mt-12 flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+            className="mt-10 flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:mt-12 sm:flex-row sm:items-center"
           >
             <HeroCommand
               command="connect github → select repo → deploy"
@@ -328,7 +328,7 @@ export default function HomePage() {
               <a
                 href={appSignUpUrl()}
                 rel="noopener noreferrer"
-                className="flex h-full min-h-[190px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:-translate-y-0.5 hover:bg-accent-soft sm:px-6"
+                className="flex h-full min-h-[180px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:-translate-y-0.5 hover:bg-accent-soft sm:min-h-[190px] sm:px-6"
               >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
                   Start

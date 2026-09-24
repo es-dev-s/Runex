@@ -32,7 +32,7 @@ export function DocsNav({ current }: { current?: string }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap rounded-xl px-3 py-2 text-sm transition ${
+                className={`inline-flex min-h-11 items-center whitespace-nowrap rounded-xl px-3 py-2.5 text-sm transition ${
                   active
                     ? "bg-accent/10 text-accent"
                     : "text-muted hover:bg-white/[0.03] hover:text-foreground"

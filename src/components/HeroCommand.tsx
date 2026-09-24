@@ -30,7 +30,7 @@ export function HeroCommand({
         type="button"
         onClick={onCopy}
         aria-label={copied ? "Copied" : "Copy command"}
-        className="ml-auto shrink-0 rounded-md p-1.5 text-zinc-500 transition hover:bg-white/[0.06] hover:text-zinc-200"
+        className="ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-zinc-500 transition hover:bg-white/[0.06] hover:text-zinc-200"
       >
         {copied ? (
           <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" aria-hidden>

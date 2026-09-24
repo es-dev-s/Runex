@@ -12,6 +12,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+`npm run dev` binds `0.0.0.0:3000` so the site is reachable on your LAN (e.g. `http://<LAN-IP>:3000`).
+
 Login / Deploy CTAs use `NEXT_PUBLIC_APP_URL` (default `https://runex.cloud`) and link to `/sign-in` and `/sign-up`.
 
 ## Build

@@ -43,6 +43,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #52525b #070707;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -101,9 +102,13 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   min-height: 100vh;
+  min-height: 100dvh;
   font-size: 15px;
   line-height: 1.6;
   letter-spacing: -0.011em;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 ::selection {
@@ -472,5 +477,33 @@ body {
     .testimonials-marquee {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+  }
+}
+
+
+/* Mobile premium polish — readable scale, no horizontal bleed */
+@media (max-width: 639px) {
+  .display {
+    letter-spacing: -0.038em;
+    line-height: 1.06;
+  }
+
+  .prose-runex {
+    font-size: 0.95rem;
+  }
+
+  .prose-runex h2 {
+    font-size: 1.28rem;
+  }
+
+  .prose-runex table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials-marquee-card {
+    min-height: 168px;
+    padding: 1.1rem;
   }
 }

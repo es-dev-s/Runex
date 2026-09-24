@@ -27,7 +27,7 @@ export function Footer() {
       <BrandAura placement="bl" opacity={0.1} blurPx={36} />
 
       {/* Full-bleed shell — wide padding, not cramped max-w-7xl */}
-      <div className="relative mx-auto w-full max-w-[1600px] px-6 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-16 lg:px-12 xl:px-16">
+      <div className="relative mx-auto w-full max-w-[1600px] px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-14 sm:px-8 sm:pb-10 sm:pt-16 lg:px-12 xl:px-16">
         {/* Two-column: RUNEX left · link columns right */}
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           {/* Left brand */}
@@ -57,7 +57,7 @@ export function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-sm text-muted transition-colors hover:text-foreground"
+                        className="inline-flex min-h-10 items-center text-sm text-muted transition-colors hover:text-foreground"
                       >
                         {link.label}
                       </Link>

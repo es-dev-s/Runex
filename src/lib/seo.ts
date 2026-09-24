@@ -41,12 +41,21 @@ export function buildMetadata({
       siteName: siteConfig.name,
       type: "website",
       locale: "en_US",
+      images: [
+        {
+          url: "/og/runex-og.png",
+          width: 1200,
+          height: 630,
+          alt: "Runex — Easy Deployment Platform for Developers",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
       site: siteConfig.twitter,
+      images: ["/og/runex-og.png"],
     },
     robots: noIndex
       ? { index: false, follow: false }

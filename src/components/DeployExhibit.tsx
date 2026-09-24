@@ -70,7 +70,7 @@ export function DeployExhibit() {
         </ul>
       </div>
 
-      <div className="mt-4 flex items-center justify-between gap-3 text-xs text-muted-dim">
+      <div className="mt-4 flex flex-col gap-1.5 text-xs text-muted-dim sm:flex-row sm:items-center sm:justify-between sm:gap-3">
         <span>HTTPS · {siteConfig.deploymentDomain}</span>
         <span className="font-mono text-accent/80">container isolation</span>
       </div>

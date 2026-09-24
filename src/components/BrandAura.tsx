@@ -19,7 +19,7 @@ const placementClass: Record<BrandAuraPlacement, string> = {
   "hero-right":
     "right-[-4%] top-[18%] h-[min(72vw,560px)] w-[min(80vw,680px)] sm:right-[2%] sm:top-[12%]",
   "hero-center":
-    "left-1/2 top-[38%] h-[min(88vw,720px)] w-[min(92vw,780px)] -translate-x-1/2 -translate-y-1/2",
+    "left-1/2 top-[40%] h-[min(62vw,420px)] w-[min(68vw,460px)] -translate-x-1/2 -translate-y-1/2 opacity-80 sm:top-[38%] sm:h-[min(78vw,620px)] sm:w-[min(84vw,700px)] sm:opacity-100 md:h-[min(88vw,720px)] md:w-[min(92vw,780px)]",
 };
 
 export function BrandAura({

@@ -63,7 +63,7 @@ export function ComparePage({
       >
         <Container>
           <FadeIn>
-            <div className="overflow-x-auto rounded-[1.25rem] border border-card-border bg-card">
+            <div className="-mx-1 overflow-x-auto overscroll-x-contain rounded-[1.25rem] border border-card-border bg-card sm:mx-0">
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-card-border bg-white/[0.02]">
