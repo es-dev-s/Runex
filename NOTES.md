@@ -61,6 +61,17 @@ Entity sentence preserved across homepage, `/what-is-runex`, about, JSON-LD:
 
 Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network isolation as product fact unless enforced and documented. Claim: GitHub App deploy, `*.runex.cloud`, `cname.runex.cloud`, HTTPS, container isolation, env vars, custom domains.
 
+
+## Design system
+
+- Canvas: near-black RareUI craft (`--background: #070707`, charcoal cards/borders)
+- Accent: **premium forest green** (replaces prior orange `#ff4d00`)
+  - `--accent: #228B5A`
+  - `--accent-soft: #2d8a5f` (hover)
+  - `--accent-dim` / `--accent-glow`: rgba(34, 139, 90, …)
+  - Primary buttons: `bg-accent text-white` (not black) for contrast on forest fill
+- Nav chrome: inset `boxShadow` rings only — no CSS `borderWidth` on Header clusters (avoids white border blink on hard reload)
+
 ## Stack
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4

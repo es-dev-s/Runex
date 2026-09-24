@@ -9,10 +9,10 @@
   --card-elevated: #161616;
   --card-border: #222222;
   --border: #1c1c1c;
-  --accent: #ff4d00;
-  --accent-soft: #ff6a2b;
-  --accent-dim: rgba(255, 77, 0, 0.12);
-  --accent-glow: rgba(255, 77, 0, 0.22);
+  --accent: #228B5A;
+  --accent-soft: #2d8a5f;
+  --accent-dim: rgba(34, 139, 90, 0.12);
+  --accent-glow: rgba(34, 139, 90, 0.22);
   --terminal: #0b0b0b;
   --artboard: #0e0e0e;
   --radius-frame: 1.75rem;
@@ -68,7 +68,7 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 77, 0, 0.35);
+  background: rgba(34, 139, 90, 0.35);
   color: #fff;
 }
 
@@ -134,12 +134,12 @@ body {
   color: var(--muted);
 }
 
-/* Restrained orange bloom — no glossy gradient washes */
+/* Restrained forest bloom — no glossy gradient washes */
 .accent-bloom {
   background: radial-gradient(
     circle at center,
-    rgba(255, 77, 0, 0.16) 0%,
-    rgba(255, 77, 0, 0.04) 42%,
+    rgba(34, 139, 90, 0.16) 0%,
+    rgba(34, 139, 90, 0.04) 42%,
     transparent 68%
   );
   pointer-events: none;
@@ -238,7 +238,7 @@ body {
   border: 1px solid #292929;
   border-radius: 0.35rem;
   padding: 0.1rem 0.35rem;
-  color: #ffc9a8;
+  color: #b7e4c7;
 }
 
 .prose-runex pre {

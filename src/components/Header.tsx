@@ -25,6 +25,10 @@ const softSpring = {
 };
 const instant = { duration: 0 };
 
+/** Dark inset ring only — never CSS border (avoids white/default flash on first paint). */
+const CHROME_RING = "inset 0 0 0 1px rgba(34,34,34,1)";
+const NO_RING = "none";
+
 function RunexMark({ className = "" }: { className?: string }) {
   return (
     <span className={`relative flex items-center justify-center ${className}`}>
@@ -52,10 +56,10 @@ function Cluster({
   return (
     <motion.div
       layout
-      className={`pointer-events-auto flex items-center ${className}`}
+      className={`pointer-events-auto flex items-center outline-none ${className}`}
+      initial={false}
       animate={{
         borderRadius: 9999,
-        borderColor: split ? "rgba(34,34,34,1)" : "rgba(34,34,34,0)",
         backgroundColor: split
           ? "rgba(12,12,12,0.88)"
           : "rgba(12,12,12,0)",
@@ -64,12 +68,13 @@ function Cluster({
         paddingRight: split ? 10 : 0,
         paddingTop: split ? 6 : 0,
         paddingBottom: split ? 6 : 0,
+        // Joined: zero ring (children sit inside outer shell). Split: dark inset only.
         boxShadow: split
-          ? "0 12px 40px rgba(0,0,0,0.45)"
-          : "0 0 0 0 transparent",
+          ? `${CHROME_RING}, 0 12px 40px rgba(0,0,0,0.45)`
+          : NO_RING,
       }}
       transition={reduce ? instant : spring}
-      style={{ borderWidth: 1, borderStyle: "solid" }}
+      style={{ borderWidth: 0, borderStyle: "none", borderColor: "transparent" }}
     >
       {children}
     </motion.div>
@@ -123,7 +128,7 @@ export function Header() {
   else if (split) paddingTop = 12;
   else paddingTop = 16;
 
-  /** Floating joined chrome only after entrance — flush start has transparent border (no white flash). */
+  /** Floating joined chrome only after entrance — no borderWidth; inset ring after showJoinedChrome. */
   const showJoinedChrome = joined && entered;
   const t = reduce ? instant : softSpring;
 
@@ -141,16 +146,12 @@ export function Header() {
       >
         <motion.div
           layout
-          className="relative flex w-full items-center justify-between"
+          className="relative flex w-full items-center justify-between outline-none"
           initial={false}
           animate={{
             // Tight premium gaps between split pills (~4px)
             gap: split ? 4 : 0,
             borderRadius: 9999,
-            // Dark/transparent family only — never light/white border
-            borderColor: showJoinedChrome
-              ? "rgba(34,34,34,1)"
-              : "rgba(34,34,34,0)",
             backgroundColor: showJoinedChrome
               ? "rgba(12,12,12,0.78)"
               : "rgba(12,12,12,0)",
@@ -158,21 +159,22 @@ export function Header() {
             paddingRight: joined ? (showJoinedChrome ? 18 : 14) : 0,
             paddingTop: joined ? 10 : 0,
             paddingBottom: joined ? 10 : 0,
-            // No white hairline on flush; soft dark shadow once floating
+            // Inset dark ring + soft shadow once floating — never CSS border
             boxShadow: showJoinedChrome
-              ? "0 16px 48px rgba(0,0,0,0.35)"
-              : "0 0 0 0 transparent",
+              ? `${CHROME_RING}, 0 16px 48px rgba(0,0,0,0.35)`
+              : NO_RING,
           }}
           transition={reduce ? instant : spring}
           style={{
-            borderWidth: 1,
-            borderStyle: "solid",
+            borderWidth: 0,
+            borderStyle: "none",
+            borderColor: "transparent",
             backdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
             WebkitBackdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
           }}
         >
           <Cluster split={split} reduce={reduce} className="shrink-0">
-            <Link href="/" className="group flex items-center gap-2.5">
+            <Link href="/" className="group flex items-center gap-2.5 outline-none">
               <RunexMark className="h-4 w-4" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
                 Runex
@@ -196,7 +198,7 @@ export function Header() {
                   )}
                   <Link
                     href={link.href}
-                    className="rounded-full px-2 py-1 text-[12.5px] text-muted transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]"
+                    className="rounded-full px-2 py-1 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]"
                   >
                     {link.label}
                   </Link>
@@ -233,7 +235,7 @@ export function Header() {
                 type="button"
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
-                className="inline-flex h-8 w-8 items-center justify-center text-foreground"
+                className="inline-flex h-8 w-8 items-center justify-center text-foreground outline-none ring-0"
                 onClick={() => setOpen((v) => !v)}
               >
                 <span className="sr-only">Menu</span>

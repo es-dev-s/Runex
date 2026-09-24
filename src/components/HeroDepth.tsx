@@ -5,12 +5,12 @@ export function HeroDepth({ className = "" }: { className?: string }) {
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
       aria-hidden
     >
-      {/* Soft rectangular amber bloom — elliptical fill, not a ring */}
+      {/* Soft rectangular forest bloom — elliptical fill, not a ring */}
       <div
         className="absolute left-1/2 top-[38%] h-[420px] w-[min(92vw,780px)] -translate-x-1/2 -translate-y-1/2 opacity-40"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(255,77,0,0.14) 0%, rgba(255,77,0,0.04) 45%, transparent 72%)",
+            "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(34,139,90,0.14) 0%, rgba(34,139,90,0.04) 45%, transparent 72%)",
         }}
       />
 

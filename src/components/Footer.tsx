@@ -9,7 +9,7 @@ export function Footer() {
         className="pointer-events-none absolute bottom-[-18%] left-1/2 h-[400px] w-[680px] -translate-x-1/2 opacity-60"
         style={{
           background:
-            "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255,77,0,0.14) 0%, transparent 70%)",
+            "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(34,139,90,0.14) 0%, transparent 70%)",
         }}
         aria-hidden
       />
