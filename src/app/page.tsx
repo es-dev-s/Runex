@@ -6,9 +6,9 @@ import { DeployExhibit } from "@/components/DeployExhibit";
 import { FAQ } from "@/components/FAQ";
 import { SectionHeading } from "@/components/FeatureGrid";
 import { HeroCommand } from "@/components/HeroCommand";
+import { HeroDepth } from "@/components/HeroDepth";
 import { JsonLd } from "@/components/JsonLd";
 import { FadeIn, HeroReveal, Stagger, StaggerItem } from "@/components/Motion";
-import { OrbitMotif } from "@/components/OrbitMotif";
 import { faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
 
@@ -105,37 +105,30 @@ export default function HomePage() {
     <>
       <JsonLd data={faqJsonLd(faqs)} />
 
-      {/* Hero — RareUI craft: centered, watermark, badge, command + orange CTA */}
-      <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden">
-        <OrbitMotif
-          variant="watermark"
-          className="left-1/2 top-[48%] h-[min(92vw,620px)] w-[min(92vw,620px)] -translate-x-1/2 -translate-y-1/2"
-        />
-        <div
-          className="accent-bloom absolute left-1/2 top-[42%] h-[520px] w-[720px] -translate-x-1/2 -translate-y-1/2 opacity-30"
-          aria-hidden
-        />
+      {/* Hero — RareUI scale: display type, blackspace, angular depth (no circles) */}
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
+        <HeroDepth />
 
-        <Container className="relative z-10 flex flex-col items-center pb-24 pt-28 text-center sm:pb-32 sm:pt-32">
+        <Container className="relative z-10 flex flex-col items-center pb-28 pt-32 text-center sm:pb-36 sm:pt-36">
           <HeroReveal delay={0.04}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-card-border bg-[#0c0c0c]/80 px-3.5 py-1.5 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-card-border bg-[#0c0c0c]/85 px-4 py-1.5 backdrop-blur-md">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">
                 Deploy from GitHub
               </span>
             </div>
           </HeroReveal>
 
-          <HeroReveal delay={0.12} className="mt-8 max-w-3xl">
-            <h1 className="display text-[2.75rem] text-foreground sm:text-6xl lg:text-[4.5rem]">
+          <HeroReveal delay={0.12} className="mt-10 max-w-4xl">
+            <h1 className="display text-[3.15rem] text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
               From GitHub
               <br />
               to production.
             </h1>
           </HeroReveal>
 
-          <HeroReveal delay={0.22} className="mt-6 max-w-xl">
-            <p className="body-muted text-[15px] sm:text-base">
+          <HeroReveal delay={0.22} className="mt-7 max-w-xl">
+            <p className="body-muted text-[15px] sm:text-[17px] sm:leading-relaxed">
               Runex deploys your applications from GitHub into isolated
               containers and gives you a public HTTPS URL — without babysitting
               a VPS for every ship.
@@ -144,7 +137,7 @@ export default function HomePage() {
 
           <HeroReveal
             delay={0.34}
-            className="mt-10 flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+            className="mt-12 flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
           >
             <HeroCommand
               command="connect github → select repo → deploy"
@@ -153,7 +146,7 @@ export default function HomePage() {
             <Button
               href={appSignUpUrl()}
               external
-              className="shrink-0 !rounded-full !px-6 !py-2.5"
+              className="shrink-0 !rounded-full !px-7 !py-3 text-[14px]"
             >
               Deploy
             </Button>
@@ -162,7 +155,7 @@ export default function HomePage() {
       </section>
 
       {/* Bento capabilities */}
-      <section className="pb-20 sm:pb-24">
+      <section className="pb-24 sm:pb-28">
         <Container>
           <SectionHeading
             eyebrow="Capabilities"
@@ -170,12 +163,12 @@ export default function HomePage() {
             description="A live deploy surface up front — supporting tiles for the controls that actually ship."
           />
 
-          <div className="grid gap-3 lg:grid-cols-12">
+          <div className="grid gap-3.5 lg:grid-cols-12">
             <FadeIn className="lg:col-span-7">
               <DeployExhibit />
             </FadeIn>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+            <div className="grid gap-3.5 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
               <FadeIn delay={0.05}>
                 <article className="frame-tight h-full p-5 sm:p-6">
                   <p className="micro-label">GitHub App</p>
@@ -244,7 +237,7 @@ export default function HomePage() {
               <a
                 href={appSignUpUrl()}
                 rel="noopener noreferrer"
-                className="flex h-full min-h-[180px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:-translate-y-0.5 hover:bg-accent-soft sm:px-6"
+                className="flex h-full min-h-[190px] flex-col justify-between rounded-[1.25rem] border border-accent/40 bg-accent px-5 py-6 text-black transition hover:-translate-y-0.5 hover:bg-accent-soft sm:px-6"
               >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
                   Start
@@ -266,17 +259,17 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-card-border py-20 sm:py-24">
+      <section className="border-t border-card-border py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="How it works"
             title="Four quiet steps."
             description="Connect, configure, deploy, and ship — without operating a VPS for every application."
           />
-          <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <StaggerItem key={s.step}>
-                <article className="frame-tight h-full p-5">
+                <article className="frame-tight h-full p-5 sm:p-6">
                   <p className="font-mono text-[11px] tracking-wide text-accent">
                     {s.step}
                   </p>
@@ -294,19 +287,19 @@ export default function HomePage() {
       </section>
 
       {/* Technologies */}
-      <section className="border-t border-card-border py-20 sm:py-24">
+      <section className="border-t border-card-border py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Stacks"
             title="Deploy what you already write."
             description="Dedicated landings for Next.js, Node.js, Python, Go, and Docker."
           />
-          <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
             {tech.map((t) => (
               <StaggerItem key={t.name}>
                 <Link
                   href={t.href}
-                  className="frame-tight flex h-full items-center justify-center px-4 py-7 text-center text-sm font-semibold tracking-tight text-foreground transition hover:border-accent/40"
+                  className="frame-tight flex h-full items-center justify-center px-4 py-8 text-center text-sm font-semibold tracking-tight text-foreground transition hover:border-accent/40"
                 >
                   {t.name}
                 </Link>
@@ -317,25 +310,27 @@ export default function HomePage() {
       </section>
 
       {/* Learn */}
-      <section className="border-t border-card-border py-20 sm:py-24">
+      <section className="border-t border-card-border py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Learn"
             title="Docs before slogans."
             description="Getting started, GitHub deploys, custom domains, and practical guides."
           />
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3.5 sm:grid-cols-3">
             {learn.map((card) => (
               <Link
                 key={card.href}
                 href={card.href}
-                className="frame-tight p-6 transition hover:border-zinc-500"
+                className="frame-tight p-6 transition hover:border-zinc-500 sm:p-7"
               >
                 <p className="micro-label">Guide</p>
                 <h3 className="mt-3 font-semibold tracking-tight text-foreground">
                   {card.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted">{card.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {card.body}
+                </p>
               </Link>
             ))}
           </div>
@@ -343,7 +338,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-card-border py-20 sm:py-24">
+      <section className="border-t border-card-border py-24 sm:py-28">
         <Container>
           <SectionHeading eyebrow="FAQ" title="Straight answers." />
           <FAQ items={faqs} />

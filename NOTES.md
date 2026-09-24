@@ -70,14 +70,13 @@ These are called out in the strategy as Phase 2–3 or optional — not blockers
 - Push remotes unless asked (local git commit only)
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
 
-## Design system (2026-09-24 redesign → RareUI landing craft)
+## Design system (RareUI landing craft)
 
 Rare-inspired premium dark UI (not generic AI SaaS):
 
 - Near-black canvas `#070707` + hot orange accent `#ff4d00`
-- Floating **three-pill** `Header` (brand | links | utilities), fixed with generous top inset
-- Scroll craft: spacious at top; **shrink on scroll-down**; **expand on scroll-up** (framer-motion springs; reduced-motion = instant)
-- Centered hero: huge low-contrast Runex hex/orbit watermark, badge pill, 2-line headline, muted subcopy, command pill + orange Deploy
+- `Header` joined→split nav (see **Nav states** below)
+- Centered hero: larger display type, blackspace, **non-circular** `HeroDepth` (angular grid + hex fragment + soft rectangular bloom — no orbit/ring watermark), badge, command + orange Deploy
 - Bento capabilities with live `DeployExhibit` + hover-lift tiles
 - Exhibit frames (`.frame` / `.frame-tight`), terminal/artboard surfaces
 - Motion honors `prefers-reduced-motion`
@@ -86,3 +85,26 @@ Rare-inspired premium dark UI (not generic AI SaaS):
 
 SEO routes, MDX blog/docs, sitemap/robots, JSON-LD unchanged.
 Login → `NEXT_PUBLIC_APP_URL/sign-in`; Deploy → `/sign-up`.
+
+## Nav states (`Header.tsx`)
+
+Exact interaction (framer-motion springs; `prefers-reduced-motion` → instant):
+
+| Phase | When | Visual |
+| --- | --- | --- |
+| **Joined · flush-top** | SSR / first paint (`scrollY≈0`, before entrance) | Single continuous pill, minimal top inset (attached to viewport top). Avoids flash of split islands. |
+| **Joined · floating** | After mount entrance at top | Same joined bar settles down into ~16px floating inset (Apple-smooth spring). |
+| **Split · three pills** | Scroll **down** past ~20px | Gap opens; shared container border dissolves; brand | links | utilities become three compact floating pills. |
+| **Rejoin** | Scroll **up**, or `scrollY < 20` | Pills merge back into one bar. |
+| **Joined · re-attach** | After leaving top once, return with `scrollY < 10` while joined | Inset tightens toward top-attached feel (~4px). |
+
+CTAs: Login → `/sign-in`, Deploy → `/sign-up` via `NEXT_PUBLIC_APP_URL`.
+
+### How to verify
+
+1. `npm run dev` → open `/`
+2. **Hard reload** at top: nav should appear as **one bar flush to top**, then ease into a floating joined bar (no three-island flash).
+3. **Scroll down**: bar cleanly separates into three pills.
+4. **Scroll up** / return to top: pills rejoin; near `scrollY≈0` inset tightens again.
+5. DevTools → no hydration mismatch warning on `Header`.
+6. `npm run build` must pass.

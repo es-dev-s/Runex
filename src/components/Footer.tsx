@@ -6,7 +6,11 @@ export function Footer() {
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-card-border">
       <div
-        className="accent-bloom absolute bottom-[-20%] left-1/2 h-[420px] w-[720px] -translate-x-1/2 opacity-70"
+        className="pointer-events-none absolute bottom-[-18%] left-1/2 h-[400px] w-[680px] -translate-x-1/2 opacity-60"
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255,77,0,0.14) 0%, transparent 70%)",
+        }}
         aria-hidden
       />
       <Container className="relative py-16 sm:py-20">

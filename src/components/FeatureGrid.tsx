@@ -54,13 +54,13 @@ export function SectionHeading({
   description?: string;
 }) {
   return (
-    <FadeIn className="mb-10 max-w-2xl">
+    <FadeIn className="mb-12 max-w-2xl">
       {eyebrow && <p className="micro-label text-accent">{eyebrow}</p>}
-      <h2 className="display mt-3 text-2xl text-foreground sm:text-3xl">
+      <h2 className="display mt-3 text-[1.75rem] text-foreground sm:text-[2.05rem]">
         {title}
       </h2>
       {description && (
-        <p className="body-muted mt-3">{description}</p>
+        <p className="body-muted mt-3.5 max-w-xl text-[15px]">{description}</p>
       )}
     </FadeIn>
   );

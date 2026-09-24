@@ -11,27 +11,31 @@ export function CTASection({
   description?: string;
 }) {
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-20 sm:py-24">
       <Container>
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-card-border bg-card px-7 py-11 sm:px-12 sm:py-14">
+          <div className="relative overflow-hidden rounded-[1.85rem] border border-card-border bg-card px-7 py-12 sm:px-12 sm:py-16">
             <div
-              className="accent-bloom absolute -right-16 -top-16 h-64 w-64 opacity-60"
+              className="pointer-events-none absolute -right-20 -top-24 h-72 w-[28rem] opacity-50"
+              style={{
+                background:
+                  "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,77,0,0.18) 0%, transparent 70%)",
+              }}
               aria-hidden
             />
             <div className="relative grid gap-8 lg:grid-cols-[1.4fr_auto] lg:items-end">
               <div>
                 <p className="micro-label text-accent">Next step</p>
-                <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
+                <h2 className="display mt-3 text-3xl text-foreground sm:text-[2.75rem]">
                   {title}
                 </h2>
-                <p className="body-muted mt-4 max-w-xl">{description}</p>
+                <p className="body-muted mt-4 max-w-xl text-[15px]">{description}</p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button href={appSignUpUrl()} external>
+                <Button href={appSignUpUrl()} external className="!px-6 !py-3">
                   Deploy with Runex
                 </Button>
-                <Button href="/docs" variant="secondary">
+                <Button href="/docs" variant="secondary" className="!px-6 !py-3">
                   Read the docs
                 </Button>
               </div>
