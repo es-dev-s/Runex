@@ -46,23 +46,26 @@ function Pill({
   className = "",
   reduce,
   elevated,
+  /** Perfect circle chrome (logo mark). Default stays a soft capsule. */
+  circle = false,
 }: {
   children: ReactNode;
   className?: string;
   reduce: boolean | null;
   elevated: boolean;
+  circle?: boolean;
 }) {
   return (
     <motion.div
-      className={`pointer-events-auto flex items-center outline-none ${className}`}
+      className={`pointer-events-auto flex items-center outline-none ${circle ? "h-10 w-10 shrink-0 justify-center overflow-hidden p-0" : ""} ${className}`}
       initial={false}
       animate={{
         borderRadius: 9999,
         backgroundColor: "rgba(12,12,12,0.88)",
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 6,
-        paddingBottom: 6,
+        paddingLeft: circle ? 0 : 10,
+        paddingRight: circle ? 0 : 10,
+        paddingTop: circle ? 0 : 6,
+        paddingBottom: circle ? 0 : 6,
         boxShadow: elevated
           ? `${CHROME_RING}, 0 14px 44px rgba(0,0,0,0.5)`
           : `${CHROME_RING}, 0 10px 32px rgba(0,0,0,0.38)`,
@@ -74,6 +77,15 @@ function Pill({
         borderColor: "transparent",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
+        ...(circle
+          ? {
+              width: 40,
+              height: 40,
+              minWidth: 40,
+              minHeight: 40,
+              borderRadius: 9999,
+            }
+          : {}),
       }}
     >
       {children}
@@ -111,7 +123,7 @@ export function Header() {
               aria-label="Runex home"
               className="group flex min-h-11 items-center gap-2.5 px-0.5 outline-none"
             >
-              <RunexMark className="h-[18px] w-[18px]" />
+              <RunexMark className="h-[20px] w-[20px]" />
               <span className="text-[13px] font-semibold tracking-tight text-foreground sm:text-[14px]">
                 Runex
               </span>
@@ -149,13 +161,13 @@ export function Header() {
           animate={{ gap: scrolled ? GAP_SCROLLED : GAP_TOP }}
           transition={t}
         >
-          <Pill reduce={reduce} elevated={scrolled} className="shrink-0">
+          <Pill reduce={reduce} elevated={scrolled} circle className="shrink-0">
             <Link
               href="/"
               aria-label="Runex home"
-              className="group inline-flex h-9 w-9 items-center justify-center outline-none transition-opacity hover:opacity-90"
+              className="group inline-flex h-full w-full items-center justify-center outline-none transition-opacity hover:opacity-90"
             >
-              <RunexMark className="h-[18px] w-[18px]" />
+              <RunexMark className="h-[22px] w-[22px]" />
             </Link>
           </Pill>
 
