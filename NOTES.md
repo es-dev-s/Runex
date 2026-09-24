@@ -112,7 +112,7 @@ Local Legion only (no clone, no push).
 | Item | Detail |
 | --- | --- |
 | Assets | Cleaned `public/runex.svg` (~2.3KB, C2PA `<metadata>` stripped; fill `#FD4E00`); compact crop `public/runex-mark.svg` for nav/favicon |
-| Component | `BrandAura` / `RunexLogoMark` — faded (~0.08–0.20) + blurred (26–36px) + faint sharp layer; `pointer-events-none`; `aria-hidden`; placements `tr\|tl\|br\|bl\|center\|hero-right` |
+| Component | `BrandAura` / `RunexLogoMark` — faded (~0.08–0.20) + blurred (26–36px) + faint sharp layer; `pointer-events-none`; `aria-hidden`; placements `tr` / `tl` / `br` / `bl` / `center` / `hero-right` |
 | Hero | `HeroDepth` — large `hero-right` aura behind H1 (under vignette/content) |
 | Nav | `Header` `RunexMark` → crisp `/runex-mark.svg` ~18px (no blur) |
 | Pages | `PageHero` default `tr`; Deploy templates `br`; Compare templates `bl`; `CTASection` `br` (faint); Footer `bl` (very faint); Docs shell `tr` (optional ultra-faint) |
