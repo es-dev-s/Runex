@@ -92,19 +92,20 @@ Exact interaction (framer-motion springs; `prefers-reduced-motion` → instant):
 
 | Phase | When | Visual |
 | --- | --- | --- |
-| **Joined · flush-top** | SSR / first paint (`scrollY≈0`, before entrance) | Single continuous pill, minimal top inset (attached to viewport top). Avoids flash of split islands. |
-| **Joined · floating** | After mount entrance at top | Same joined bar settles down into ~16px floating inset (Apple-smooth spring). |
-| **Split · three pills** | Scroll **down** past ~20px | Gap opens; shared container border dissolves; brand | links | utilities become three compact floating pills. |
-| **Rejoin** | Scroll **up**, or `scrollY < 20` | Pills merge back into one bar. |
-| **Joined · re-attach** | After leaving top once, return with `scrollY < 10` while joined | Inset tightens toward top-attached feel (~4px). |
+| **Joined · flush-top** | SSR / first paint (`scrollY≈0`, before entrance) | Single continuous bar, minimal top inset (~2px). **Transparent border + no box-shadow** (no white/light hairline flash on reload). |
+| **Joined · floating · wider** | After mount entrance at top | Wider shell (`maxWidth` 1280 / ~max-w-7xl), ~16px floating inset, dark border `rgba(34,34,34,1)` + soft shadow once entered. |
+| **Split · three pills · tight** | Scroll **down** past ~20px | Shell narrows (~1024 / max-w-5xl); shared chrome dissolves; brand \| links \| utilities become three dense pills with **~4px gap** and tighter cluster padding. |
+| **Rejoin · wider** | Scroll **up**, or `scrollY < 20` | Pills merge; shell widens smoothly back to the joined floating bar. No 4px “re-attach” hop. |
+
+Chrome rules: border colors stay in the dark/transparent family only — never animate through a light/white border. Flush start = transparent border + zero shadow; floating joined = dark border + soft shadow.
 
 CTAs: Login → `/sign-in`, Deploy → `/sign-up` via `NEXT_PUBLIC_APP_URL`.
 
 ### How to verify
 
 1. `npm run dev` → open `/`
-2. **Hard reload** at top: nav should appear as **one bar flush to top**, then ease into a floating joined bar (no three-island flash).
-3. **Scroll down**: bar cleanly separates into three pills.
-4. **Scroll up** / return to top: pills rejoin; near `scrollY≈0` inset tightens again.
+2. **Hard reload** at scroll 0: one bar, **no white/light border flash**, then ease into a wider floating joined bar.
+3. **Scroll down**: three pills with small (~4px) gaps — premium tight.
+4. **Return to top**: smoothly widens/rejoins (no jumpy re-attach).
 5. DevTools → no hydration mismatch warning on `Header`.
 6. `npm run build` must pass.

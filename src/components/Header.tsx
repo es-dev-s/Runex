@@ -59,10 +59,11 @@ function Cluster({
         backgroundColor: split
           ? "rgba(12,12,12,0.88)"
           : "rgba(12,12,12,0)",
-        paddingLeft: split ? 12 : 0,
-        paddingRight: split ? 12 : 0,
-        paddingTop: split ? 7 : 0,
-        paddingBottom: split ? 7 : 0,
+        // Dense pills when split — premium tight, not airy
+        paddingLeft: split ? 10 : 0,
+        paddingRight: split ? 10 : 0,
+        paddingTop: split ? 6 : 0,
+        paddingBottom: split ? 6 : 0,
         boxShadow: split
           ? "0 12px 40px rgba(0,0,0,0.45)"
           : "0 0 0 0 transparent",
@@ -80,9 +81,6 @@ export function Header() {
   /** SSR + first paint: joined + flush-top — avoids hydration flash. */
   const [entered, setEntered] = useState(false);
   const [split, setSplit] = useState(false);
-  /** After user leaves the top once, returning near 0 re-attaches. */
-  const [leftTop, setLeftTop] = useState(false);
-  const [y, setY] = useState(0);
   const lastY = useRef(0);
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
@@ -102,10 +100,8 @@ export function Header() {
     const prev = lastY.current;
     const delta = next - prev;
     lastY.current = next;
-    setY(next);
 
-    if (next > 48) setLeftTop(true);
-
+    // Near top: always joined (wider bar story)
     if (next < 20) {
       setSplit(false);
       return;
@@ -117,27 +113,30 @@ export function Header() {
 
   const joined = !split;
   /**
-   * inset rules:
+   * inset rules (clear story — no re-attach hop):
    * - pre-entrance: flush (2)
-   * - post-entrance joined at top: floating (16)
+   * - post-entrance joined at top: floating (16) — wider bar
    * - split: compact (12)
-   * - after leaving top then returning near 0 while joined: attach feel (4)
    */
   let paddingTop = 16;
   if (!entered) paddingTop = 2;
   else if (split) paddingTop = 12;
-  else if (leftTop && joined && y < 10) paddingTop = 4;
   else paddingTop = 16;
 
-  const flushChrome = !entered || (leftTop && joined && y < 10);
+  /** Floating joined chrome only after entrance — flush start has transparent border (no white flash). */
+  const showJoinedChrome = joined && entered;
   const t = reduce ? instant : softSpring;
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <motion.div
-        className="relative mx-auto w-full max-w-5xl px-3 sm:px-5"
+        className="relative mx-auto w-full px-3 sm:px-5"
         initial={false}
-        animate={{ paddingTop }}
+        animate={{
+          paddingTop,
+          // Wider joined at top; compact shell when split
+          maxWidth: split ? 1024 : 1280,
+        }}
         transition={t}
       >
         <motion.div
@@ -145,30 +144,31 @@ export function Header() {
           className="relative flex w-full items-center justify-between"
           initial={false}
           animate={{
-            gap: split ? 8 : 0,
+            // Tight premium gaps between split pills (~4px)
+            gap: split ? 4 : 0,
             borderRadius: 9999,
-            borderColor: joined
+            // Dark/transparent family only — never light/white border
+            borderColor: showJoinedChrome
               ? "rgba(34,34,34,1)"
               : "rgba(34,34,34,0)",
-            backgroundColor: joined
+            backgroundColor: showJoinedChrome
               ? "rgba(12,12,12,0.78)"
               : "rgba(12,12,12,0)",
-            paddingLeft: joined ? 16 : 0,
-            paddingRight: joined ? 14 : 0,
+            paddingLeft: joined ? (showJoinedChrome ? 20 : 16) : 0,
+            paddingRight: joined ? (showJoinedChrome ? 18 : 14) : 0,
             paddingTop: joined ? 10 : 0,
             paddingBottom: joined ? 10 : 0,
-            boxShadow: joined
-              ? flushChrome
-                ? "0 1px 0 rgba(255,255,255,0.04)"
-                : "0 16px 48px rgba(0,0,0,0.35)"
+            // No white hairline on flush; soft dark shadow once floating
+            boxShadow: showJoinedChrome
+              ? "0 16px 48px rgba(0,0,0,0.35)"
               : "0 0 0 0 transparent",
           }}
           transition={reduce ? instant : spring}
           style={{
             borderWidth: 1,
             borderStyle: "solid",
-            backdropFilter: joined ? "blur(20px)" : undefined,
-            WebkitBackdropFilter: joined ? "blur(20px)" : undefined,
+            backdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
+            WebkitBackdropFilter: showJoinedChrome ? "blur(20px)" : undefined,
           }}
         >
           <Cluster split={split} reduce={reduce} className="shrink-0">
