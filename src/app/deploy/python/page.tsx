@@ -40,10 +40,6 @@ export default function DeployPythonPage() {
             "Yes. Point a CNAME to cname.runex.cloud and attach the domain to the deployment.",
         },
       ]}
-      related={[
-        { href: "/docs/custom-domains", label: "Custom domains" },
-        { href: "/deploy/docker", label: "Docker deployments" },
-      ]}
     />
   );
 }

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocsShell } from "@/components/DocsShell";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Documentation",
@@ -13,6 +14,12 @@ export const metadata: Metadata = buildMetadata({
 export default function DocsPage() {
   return (
     <DocsShell current="/docs">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Docs", path: "/docs" },
+        ])}
+      />
       <p className="micro-label mb-2 text-accent">Docs</p>
       <h1 className="display !mt-0 text-3xl text-foreground sm:text-4xl">
         Runex documentation
@@ -35,13 +42,27 @@ export default function DocsPage() {
           App installation, repository access, and webhooks.
         </li>
         <li>
+          <Link href="/docs/environment-variables">Environment variables</Link> —
+          production configuration and secrets.
+        </li>
+        <li>
           <Link href="/docs/custom-domains">Custom domains</Link> — map your
           domain to a Runex deployment.
+        </li>
+        <li>
+          <Link href="/docs/troubleshooting">Troubleshooting</Link> — failed
+          deploys, domains, and ports.
         </li>
       </ul>
 
       <h2>Deploy by stack</h2>
       <ul>
+        <li>
+          <Link href="/deploy">Deploy hub</Link>
+        </li>
+        <li>
+          <Link href="/deploy/github">GitHub</Link>
+        </li>
         <li>
           <Link href="/deploy/nextjs">Next.js</Link>
         </li>
@@ -66,6 +87,12 @@ export default function DocsPage() {
         </li>
         <li>
           <Link href="/features">Product features</Link>
+        </li>
+        <li>
+          <Link href="/what-is-runex">What is Runex?</Link>
+        </li>
+        <li>
+          <Link href="/use-cases/full-stack-apps">Full-stack apps</Link>
         </li>
         <li>
           <Link href="/blog">Guides on the blog</Link>

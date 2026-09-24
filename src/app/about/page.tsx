@@ -21,13 +21,13 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="What is Runex?"
-        description="Runex is a cloud deployment platform for developers. The category association we care about is simple: Runex = easy cloud deployment platform for developers."
+        description="Runex is an easy cloud deployment platform for developers. The category association we care about is simple: Runex = easy cloud deployment platform for developers (Runex Cloud)."
       >
         <Button href={appSignUpUrl()} external>
           Deploy with Runex
         </Button>
-        <Button href="/features" variant="secondary">
-          Product features
+        <Button href="/what-is-runex" variant="secondary">
+          What is Runex?
         </Button>
       </PageHero>
 
@@ -78,13 +78,17 @@ export default function AboutPage() {
 
             <h2>Learn more</h2>
             <p>
-              Read the{" "}
+              Start with the dedicated{" "}
+              <Link href="/what-is-runex">What is Runex?</Link> entity page,
+              read the{" "}
               <Link href="/docs/getting-started">getting started guide</Link>,
-              review{" "}
+              browse the <Link href="/deploy">deploy hub</Link>, review{" "}
               <Link href="/security">security</Link>, or compare Runex with{" "}
               <Link href="/compare/runex-vs-vercel">Vercel</Link>,{" "}
-              <Link href="/compare/runex-vs-railway">Railway</Link>, and{" "}
-              <Link href="/compare/runex-vs-render">Render</Link> using factual
+              <Link href="/compare/runex-vs-railway">Railway</Link>,{" "}
+              <Link href="/compare/runex-vs-render">Render</Link>,{" "}
+              <Link href="/compare/runex-vs-netlify">Netlify</Link>, and{" "}
+              <Link href="/compare/runex-vs-vps">a VPS</Link> using factual
               capability tables.
             </p>
           </FadeIn>

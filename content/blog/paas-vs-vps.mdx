@@ -1,0 +1,53 @@
+---
+title: "PaaS vs VPS: Which Should Developers Choose?"
+description: "Compare PaaS (deployment platforms) and VPS hosting: who manages the OS, TLS, isolation, and redeploys — and when Runex’s easy deployment platform is the better fit."
+date: "2026-09-24"
+updated: "2026-09-24"
+tags: ["PaaS", "VPS", "deployment platform"]
+---
+
+## Direct answer
+
+A **VPS** gives you a virtual machine you operate. A **PaaS / deployment platform** productizes build, run, HTTPS, and redeploy workflows so you ship applications with less host administration.
+
+Runex is an easy cloud deployment platform for developers — not a general-purpose VPS provider. See also [Runex vs VPS](/compare/runex-vs-vps).
+
+## Side-by-side
+
+| Concern | VPS | PaaS / deployment platform |
+| --- | --- | --- |
+| Host OS & packages | You | Platform |
+| TLS / HTTPS | Often manual | Usually productized |
+| Git push redeploy | DIY (scripts/CI) | Often built-in |
+| Isolation design | You design it | Productized (e.g. containers) |
+| Flexibility | Very high | Constrained to supported workflows |
+
+## When a VPS is reasonable
+
+- You need unusual system packages or kernel features
+- Compliance or networking requires full host control
+- You already have strong ops practices and automation
+
+## When a deployment platform is reasonable
+
+- You want GitHub → production without reinventing deploy scripts
+- HTTPS and custom domains should be product features
+- You prefer container isolation without operating Kubernetes yourself
+
+## How Runex compares to a VPS
+
+With Runex you typically:
+
+1. Install the GitHub App
+2. Deploy a branch
+3. Open `https://<deployment-slug>.runex.cloud`
+4. Attach a custom domain via `cname.runex.cloud` when ready
+
+You still own application correctness, environment variables, and external databases. You do not get a raw SSH VM as the primary product surface.
+
+## Related reading
+
+- [What is a PaaS?](/blog/what-is-a-paas)
+- [What is a deployment platform?](/blog/what-is-a-deployment-platform)
+- [Deploy from GitHub](/deploy/github)
+- [Getting started](/docs/getting-started)

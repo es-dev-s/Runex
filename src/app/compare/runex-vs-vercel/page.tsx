@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
 export default function RunexVsVercelPage() {
   return (
     <ComparePage
+      path="/compare/runex-vs-vercel"
       competitor="Vercel"
       summary="Both help developers ship web apps from Git. Runex emphasizes multi-stack deployment (including Docker-friendly workflows) on *.runex.cloud. Vercel is widely known for frontend/Next.js-centric workflows and a large edge network — confirm current Vercel docs for details."
       rows={[

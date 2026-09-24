@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
 export default function RunexVsRenderPage() {
   return (
     <ComparePage
+      path="/compare/runex-vs-render"
       competitor="Render"
       summary="Render and Runex both help teams deploy applications without running raw VPS workflows. Use this comparison as a starting point, then verify Render’s current docs and Runex’s live dashboard."
       rows={[

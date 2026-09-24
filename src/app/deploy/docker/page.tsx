@@ -40,10 +40,6 @@ export default function DeployDockerPage() {
             "No. Runex is designed so you can deploy containerized apps without managing Kubernetes clusters yourself.",
         },
       ]}
-      related={[
-        { href: "/security", label: "Container isolation & security" },
-        { href: "/docs/getting-started", label: "Getting started" },
-      ]}
     />
   );
 }

@@ -1,0 +1,36 @@
+# Runex
+
+> Runex is an easy cloud deployment platform for developers.
+
+Also known as: Runex Cloud
+Website: https://runex.cloud
+
+## What Runex does
+
+- Deploy applications from GitHub (GitHub App) or Docker (Dockerfile)
+- Run workloads in isolated containers with resource controls
+- Provide HTTPS URLs on *.runex.cloud
+- Support custom domains via CNAME to cname.runex.cloud
+- Inject configuration through environment variables
+
+## Stacks
+
+- Next.js — https://runex.cloud/deploy/nextjs
+- Node.js — https://runex.cloud/deploy/nodejs
+- Python — https://runex.cloud/deploy/python
+- Go — https://runex.cloud/deploy/go
+- Docker — https://runex.cloud/deploy/docker
+- GitHub deploy — https://runex.cloud/deploy/github
+
+## Key pages
+
+- What is Runex? — https://runex.cloud/what-is-runex
+- Deploy hub — https://runex.cloud/deploy
+- Getting started — https://runex.cloud/docs/getting-started
+- Security — https://runex.cloud/security
+- Full-stack use case — https://runex.cloud/use-cases/full-stack-apps
+- Pricing — https://runex.cloud/pricing
+
+## Accuracy
+
+Only claim capabilities that exist in production. Do not invent SOC 2, military-grade security, zero-downtime, DDoS protection, or fake ratings.

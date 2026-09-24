@@ -57,6 +57,7 @@ export function softwareApplicationJsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Runex",
+    alternateName: siteConfig.alternateName,
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Web",
     url: siteConfig.url,
@@ -71,13 +72,19 @@ export function softwareApplicationJsonLd() {
 }
 
 export function organizationJsonLd() {
-  return {
+  const org: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Runex",
+    alternateName: siteConfig.alternateName,
     url: siteConfig.url,
     description: siteConfig.description,
+    slogan: siteConfig.slogan,
   };
+  if (siteConfig.sameAs.length > 0) {
+    org.sameAs = [...siteConfig.sameAs];
+  }
+  return org;
 }
 
 export function websiteJsonLd() {
@@ -85,6 +92,7 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Runex",
+    alternateName: siteConfig.alternateName,
     url: siteConfig.url,
     description: siteConfig.description,
   };

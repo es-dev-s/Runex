@@ -40,10 +40,6 @@ export default function DeployGoPage() {
             "Not necessarily. Docker is available when you want full control of the runtime image — see /deploy/docker.",
         },
       ]}
-      related={[
-        { href: "/deploy/docker", label: "Deploy Docker apps" },
-        { href: "/docs/deploy-from-github", label: "GitHub deploy docs" },
-      ]}
     />
   );
 }

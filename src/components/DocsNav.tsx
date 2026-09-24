@@ -4,7 +4,11 @@ const links = [
   { href: "/docs", label: "Overview" },
   { href: "/docs/getting-started", label: "Getting started" },
   { href: "/docs/deploy-from-github", label: "Deploy from GitHub" },
+  { href: "/docs/environment-variables", label: "Environment variables" },
   { href: "/docs/custom-domains", label: "Custom domains" },
+  { href: "/docs/troubleshooting", label: "Troubleshooting" },
+  { href: "/deploy", label: "Deploy hub" },
+  { href: "/deploy/github", label: "Deploy GitHub" },
   { href: "/deploy/nextjs", label: "Deploy Next.js" },
   { href: "/deploy/nodejs", label: "Deploy Node.js" },
   { href: "/deploy/python", label: "Deploy Python" },
@@ -20,7 +24,10 @@ export function DocsNav({ current }: { current?: string }) {
         <p className="micro-label mb-3 px-2">Documentation</p>
         <nav className="flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:pb-0">
           {links.map((link) => {
-            const active = current === link.href;
+            const active =
+              current === link.href ||
+              (link.href === "/docs/troubleshooting" &&
+                current?.startsWith("/docs/troubleshooting"));
             return (
               <Link
                 key={link.href}

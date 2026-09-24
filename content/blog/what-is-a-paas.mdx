@@ -1,0 +1,47 @@
+---
+title: "What Is a PaaS?"
+description: "A clear definition of Platform as a Service (PaaS), how it differs from IaaS and managing your own VPS, and where Runex fits as an easy deployment platform for developers."
+date: "2026-09-24"
+updated: "2026-09-24"
+tags: ["PaaS", "deployment platform", "Runex"]
+---
+
+## Direct answer
+
+A **PaaS** (Platform as a Service) provides a higher-level environment for building and running applications so developers spend less time managing servers, OS packages, and deploy plumbing.
+
+Runex is a cloud deployment platform in this category: connect GitHub, deploy into isolated containers, and get HTTPS on `*.runex.cloud`.
+
+## What PaaS typically includes
+
+- Application build and run workflows
+- Managed networking / public URLs
+- HTTPS for public deployments
+- Configuration via environment variables
+- Isolation between workloads (implementation varies by vendor)
+
+Exact features differ by product. Always verify against official docs.
+
+## PaaS vs IaaS vs “just a VPS”
+
+| Layer | What you manage | Example mindset |
+| --- | --- | --- |
+| VPS / IaaS-style | OS, packages, reverse proxy, TLS, process supervisors | Maximum control, more ops |
+| PaaS / deployment platform | Application code, env config, domains | Faster shipping for common apps |
+
+Neither is universally better. Choose based on control requirements and team capacity.
+
+## Where Runex fits
+
+Runex positions as **easy deployment for developers**:
+
+- GitHub App deploy — [deploy from GitHub](/deploy/github)
+- Docker path — [deploy Docker](/deploy/docker)
+- HTTPS on `*.runex.cloud` and custom domains via `cname.runex.cloud`
+- Container isolation described factually on [security](/security)
+
+For a deeper category definition, see [What is an application deployment platform?](/blog/what-is-a-deployment-platform) and [PaaS vs VPS](/blog/paas-vs-vps).
+
+## Next step
+
+Read [getting started](/docs/getting-started) or [what is Runex?](/what-is-runex), then deploy.

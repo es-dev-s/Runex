@@ -40,11 +40,6 @@ export default function DeployNextjsPage() {
             "Yes. Deployments are served over HTTPS on *.runex.cloud, and custom domains use HTTPS once attached.",
         },
       ]}
-      related={[
-        { href: "/docs/deploy-from-github", label: "Deploy from GitHub" },
-        { href: "/docs/custom-domains", label: "Custom domains" },
-        { href: "/blog/what-is-a-deployment-platform", label: "What is a deployment platform?" },
-      ]}
     />
   );
 }

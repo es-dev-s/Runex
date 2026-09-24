@@ -1,0 +1,47 @@
+---
+title: "How to Deploy a Docker Container"
+description: "How to deploy a Docker container to production: write a solid Dockerfile, expose the right port, avoid secrets in images — and how Runex runs Docker workloads without Kubernetes ops."
+date: "2026-09-24"
+updated: "2026-09-24"
+tags: ["Docker", "tutorial", "containers"]
+---
+
+## Direct answer
+
+Deploying a Docker container means building an image from a Dockerfile, running it with the correct port and environment, and exposing HTTPS safely. On Runex, put a Dockerfile in your GitHub repository; Runex builds and runs it in isolation on `*.runex.cloud`.
+
+Product landing: [Deploy Docker on Runex](/deploy/docker).
+
+## Dockerfile basics that matter in production
+
+- Prefer minimal base images
+- Run as a non-root user when practical
+- Do not copy `.env` secrets into the image
+- `EXPOSE` the port your process actually listens on
+- Bind the server to `0.0.0.0`
+
+## Deploy Docker with Runex
+
+1. Add a production Dockerfile to the repo
+2. Install the Runex GitHub App and select the repository
+3. Deploy the branch; Runex builds the image
+4. Verify `https://<deployment-slug>.runex.cloud`
+5. Attach a custom domain via `cname.runex.cloud` when needed
+
+You do **not** need to operate Kubernetes yourself for this path.
+
+## Configuration
+
+Inject runtime config with [environment variables](/docs/environment-variables). Keep build context small; never mount the Docker socket for untrusted apps.
+
+## Troubleshooting
+
+- Image build errors — read build logs; see [deployment failed](/docs/troubleshooting/deployment-failed)
+- Container up but unreachable — [port configuration](/docs/troubleshooting/port-configuration)
+
+## Related
+
+- [Deploy Docker](/deploy/docker)
+- [Deploy from GitHub](/deploy/github)
+- [PaaS vs VPS](/blog/paas-vs-vps)
+- [What is Runex?](/what-is-runex)

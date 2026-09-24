@@ -1,0 +1,45 @@
+---
+title: "How to Deploy a Next.js App"
+description: "Educational guide to deploying a Next.js application: build for production, GitHub-based deploy, HTTPS URLs, environment variables — plus how to ship on Runex."
+date: "2026-09-24"
+updated: "2026-09-24"
+tags: ["Next.js", "tutorial", "deployment"]
+---
+
+## Direct answer
+
+To deploy a Next.js app you need a production build, a process that serves it (or a platform that runs that process), HTTPS, and configuration via environment variables. On Runex, connect the GitHub repository and deploy to `*.runex.cloud`.
+
+Product landing: [Deploy Next.js on Runex](/deploy/nextjs).
+
+## General checklist (any host)
+
+1. Ensure `next build` succeeds locally
+2. Decide how you run production (`next start` or your documented alternative)
+3. Bind HTTP to `0.0.0.0` and respect `PORT` when the host provides it
+4. Keep secrets in environment variables — never in Git
+5. Put a custom domain behind HTTPS when you go public
+
+## Deploy Next.js with Runex
+
+1. Push the app to GitHub
+2. Sign up at [runex.cloud](https://runex.cloud/sign-up) and install the Runex GitHub App
+3. Select repository and branch, then deploy
+4. Open `https://<deployment-slug>.runex.cloud`
+5. Optionally attach a custom domain — [custom domains docs](/docs/custom-domains)
+
+More detail: [getting started](/docs/getting-started) and [deploy from GitHub](/docs/deploy-from-github).
+
+## Environment variables
+
+Use the dashboard to set server secrets and any `NEXT_PUBLIC_*` values your app needs. See [environment variables](/docs/environment-variables).
+
+## Common problems
+
+- Build fails on missing dependencies — check lockfiles and Node version
+- App starts but URL fails — [port configuration](/docs/troubleshooting/port-configuration)
+- Domain not resolving — [custom domain troubleshooting](/docs/troubleshooting/custom-domain)
+
+## Next step
+
+Open the [Next.js deploy page](/deploy/nextjs) or start from the [deploy hub](/deploy).

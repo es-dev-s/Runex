@@ -6,7 +6,7 @@ import { FAQ, type FAQItem } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
-import { faqJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
 export type DeployPageProps = {
@@ -20,18 +20,37 @@ export type DeployPageProps = {
   related?: { href: string; label: string }[];
 };
 
+const defaultRelated = [
+  { href: "/docs/getting-started", label: "Getting started" },
+  { href: "/deploy/github", label: "Deploy from GitHub" },
+  { href: "/deploy/docker", label: "Deploy Docker" },
+  { href: "/docs/environment-variables", label: "Environment variables" },
+  { href: "/docs/custom-domains", label: "Custom domains" },
+  { href: "/security", label: "Security" },
+];
+
 export function DeployPage({
   name,
+  path,
   headline,
   summary,
   steps,
   notes,
   faqs,
-  related = [],
+  related,
 }: DeployPageProps) {
+  const relatedLinks = related ?? defaultRelated.filter((r) => r.href !== path);
+
   return (
     <>
       <JsonLd data={faqJsonLd(faqs)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Deploy", path: "/deploy" },
+          { name, path },
+        ])}
+      />
       <PageHero eyebrow={`Deploy ${name}`} title={headline} description={summary}>
         <Button href={appSignUpUrl()} external>
           Deploy a {name} app
@@ -70,13 +89,13 @@ export function DeployPage({
               ))}
             </ul>
 
-            {related.length > 0 && (
+            {relatedLinks.length > 0 && (
               <>
                 <h2 className="mt-12 display text-2xl text-foreground">
                   Related
                 </h2>
                 <ul className="mt-4 space-y-2">
-                  {related.map((r) => (
+                  {relatedLinks.map((r) => (
                     <li key={r.href}>
                       <Link
                         href={r.href}

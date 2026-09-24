@@ -16,7 +16,12 @@ const faqs = [
   {
     question: "What is Runex?",
     answer:
-      "Runex is a cloud deployment platform for developers that simplifies deploying applications to production. Connect a GitHub repository, deploy, and get a public HTTPS URL.",
+      "Runex is an easy cloud deployment platform for developers. Connect a GitHub repository, deploy into an isolated container environment, and get a public HTTPS URL on *.runex.cloud.",
+  },
+  {
+    question: "Is Runex a deployment platform?",
+    answer:
+      "Yes. Runex is a cloud deployment platform (PaaS-style) focused on easy application deployment for developers — also referred to as Runex Cloud.",
   },
   {
     question: "How does Runex work?",
@@ -27,6 +32,11 @@ const faqs = [
     question: "Can I deploy from GitHub?",
     answer:
       "Yes. Runex uses a GitHub App for repository access, branch selection, and deployment. Push-triggered redeployment is supported when webhooks are configured.",
+  },
+  {
+    question: "Can Runex deploy Docker, Next.js, Node.js, Python, and Go?",
+    answer:
+      "Yes. Dedicated deploy landings cover Next.js, Node.js, Python, Go, and Docker. Start from the deploy hub or install the GitHub App and ship a supported project.",
   },
   {
     question: "Does Runex provide HTTPS?",
@@ -42,6 +52,11 @@ const faqs = [
     question: "How does Runex isolate applications?",
     answer:
       "Runex deploys applications in isolated containers with resource controls. Isolation is described at a high level on the security page; we only claim controls that are enforced in production.",
+  },
+  {
+    question: "How does Runex compare with a VPS?",
+    answer:
+      "A VPS is a machine you administer. Runex is a deployment platform: you ship apps from GitHub/Docker without operating the host OS for every project. See the Runex vs VPS comparison and the PaaS vs VPS guide for details.",
   },
 ];
 
@@ -73,6 +88,7 @@ const steps = [
 ];
 
 const tech = [
+  { name: "GitHub", href: "/deploy/github" },
   { name: "Next.js", href: "/deploy/nextjs" },
   { name: "Node.js", href: "/deploy/nodejs" },
   { name: "Python", href: "/deploy/python" },
@@ -82,19 +98,19 @@ const tech = [
 
 const learn = [
   {
+    href: "/what-is-runex",
+    title: "What is Runex?",
+    body: "Brand entity page: what Runex is, how it works, and who it is for.",
+  },
+  {
+    href: "/deploy",
+    title: "Deploy hub",
+    body: "GitHub, Docker, and framework landings in one place.",
+  },
+  {
     href: "/docs/getting-started",
     title: "Getting started",
     body: "Create an account, connect GitHub, and ship your first deployment.",
-  },
-  {
-    href: "/docs/deploy-from-github",
-    title: "Deploy from GitHub",
-    body: "How the GitHub App, repository access, and webhooks fit together.",
-  },
-  {
-    href: "/blog",
-    title: "Blog & guides",
-    body: "Deployment platform explainers, tutorials, and practical how-tos.",
   },
 ];
 
@@ -121,17 +137,17 @@ export default function HomePage() {
 
           <HeroReveal delay={0.12} className="mt-10 max-w-4xl">
             <h1 className="display text-[3.15rem] text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
-              From GitHub
+              Easy deployment
               <br />
-              to production.
+              for developers.
             </h1>
           </HeroReveal>
 
           <HeroReveal delay={0.22} className="mt-7 max-w-xl">
             <p className="body-muted text-[15px] sm:text-[17px] sm:leading-relaxed">
-              Runex deploys your applications from GitHub into isolated
-              containers and gives you a public HTTPS URL — without babysitting
-              a VPS for every ship.
+              Runex is a cloud deployment platform that helps developers deploy
+              applications without manually managing deployment infrastructure —
+              from GitHub to HTTPS on *.runex.cloud.
             </p>
           </HeroReveal>
 
@@ -150,6 +166,25 @@ export default function HomePage() {
             >
               Deploy
             </Button>
+          </HeroReveal>
+
+          <HeroReveal delay={0.42} className="mt-8">
+            <p className="text-xs text-muted-dim">
+              New here?{" "}
+              <Link
+                href="/what-is-runex"
+                className="text-muted underline-offset-4 transition hover:text-foreground hover:underline"
+              >
+                What is Runex?
+              </Link>
+              {" · "}
+              <Link
+                href="/deploy"
+                className="text-muted underline-offset-4 transition hover:text-foreground hover:underline"
+              >
+                Deploy hub
+              </Link>
+            </p>
           </HeroReveal>
         </Container>
       </section>
@@ -292,9 +327,9 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Stacks"
             title="Deploy what you already write."
-            description="Dedicated landings for Next.js, Node.js, Python, Go, and Docker."
+            description="Start at the deploy hub, or jump to Next.js, Node.js, Python, Go, Docker, and GitHub."
           />
-          <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
+          <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {tech.map((t) => (
               <StaggerItem key={t.name}>
                 <Link

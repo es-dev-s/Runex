@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocsShell } from "@/components/DocsShell";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Custom Domains",
@@ -13,6 +14,13 @@ export const metadata: Metadata = buildMetadata({
 export default function CustomDomainsPage() {
   return (
     <DocsShell current="/docs/custom-domains">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Docs", path: "/docs" },
+          { name: "Custom domains", path: "/docs/custom-domains" },
+        ])}
+      />
       <p className="micro-label mb-2 text-accent">Docs</p>
       <h1 className="display !mt-0 text-3xl text-foreground sm:text-4xl">
         Custom domains on Runex

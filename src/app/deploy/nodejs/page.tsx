@@ -40,10 +40,6 @@ export default function DeployNodejsPage() {
             "With GitHub webhooks configured, pushes to the selected branch can trigger a new deployment. Webhook payloads are verified.",
         },
       ]}
-      related={[
-        { href: "/docs/getting-started", label: "Getting started" },
-        { href: "/deploy/docker", label: "Deploy with Docker" },
-      ]}
     />
   );
 }

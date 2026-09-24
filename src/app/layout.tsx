@@ -31,12 +31,15 @@ export const metadata: Metadata = {
   applicationName: "Runex",
   keywords: [
     "Runex",
+    "Runex Cloud",
     "deployment platform",
     "easy deployment platform",
-    "developer deployment platform",
-    "GitHub deployment",
-    "deploy Next.js",
     "cloud deployment platform",
+    "developer deployment platform",
+    "GitHub deployment platform",
+    "deploy from GitHub",
+    "deploy Next.js",
+    "deploy Docker",
   ],
   openGraph: {
     type: "website",

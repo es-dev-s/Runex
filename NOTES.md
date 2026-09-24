@@ -4,7 +4,10 @@ Built on Legion at:
 
 `/home/pawan/Dashboard/YC - Projects/Harbor-Infra/Public_pages`
 
-Strategy source: `../Runex_SEO_AEO_Strategy.md` (2026-09-24).
+Strategy sources:
+
+- `../Runex_SEO_AEO_Strategy.md` (2026-09-24)
+- `../Runex_SEO_AEO_Keyword_Analysis_Report.md` (2026-09-24)
 
 ## How to run
 
@@ -21,91 +24,51 @@ npm run dev
 - Deploy / sign-up CTA → `https://runex.cloud/sign-up`
 - Controlled by `NEXT_PUBLIC_APP_URL` (see `.env.example`)
 
-`npm run build` was verified exit 0 after implementation.
+## SEO + AEO batch shipped (2026-09-24)
 
-## Strategy validation — what aligns
+Entity sentence preserved across homepage, `/what-is-runex`, about, JSON-LD:
 
-| Strategy item | Status |
+> **Runex is an easy cloud deployment platform for developers.**
+
+| Item | Status |
 | --- | --- |
-| Positioning: “Easy deployment for developers” / deployment platform | Homepage H1 + category eyebrow + About |
-| Brand entity pages | `/`, `/about`, `/features`, `/security` |
-| Technical SEO: unique titles, descriptions, canonicals, OG | `buildMetadata` + root layout |
-| `sitemap.ts` / `robots.ts` | Present; disallows dashboard/auth-style paths |
-| JSON-LD SoftwareApplication + Organization + WebSite | Root layout (no fake ratings/reviews) |
-| FAQPage JSON-LD | Homepage + pricing + deploy pages where FAQs render |
-| Docs: getting-started, GitHub deploy, custom domains | `/docs/*` as required |
-| Deploy landings: Next.js, Node, Python, Go, Docker | `/deploy/*` |
-| Compare: vs Vercel, Railway, Render | `/compare/*` factual tables + caveats |
-| Blog ≥3 MDX posts | 4 posts under `content/blog/` |
-| Accuracy: GitHub App, HTTPS, `*.runex.cloud`, `cname.runex.cloud`, container isolation | Consistently claimed; roadmap labeled |
-| No Salesradar branding | Confirmed absent |
-| No SOC2 / military-grade / fake ratings | Avoided |
-| Pricing honesty | Points to dashboard as source of truth |
-| Premium dark + amber, framer-motion, App Router SSG | Implemented |
+| `/what-is-runex` brand entity + FAQ JSON-LD | Shipped |
+| `/deploy` hub + `/deploy/github` commercial | Shipped |
+| `/use-cases` + `/use-cases/full-stack-apps` | Shipped (external DBs only — no invented managed DB) |
+| Homepage H1/copy/FAQ AEO polish (§11 / §12) | Shipped |
+| `siteConfig` description + keywords; Org `slogan` / `alternateName` | Shipped (`sameAs` empty until real URLs) |
+| Blog: `what-is-a-paas`, `paas-vs-vps`, `how-to-deploy-a-nextjs-app`, `how-to-deploy-a-docker-container` | Shipped |
+| Docs: env vars + troubleshooting hub + 3 problem pages | Shipped |
+| Breadcrumbs on deploy/docs/compare/what-is/use-cases | Shipped |
+| Sitemap priorities (`/` + `/what-is-runex` high; deploy 0.8) | Shipped |
+| Internal links (home → entity/deploy; deploy → docs/security) | Shipped |
+| `public/llms.txt` + `public/ai.txt` | Shipped |
+| Compare: vs Netlify + vs VPS | Shipped (nice-to-have) |
+| No SearchAction schema | Skipped (no on-site search) |
 
-## Gaps vs full strategy doc (intentional / later)
+## Gaps vs keyword report roadmap (remaining — ops / later content)
 
-These are called out in the strategy as Phase 2–3 or optional — not blockers for this site scaffold:
+1. **More blog volume** — report §18 lists ~30 topics; we have 8 posts total.
+2. **More use-case pages** — developers / startups / agencies not built (only full-stack).
+3. **Docs depth** — logs, HTTPS-only page, deployments reference still optional.
+4. **External authority** — GitHub org, Product Hunt, Dev.to, HN, example repos (not this repo).
+5. **Search Console + Bing Webmaster + Bing AI Performance** — operational setup.
+6. **`sameAs` profiles** — add to `siteConfig.sameAs` only when real public URLs exist.
+7. **Screenshots / case studies** — still missing.
+8. **Live pricing amounts** — still dashboard source of truth only.
 
-1. **Docs depth** — strategy lists many more doc routes (`/docs/environments`, `/docs/logs`, `/docs/troubleshooting`, `/docs/https`, etc.). Only the required trio + overview are live.
-2. **More compare pages** — vs Netlify / VPS / Kubernetes not built (only the three requested).
-3. **Blog volume** — strategy lists ~20 topic ideas; we shipped 4 high-value posts to start.
-4. **GitHub org / example repos** — external (github.com/runex-cloud, example apps); out of scope for this marketing app.
-5. **Search Console / Bing Webmaster** — operational setup, not code.
-6. **Contact page** — in recommended sitemap; not required by the task routes list.
-7. **Screenshots / product UI media** — no real dashboard screenshots yet (hero uses a stylized terminal card).
-8. **Live pricing amounts** — intentionally omitted so marketing never drifts from dashboard entitlements.
-9. **Deeper network isolation / DB isolation claims** — marked as direction/roadmap on `/security`, per accuracy rule §48.
-10. **`@tailwindcss/typography`** — used custom `.prose-runex` instead; fine for polish, optional later.
+## Accuracy rules (unchanged)
+
+Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network isolation as product fact unless enforced and documented. Claim: GitHub App deploy, `*.runex.cloud`, `cname.runex.cloud`, HTTPS, container isolation, env vars, custom domains.
 
 ## Stack
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
-- `framer-motion` for scroll/entrance motion (client wrappers only)
+- `framer-motion` for scroll/entrance motion
 - `next-mdx-remote` + `gray-matter` + `reading-time` for blog
-- Server Components by default; client: `Header`, `Motion`
+- RareUI craft Header / HeroDepth preserved — SEO work is content + structure
 
 ## Do not
 
 - Push remotes unless asked (local git commit only)
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
-
-## Design system (RareUI landing craft)
-
-Rare-inspired premium dark UI (not generic AI SaaS):
-
-- Near-black canvas `#070707` + hot orange accent `#ff4d00`
-- `Header` joined→split nav (see **Nav states** below)
-- Centered hero: larger display type, blackspace, **non-circular** `HeroDepth` (angular grid + hex fragment + soft rectangular bloom — no orbit/ring watermark), badge, command + orange Deploy
-- Bento capabilities with live `DeployExhibit` + hover-lift tiles
-- Exhibit frames (`.frame` / `.frame-tight`), terminal/artboard surfaces
-- Motion honors `prefers-reduced-motion`
-- Huge typographic `Footer` with restrained orange bloom
-- Shared shells: `PageHero`, `FeatureGrid`, `CTASection`, docs/blog/pricing/compare/deploy inherit Header
-
-SEO routes, MDX blog/docs, sitemap/robots, JSON-LD unchanged.
-Login → `NEXT_PUBLIC_APP_URL/sign-in`; Deploy → `/sign-up`.
-
-## Nav states (`Header.tsx`)
-
-Exact interaction (framer-motion springs; `prefers-reduced-motion` → instant):
-
-| Phase | When | Visual |
-| --- | --- | --- |
-| **Joined · flush-top** | SSR / first paint (`scrollY≈0`, before entrance) | Single continuous bar, minimal top inset (~2px). **Transparent border + no box-shadow** (no white/light hairline flash on reload). |
-| **Joined · floating · wider** | After mount entrance at top | Wider shell (`maxWidth` 1280 / ~max-w-7xl), ~16px floating inset, dark border `rgba(34,34,34,1)` + soft shadow once entered. |
-| **Split · three pills · tight** | Scroll **down** past ~20px | Shell narrows (~1024 / max-w-5xl); shared chrome dissolves; brand \| links \| utilities become three dense pills with **~4px gap** and tighter cluster padding. |
-| **Rejoin · wider** | Scroll **up**, or `scrollY < 20` | Pills merge; shell widens smoothly back to the joined floating bar. No 4px “re-attach” hop. |
-
-Chrome rules: border colors stay in the dark/transparent family only — never animate through a light/white border. Flush start = transparent border + zero shadow; floating joined = dark border + soft shadow.
-
-CTAs: Login → `/sign-in`, Deploy → `/sign-up` via `NEXT_PUBLIC_APP_URL`.
-
-### How to verify
-
-1. `npm run dev` → open `/`
-2. **Hard reload** at scroll 0: one bar, **no white/light border flash**, then ease into a wider floating joined bar.
-3. **Scroll down**: three pills with small (~4px) gaps — premium tight.
-4. **Return to top**: smoothly widens/rejoins (no jumpy re-attach).
-5. DevTools → no hydration mismatch warning on `Header`.
-6. `npm run build` must pass.

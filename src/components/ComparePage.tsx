@@ -4,6 +4,8 @@ import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
 export type CompareRow = {
@@ -17,14 +19,22 @@ export function ComparePage({
   summary,
   rows,
   caveats,
+  path,
 }: {
   competitor: string;
   summary: string;
   rows: CompareRow[];
   caveats: string[];
+  path: string;
 }) {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: `Runex vs ${competitor}`, path },
+        ])}
+      />
       <PageHero
         eyebrow="Compare"
         title={`Runex vs ${competitor}`}

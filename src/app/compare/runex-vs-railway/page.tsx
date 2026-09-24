@@ -12,6 +12,7 @@ export const metadata: Metadata = buildMetadata({
 export default function RunexVsRailwayPage() {
   return (
     <ComparePage
+      path="/compare/runex-vs-railway"
       competitor="Railway"
       summary="Runex and Railway both sit in the developer deployment / PaaS category. This table highlights Runex’s verified public claims next to Railway capabilities you should confirm on Railway’s official docs."
       rows={[

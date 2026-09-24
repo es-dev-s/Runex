@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocsShell } from "@/components/DocsShell";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Deploy from GitHub",
@@ -13,6 +14,13 @@ export const metadata: Metadata = buildMetadata({
 export default function DeployFromGitHubPage() {
   return (
     <DocsShell current="/docs/deploy-from-github">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Docs", path: "/docs" },
+          { name: "Deploy from GitHub", path: "/docs/deploy-from-github" },
+        ])}
+      />
       <p className="micro-label mb-2 text-accent">Docs</p>
       <h1 className="display !mt-0 text-3xl text-foreground sm:text-4xl">
         Deploy an application from GitHub

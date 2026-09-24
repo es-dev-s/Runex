@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocsShell } from "@/components/DocsShell";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
@@ -14,6 +15,13 @@ export const metadata: Metadata = buildMetadata({
 export default function GettingStartedPage() {
   return (
     <DocsShell current="/docs/getting-started">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Docs", path: "/docs" },
+          { name: "Getting started", path: "/docs/getting-started" },
+        ])}
+      />
       <p className="micro-label mb-2 text-accent">Docs</p>
       <h1 className="display !mt-0 text-3xl text-foreground sm:text-4xl">
         Getting started with Runex
@@ -72,6 +80,10 @@ export default function GettingStartedPage() {
       <h2>Next steps</h2>
       <ul>
         <li>
+          <Link href="/deploy">Deploy hub</Link> and{" "}
+          <Link href="/deploy/github">Deploy from GitHub</Link>
+        </li>
+        <li>
           Stack guides:{" "}
           <Link href="/deploy/nextjs">Next.js</Link>,{" "}
           <Link href="/deploy/nodejs">Node.js</Link>,{" "}
@@ -80,7 +92,16 @@ export default function GettingStartedPage() {
           <Link href="/deploy/docker">Docker</Link>
         </li>
         <li>
+          <Link href="/docs/environment-variables">Environment variables</Link>
+        </li>
+        <li>
+          <Link href="/docs/troubleshooting">Troubleshooting</Link>
+        </li>
+        <li>
           <Link href="/security">Security overview</Link>
+        </li>
+        <li>
+          <Link href="/what-is-runex">What is Runex?</Link>
         </li>
       </ul>
     </DocsShell>
