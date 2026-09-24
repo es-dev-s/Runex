@@ -1,0 +1,61 @@
+---
+title: "How to Deploy an Application from GitHub"
+description: "Step-by-step: deploy from GitHub using a GitHub App — repository access, branch selection, webhooks, and HTTPS URLs — with Runex as the worked example."
+date: "2026-09-22"
+updated: "2026-09-24"
+tags: ["GitHub", "deploy", "tutorial"]
+---
+
+## Direct answer
+
+To deploy an application from GitHub on a modern deployment platform, you connect a GitHub App (or similar integration), grant repository access, select a branch, run a build, and publish an HTTPS URL. On Runex that URL looks like `https://<deployment-slug>.runex.cloud`.
+
+## Prerequisites
+
+- Application source in a GitHub repository
+- A Runex account ([sign up](https://runex.cloud/sign-up))
+- Permission to install a GitHub App on the repo’s account/org
+
+## Steps
+
+### 1. Sign in to Runex
+
+Use [runex.cloud/sign-in](https://runex.cloud/sign-in).
+
+### 2. Install the GitHub App
+
+Install the Runex GitHub App and grant access only to repositories you intend to deploy. Prefer least privilege.
+
+### 3. Select repository and branch
+
+Pick the deployable branch (often `main`).
+
+### 4. Deploy
+
+Start the deployment. Runex builds the app, creates an isolated environment, and starts the process.
+
+### 5. Verify HTTPS
+
+Open the platform URL. Attach a [custom domain](/docs/custom-domains) later with a CNAME to `cname.runex.cloud` if needed.
+
+## Automatic redeploys
+
+When webhooks are configured, pushes to the selected branch can trigger redeployment. Runex verifies webhook payloads so triggers come from authenticated GitHub events.
+
+## What this guide does not claim
+
+Unless separately documented as shipped, do not assume:
+
+- Pull request preview environments
+- Required GitHub status checks
+- Non-GitHub VCS providers
+
+See the product docs: [Deploy from GitHub](/docs/deploy-from-github).
+
+## Stack-specific guides
+
+- [Next.js](/deploy/nextjs)
+- [Node.js](/deploy/nodejs)
+- [Python](/deploy/python)
+- [Go](/deploy/go)
+- [Docker](/deploy/docker)

@@ -1,0 +1,50 @@
+---
+title: "How Custom Domains Work for Deployed Applications"
+description: "How custom domains map to a deployment platform using DNS CNAME records — including Runex’s cname.runex.cloud target and HTTPS expectations."
+date: "2026-09-24"
+tags: ["custom domains", "DNS", "HTTPS"]
+---
+
+## Direct answer
+
+A **custom domain** points your hostname (for example `app.example.com`) at a deployment platform so visitors reach your app on your brand domain instead of the platform’s default hostname. On Runex, create a DNS **CNAME** to `cname.runex.cloud`, then attach the domain to a deployment in the dashboard.
+
+## Platform URL vs custom domain
+
+| | Platform URL | Custom domain |
+| --- | --- | --- |
+| Example | `https://my-app.runex.cloud` | `https://app.example.com` |
+| DNS you manage | None | CNAME (or apex alternative) |
+| Typical target | n/a | `cname.runex.cloud` |
+
+## How DNS fits in
+
+1. Your deployment already exists on the platform.
+2. You create a CNAME at your DNS provider.
+3. The platform associates that hostname with your deployment.
+4. HTTPS is provisioned for the hostname when the platform supports it (Runex provides HTTPS for supported public deployments).
+
+### Example record
+
+```text
+Type:  CNAME
+Name:  app
+Value: cname.runex.cloud
+```
+
+## Apex domains
+
+Some DNS providers cannot place a CNAME on the zone apex (`example.com`). Options usually include ALIAS/ANAME/CNAME flattening — follow your DNS provider’s guidance, or use a subdomain like `www` or `app`.
+
+## Troubleshooting
+
+- **NXDOMAIN / wrong target:** confirm the CNAME value is exactly `cname.runex.cloud`.
+- **Stale DNS:** wait for TTL; check with `dig` or your provider’s DNS tools.
+- **HTTPS pending:** domain must be attached in Runex after DNS is correct.
+
+Full product steps: [Custom domains documentation](/docs/custom-domains).
+
+## Related
+
+- [Getting started](/docs/getting-started)
+- [Security: TLS](/security#tls)

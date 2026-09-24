@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f5f5f4;
+  --muted: #a8a29e;
+  --card: #0c0c0c;
+  --card-border: #1c1917;
+  --accent: #f59e0b;
+  --accent-soft: #fbbf24;
+  --accent-dim: rgba(245, 158, 11, 0.12);
+  --glow: rgba(245, 158, 11, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-dim: var(--accent-dim);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.35);
+  color: #fff;
+}
+
+.glow-orb {
+  background: radial-gradient(
+    circle,
+    rgba(245, 158, 11, 0.18) 0%,
+    rgba(245, 158, 11, 0.05) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+.prose-runex {
+  color: #d6d3d1;
+  line-height: 1.75;
+}
+
+.prose-runex h2 {
+  color: #fafaf9;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-runex h3 {
+  color: #f5f5f4;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-runex p {
+  margin-bottom: 1.15rem;
+}
+
+.prose-runex ul,
+.prose-runex ol {
+  margin-bottom: 1.15rem;
+  padding-left: 1.25rem;
+}
+
+.prose-runex li {
+  margin-bottom: 0.4rem;
+}
+
+.prose-runex a {
+  color: #fbbf24;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-runex code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9em;
+  background: #151515;
+  border: 1px solid #292524;
+  border-radius: 0.35rem;
+  padding: 0.1rem 0.35rem;
+  color: #fde68a;
+}
+
+.prose-runex pre {
+  background: #0a0a0a;
+  border: 1px solid #292524;
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.prose-runex pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #e7e5e4;
+}
+
+.prose-runex table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.prose-runex th,
+.prose-runex td {
+  border: 1px solid #292524;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+}
+
+.prose-runex th {
+  background: #111;
+  color: #fafaf9;
+  font-weight: 600;
+}
+
+.prose-runex blockquote {
+  border-left: 3px solid #f59e0b;
+  padding-left: 1rem;
+  color: #a8a29e;
+  margin: 1.5rem 0;
 }

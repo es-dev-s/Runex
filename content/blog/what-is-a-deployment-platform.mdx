@@ -1,0 +1,65 @@
+---
+title: "What Is an Application Deployment Platform?"
+description: "A clear definition of application deployment platforms (PaaS-style), how they differ from a VPS, and where Runex fits as an easy deployment platform for developers."
+date: "2026-09-20"
+updated: "2026-09-24"
+tags: ["deployment platform", "PaaS", "Runex"]
+---
+
+## Direct answer
+
+An **application deployment platform** helps developers take application source code, build it, run it in a managed environment, and expose it on the public internet — usually over HTTPS — without manually operating servers for every project.
+
+Runex is a cloud deployment platform in this category: connect GitHub, deploy, and get a URL on `*.runex.cloud`.
+
+## What problem it solves
+
+Without a deployment platform, teams often:
+
+- Provision a VPS
+- Install runtimes and reverse proxies
+- Configure TLS certificates
+- Write ad-hoc deploy scripts
+- Repeat the same setup for every application
+
+A deployment platform collapses that path into a product workflow.
+
+## Typical flow
+
+1. Connect a source repository (on Runex: GitHub App)
+2. Select a branch
+3. Build the application or container
+4. Run it in an isolated environment
+5. Expose `https://<deployment>.example`
+
+On Runex the platform hostname pattern is:
+
+```text
+https://<deployment-slug>.runex.cloud
+```
+
+## Deployment platform vs VPS
+
+| Concern | VPS | Deployment platform |
+| --- | --- | --- |
+| Who manages the host OS | You | Platform |
+| TLS | Often manual | Platform-provided HTTPS |
+| Isolation | You design it | Productized (e.g. containers) |
+| Redeploy on git push | DIY | Often built-in |
+
+Neither is universally “better.” A VPS is flexible; a deployment platform is faster for common app shipping.
+
+## Where Runex fits
+
+Runex positions as **easy deployment for developers**, with:
+
+- GitHub App deploy
+- HTTPS on `*.runex.cloud`
+- Custom domains via `cname.runex.cloud`
+- Container isolation described factually on the [security](/security) page
+
+## Related reading
+
+- [Getting started](/docs/getting-started)
+- [Deploy from GitHub](/docs/deploy-from-github)
+- [Deploy Next.js](/deploy/nextjs)
