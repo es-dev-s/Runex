@@ -69,3 +69,20 @@ These are called out in the strategy as Phase 2–3 or optional — not blockers
 
 - Push remotes unless asked (local git commit only)
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
+
+## Design system (2026-09-24 redesign)
+
+Rare-inspired premium dark UI (not generic AI SaaS):
+
+- Near-black canvas `#070707` + hot orange accent `#ff4d00`
+- Floating segmented pill `Header` (sticky/compact on scroll)
+- Hero: two-line operational promise + Runex hex/orbit motif (`OrbitMotif`)
+- Above-fold: dark command strip + high-contrast orange Deploy CTA
+- Bento capabilities with live `DeployExhibit` + orange CTA tile
+- Exhibit frames (`.frame` / `.frame-tight`), terminal/artboard surfaces
+- Motion honors `prefers-reduced-motion`
+- Huge typographic `Footer` with restrained orange bloom
+- Shared shells: `PageHero`, `FeatureGrid`, `CTASection`, docs/blog/pricing/compare/deploy
+
+SEO routes, MDX blog/docs, sitemap/robots, JSON-LD unchanged.
+Login → `NEXT_PUBLIC_APP_URL/sign-in`; Deploy → `/sign-up`.

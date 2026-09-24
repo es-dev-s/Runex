@@ -15,28 +15,28 @@ const links = [
 
 export function DocsNav({ current }: { current?: string }) {
   return (
-    <aside className="lg:sticky lg:top-24 lg:self-start">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
-        Documentation
-      </p>
-      <nav className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0">
-        {links.map((link) => {
-          const active = current === link.href;
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`whitespace-nowrap rounded-lg px-3 py-2 text-sm transition ${
-                active
-                  ? "bg-accent/10 text-accent"
-                  : "text-muted hover:bg-white/5 hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-      </nav>
+    <aside className="lg:sticky lg:top-28 lg:self-start">
+      <div className="frame-tight p-3 sm:p-4">
+        <p className="micro-label mb-3 px-2">Documentation</p>
+        <nav className="flex gap-1 overflow-x-auto pb-1 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:pb-0">
+          {links.map((link) => {
+            const active = current === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`whitespace-nowrap rounded-xl px-3 py-2 text-sm transition ${
+                  active
+                    ? "bg-accent/10 text-accent"
+                    : "text-muted hover:bg-white/[0.03] hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
     </aside>
   );
 }

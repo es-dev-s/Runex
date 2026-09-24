@@ -104,7 +104,7 @@ export default function SecurityPage() {
       <section className="py-16 sm:py-20">
         <Container className="max-w-3xl">
           <FadeIn>
-            <p className="rounded-2xl border border-accent/20 bg-accent/5 px-5 py-4 text-sm leading-relaxed text-muted">
+            <p className="rounded-[1.25rem] border border-accent/30 bg-accent/[0.06] px-5 py-4 text-sm leading-relaxed text-muted">
               Accuracy rule: if a control is not yet enforced in production, it
               is labeled as direction or roadmap. Prefer “Runex deploys
               applications in isolated containers” over absolute claims like
@@ -122,7 +122,7 @@ export default function SecurityPage() {
                       {section.title}
                     </h2>
                     {section.badge && (
-                      <span className="rounded-full border border-white/10 px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-muted">
+                      <span className="rounded-full border border-card-border px-2.5 py-0.5 text-[10px] uppercase tracking-[0.14em] text-muted-dim">
                         {section.badge}
                       </span>
                     )}

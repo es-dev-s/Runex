@@ -34,11 +34,11 @@ export default function BlogIndexPage() {
                 <StaggerItem key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="flex h-full flex-col rounded-2xl border border-white/10 bg-card/60 p-6 transition hover:border-accent/30"
+                    className="frame-tight flex h-full flex-col p-6 transition hover:border-zinc-500"
                   >
                     <time
                       dateTime={post.date}
-                      className="text-xs font-medium uppercase tracking-wide text-stone-500"
+                      className="micro-label"
                     >
                       {post.date}
                       {post.readingTime ? ` · ${post.readingTime}` : ""}
@@ -58,7 +58,7 @@ export default function BlogIndexPage() {
             </Stagger>
           )}
 
-          <FadeIn className="mt-12 rounded-2xl border border-white/10 bg-card/40 p-6 text-sm text-muted">
+          <FadeIn className="frame-tight mt-12 p-6 text-sm text-muted">
             Looking for product docs? Start at{" "}
             <Link href="/docs" className="text-accent hover:text-accent-soft">
               /docs

@@ -94,16 +94,16 @@ export default function PricingPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-white/5 py-20">
+      <section className="border-b border-card-border py-20">
         <Container>
           <div className="grid gap-4 lg:grid-cols-3">
             {tiers.map((tier) => (
               <FadeIn key={tier.name}>
                 <article
-                  className={`flex h-full flex-col rounded-2xl border p-6 ${
+                  className={`flex h-full flex-col rounded-[1.25rem] border p-6 ${
                     tier.highlighted
-                      ? "border-accent/40 bg-accent/5 shadow-[0_0_40px_rgba(245,158,11,0.08)]"
-                      : "border-white/10 bg-card/60"
+                      ? "border-accent/45 bg-accent/[0.06]"
+                      : "border-card-border bg-card"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -111,7 +111,7 @@ export default function PricingPage() {
                       {tier.name}
                     </h2>
                     {tier.badge && (
-                      <span className="rounded-full border border-white/10 px-2 py-0.5 text-[11px] uppercase tracking-wide text-muted">
+                      <span className="rounded-full border border-card-border px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-muted-dim">
                         {tier.badge}
                       </span>
                     )}
@@ -160,7 +160,8 @@ export default function PricingPage() {
 
       <section className="py-20">
         <Container className="max-w-3xl">
-          <h2 className="mb-6 text-2xl font-semibold tracking-tight">
+          <p className="micro-label text-accent">FAQ</p>
+          <h2 className="display mt-3 mb-6 text-2xl text-foreground sm:text-3xl">
             Pricing FAQ
           </h2>
           <FAQ items={faqs} />

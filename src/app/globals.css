@@ -1,32 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #f5f5f4;
-  --muted: #a8a29e;
-  --card: #0c0c0c;
-  --card-border: #1c1917;
-  --accent: #f59e0b;
-  --accent-soft: #fbbf24;
-  --accent-dim: rgba(245, 158, 11, 0.12);
-  --glow: rgba(245, 158, 11, 0.35);
+  --background: #070707;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
+  --muted-dim: #71717a;
+  --card: #111111;
+  --card-elevated: #161616;
+  --card-border: #222222;
+  --border: #1c1c1c;
+  --accent: #ff4d00;
+  --accent-soft: #ff6a2b;
+  --accent-dim: rgba(255, 77, 0, 0.12);
+  --accent-glow: rgba(255, 77, 0, 0.22);
+  --terminal: #0b0b0b;
+  --artboard: #0e0e0e;
+  --radius-frame: 1.75rem;
+  --radius-tile: 1.25rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-dim: var(--muted-dim);
   --color-card: var(--card);
+  --color-card-elevated: var(--card-elevated);
   --color-card-border: var(--card-border);
+  --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-dim: var(--accent-dim);
+  --color-terminal: var(--terminal);
+  --color-artboard: var(--artboard);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius-frame: var(--radius-frame);
+  --radius-tile: var(--radius-tile);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
@@ -34,51 +62,131 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.35);
+  background: rgba(255, 77, 0, 0.35);
   color: #fff;
 }
 
-.glow-orb {
+/* Quiet charcoal frame — Rare-like exhibit surface */
+.frame {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  border-radius: var(--radius-frame);
+}
+
+.frame-tight {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  border-radius: var(--radius-tile);
+}
+
+.terminal-surface {
+  border: 1px solid var(--card-border);
+  background: var(--terminal);
+  border-radius: var(--radius-tile);
+}
+
+.artboard-surface {
+  border: 1px solid var(--card-border);
+  background: var(--artboard);
+  border-radius: var(--radius-tile);
+}
+
+.micro-label {
+  font-size: 11px;
+  font-weight: 560;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-dim);
+}
+
+.display {
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.body-muted {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* Restrained orange bloom — no glossy gradient washes */
+.accent-bloom {
   background: radial-gradient(
-    circle,
-    rgba(245, 158, 11, 0.18) 0%,
-    rgba(245, 158, 11, 0.05) 40%,
-    transparent 70%
+    circle at center,
+    rgba(255, 77, 0, 0.16) 0%,
+    rgba(255, 77, 0, 0.04) 42%,
+    transparent 68%
   );
   pointer-events: none;
 }
 
-.grid-fade {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+.orbit-pulse {
+  animation: orbit-pulse 4.5s ease-in-out infinite;
+}
+
+.deploy-pulse {
+  animation: deploy-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes orbit-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes deploy-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-pulse,
+  .deploy-pulse {
+    animation: none;
+  }
 }
 
 .prose-runex {
-  color: #d6d3d1;
+  color: #d4d4d8;
   line-height: 1.75;
+  font-size: 0.975rem;
 }
 
 .prose-runex h2 {
-  color: #fafaf9;
-  font-size: 1.5rem;
-  font-weight: 600;
+  color: #fafafa;
+  font-size: 1.45rem;
+  font-weight: 650;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .prose-runex h3 {
-  color: #f5f5f4;
-  font-size: 1.15rem;
+  color: #f4f4f5;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .prose-runex p {
@@ -96,25 +204,25 @@ body {
 }
 
 .prose-runex a {
-  color: #fbbf24;
+  color: var(--accent-soft);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .prose-runex code {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.9em;
-  background: #151515;
-  border: 1px solid #292524;
+  font-size: 0.88em;
+  background: #141414;
+  border: 1px solid #292929;
   border-radius: 0.35rem;
   padding: 0.1rem 0.35rem;
-  color: #fde68a;
+  color: #ffc9a8;
 }
 
 .prose-runex pre {
-  background: #0a0a0a;
-  border: 1px solid #292524;
-  border-radius: 0.75rem;
+  background: var(--terminal);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
   padding: 1rem 1.15rem;
   overflow-x: auto;
   margin-bottom: 1.25rem;
@@ -124,7 +232,7 @@ body {
   background: transparent;
   border: none;
   padding: 0;
-  color: #e7e5e4;
+  color: #e4e4e7;
 }
 
 .prose-runex table {
@@ -136,20 +244,20 @@ body {
 
 .prose-runex th,
 .prose-runex td {
-  border: 1px solid #292524;
+  border: 1px solid var(--card-border);
   padding: 0.65rem 0.85rem;
   text-align: left;
 }
 
 .prose-runex th {
-  background: #111;
-  color: #fafaf9;
+  background: #121212;
+  color: #fafafa;
   font-weight: 600;
 }
 
 .prose-runex blockquote {
-  border-left: 3px solid #f59e0b;
+  border-left: 2px solid var(--accent);
   padding-left: 1rem;
-  color: #a8a29e;
+  color: var(--muted);
   margin: 1.5rem 0;
 }

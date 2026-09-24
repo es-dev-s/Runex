@@ -55,16 +55,14 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd data={articleLd} />
-      <article className="border-b border-white/5 pb-16 pt-14">
+      <article className="border-b border-card-border pb-16 pt-14">
         <Container className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            Blog
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <p className="micro-label text-accent">Blog</p>
+          <h1 className="display mt-3 text-3xl text-foreground sm:text-4xl">
             {post.title}
           </h1>
           <p className="mt-4 text-muted">{post.description}</p>
-          <p className="mt-4 text-sm text-stone-500">
+          <p className="mt-4 text-sm text-muted-dim">
             <time dateTime={post.date}>{post.date}</time>
             {post.updated ? (
               <>

@@ -21,7 +21,7 @@ export function appSignUpUrl() {
 }
 
 export function appDeployUrl() {
-  return appSignInUrl();
+  return appSignUpUrl();
 }
 
 export const navLinks = [

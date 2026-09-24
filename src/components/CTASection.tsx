@@ -11,17 +11,23 @@ export function CTASection({
   description?: string;
 }) {
   return (
-    <section className="py-20 sm:py-24">
+    <section className="py-16 sm:py-20">
       <Container>
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-card to-card px-8 py-12 text-center sm:px-12 sm:py-16">
-            <div className="glow-orb absolute inset-0 opacity-40" aria-hidden />
-            <div className="relative">
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                {title}
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-muted">{description}</p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-card-border bg-card px-7 py-11 sm:px-12 sm:py-14">
+            <div
+              className="accent-bloom absolute -right-16 -top-16 h-64 w-64 opacity-60"
+              aria-hidden
+            />
+            <div className="relative grid gap-8 lg:grid-cols-[1.4fr_auto] lg:items-end">
+              <div>
+                <p className="micro-label text-accent">Next step</p>
+                <h2 className="display mt-3 text-3xl text-foreground sm:text-4xl">
+                  {title}
+                </h2>
+                <p className="body-muted mt-4 max-w-xl">{description}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
                 <Button href={appSignUpUrl()} external>
                   Deploy with Runex
                 </Button>

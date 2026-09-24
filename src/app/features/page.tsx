@@ -99,7 +99,7 @@ export default function FeaturesPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-white/5 py-20">
+      <section className="border-b border-card-border py-20">
         <Container>
           <SectionHeading
             eyebrow="Core"
@@ -110,7 +110,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section className="border-b border-white/5 py-20">
+      <section className="border-b border-card-border py-20">
         <Container>
           <SectionHeading
             eyebrow="Visibility"

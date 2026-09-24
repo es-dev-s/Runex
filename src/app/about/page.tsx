@@ -31,7 +31,7 @@ export default function AboutPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-white/5 py-16 sm:py-20">
+      <section className="border-b border-card-border py-16 sm:py-20">
         <Container className="max-w-3xl prose-runex">
           <FadeIn>
             <h2>Why Runex exists</h2>

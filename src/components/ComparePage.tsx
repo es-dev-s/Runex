@@ -38,13 +38,13 @@ export function ComparePage({
         </Button>
       </PageHero>
 
-      <section className="border-b border-white/5 py-16">
+      <section className="border-b border-card-border py-16">
         <Container>
           <FadeIn>
-            <div className="overflow-x-auto rounded-2xl border border-white/10">
+            <div className="overflow-x-auto rounded-[1.25rem] border border-card-border bg-card">
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.03]">
+                  <tr className="border-b border-card-border bg-white/[0.02]">
                     <th className="px-4 py-3 font-semibold text-foreground">
                       Capability
                     </th>
@@ -60,7 +60,7 @@ export function ComparePage({
                   {rows.map((row) => (
                     <tr
                       key={row.capability}
-                      className="border-b border-white/5 last:border-0"
+                      className="border-b border-card-border last:border-0"
                     >
                       <td className="px-4 py-3 font-medium text-foreground">
                         {row.capability}

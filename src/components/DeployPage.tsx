@@ -41,10 +41,10 @@ export function DeployPage({
         </Button>
       </PageHero>
 
-      <section className="border-b border-white/5 py-16">
+      <section className="border-b border-card-border py-16">
         <Container className="max-w-3xl">
           <FadeIn>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h2 className="display text-2xl text-foreground">
               How to deploy {name} on Runex
             </h2>
             <ol className="mt-6 space-y-4">
@@ -58,7 +58,7 @@ export function DeployPage({
               ))}
             </ol>
 
-            <h2 className="mt-12 text-2xl font-semibold tracking-tight text-foreground">
+            <h2 className="mt-12 display text-2xl text-foreground">
               Practical notes
             </h2>
             <ul className="mt-4 space-y-2">
@@ -72,7 +72,7 @@ export function DeployPage({
 
             {related.length > 0 && (
               <>
-                <h2 className="mt-12 text-2xl font-semibold tracking-tight text-foreground">
+                <h2 className="mt-12 display text-2xl text-foreground">
                   Related
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -90,7 +90,7 @@ export function DeployPage({
               </>
             )}
 
-            <h2 className="mt-12 text-2xl font-semibold tracking-tight text-foreground">
+            <h2 className="mt-12 display text-2xl text-foreground">
               FAQ
             </h2>
             <div className="mt-4">

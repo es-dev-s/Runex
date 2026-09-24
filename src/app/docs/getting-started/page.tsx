@@ -14,10 +14,8 @@ export const metadata: Metadata = buildMetadata({
 export default function GettingStartedPage() {
   return (
     <DocsShell current="/docs/getting-started">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-        Docs
-      </p>
-      <h1 className="!mt-0 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <p className="micro-label mb-2 text-accent">Docs</p>
+      <h1 className="display !mt-0 text-3xl text-foreground sm:text-4xl">
         Getting started with Runex
       </h1>
       <p>
