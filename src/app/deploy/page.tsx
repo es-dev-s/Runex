@@ -7,6 +7,7 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn, Stagger, StaggerItem } from "@/components/Motion";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -68,6 +69,13 @@ const faqs = [
   },
 ];
 
+
+const bouncySections = [
+  { id: "paths", label: "Paths" },
+  { id: "faq", label: "FAQ" },
+  { id: "deploy", label: "Deploy" },
+] as const;
+
 export default function DeployHubPage() {
   return (
     <>
@@ -78,6 +86,8 @@ export default function DeployHubPage() {
           { name: "Deploy", path: "/deploy" },
         ])}
       />
+
+      <BouncyIndicator sections={bouncySections} />
 
       <PageHero
         eyebrow="Deploy"
@@ -92,7 +102,7 @@ export default function DeployHubPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-card-border py-16">
+      <section id="paths" className="scroll-mt-28 border-b border-card-border py-16">
         <Container>
           <FadeIn>
             <h2 className="display text-2xl text-foreground sm:text-3xl">
@@ -124,7 +134,7 @@ export default function DeployHubPage() {
         </Container>
       </section>
 
-      <section className="border-b border-card-border py-16">
+      <section id="faq" className="scroll-mt-28 border-b border-card-border py-16">
         <Container className="max-w-3xl">
           <h2 className="display text-2xl text-foreground">FAQ</h2>
           <div className="mt-4">
@@ -155,7 +165,7 @@ export default function DeployHubPage() {
         </Container>
       </section>
 
-      <CTASection title="Ship your first deployment" />
+      <CTASection id="deploy" title="Ship your first deployment" />
     </>
   );
 }

@@ -6,6 +6,7 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -80,10 +81,19 @@ const tiers = [
   },
 ];
 
+
+const bouncySections = [
+  { id: "plans", label: "Plans" },
+  { id: "faq", label: "FAQ" },
+  { id: "deploy", label: "Deploy" },
+] as const;
+
 export default function PricingPage() {
   return (
     <>
       <JsonLd data={faqJsonLd(faqs)} />
+      <BouncyIndicator sections={bouncySections} />
+
       <PageHero
         eyebrow="Pricing"
         title="Simple pricing. Accurate claims."
@@ -94,7 +104,7 @@ export default function PricingPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-card-border py-20">
+      <section id="plans" className="scroll-mt-28 border-b border-card-border py-20">
         <Container>
           <div className="grid gap-4 lg:grid-cols-3">
             {tiers.map((tier) => (
@@ -158,7 +168,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section id="faq" className="scroll-mt-28 py-20">
         <Container className="max-w-3xl">
           <p className="micro-label text-accent">FAQ</p>
           <h2 className="display mt-3 mb-6 text-2xl text-foreground sm:text-3xl">
@@ -168,7 +178,7 @@ export default function PricingPage() {
         </Container>
       </section>
 
-      <CTASection title="Ready when you are" />
+      <CTASection id="deploy" title="Ready when you are" />
     </>
   );
 }

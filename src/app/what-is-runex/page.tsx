@@ -7,6 +7,7 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { HookSidebar } from "@/components/HookSidebar";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
 
@@ -45,6 +46,19 @@ const faqs = [
   },
 ];
 
+
+const hookSections = [
+  { id: "problem", label: "Problem" },
+  { id: "how-it-works", label: "How it works" },
+  { id: "what-you-deploy", label: "What you deploy" },
+  { id: "isolation", label: "Isolation" },
+  { id: "github", label: "GitHub" },
+  { id: "docker", label: "Docker" },
+  { id: "who-for", label: "Who it's for" },
+  { id: "documentation", label: "Docs" },
+  { id: "faq", label: "FAQ" },
+] as const;
+
 export default function WhatIsRunexPage() {
   return (
     <>
@@ -55,6 +69,8 @@ export default function WhatIsRunexPage() {
           { name: "What is Runex?", path: "/what-is-runex" },
         ])}
       />
+
+      <HookSidebar sections={hookSections} />
 
       <PageHero
         eyebrow="Brand"
@@ -72,7 +88,7 @@ export default function WhatIsRunexPage() {
       <section className="border-b border-card-border py-16 sm:py-20">
         <Container className="max-w-3xl prose-runex">
           <FadeIn>
-            <h2>What problem does Runex solve?</h2>
+            <h2 id="problem" className="scroll-mt-28">What problem does Runex solve?</h2>
             <p>
               Shipping an app often means provisioning a host, installing
               runtimes, configuring TLS, writing deploy scripts, and repeating
@@ -80,7 +96,7 @@ export default function WhatIsRunexPage() {
               connect source, build, run in isolation, and expose HTTPS.
             </p>
 
-            <h2>How does Runex work?</h2>
+            <h2 id="how-it-works" className="scroll-mt-28">How does Runex work?</h2>
             <pre>{`Developer
    |
    v
@@ -99,7 +115,7 @@ https://<deployment-slug>.runex.cloud
               redeployment is available when webhooks are configured.
             </p>
 
-            <h2>What can I deploy?</h2>
+            <h2 id="what-you-deploy" className="scroll-mt-28">What can I deploy?</h2>
             <ul>
               <li>
                 <Link href="/deploy/nextjs">Next.js</Link>
@@ -124,7 +140,7 @@ https://<deployment-slug>.runex.cloud
               <Link href="/deploy/github">deploy from GitHub</Link> page.
             </p>
 
-            <h2>How does Runex handle isolation?</h2>
+            <h2 id="isolation" className="scroll-mt-28">How does Runex handle isolation?</h2>
             <p>
               Runex deploys applications in isolated containers with resource
               controls. We describe mechanisms on the{" "}
@@ -133,7 +149,7 @@ https://<deployment-slug>.runex.cloud
               “military-grade” or unverified compliance labels.
             </p>
 
-            <h2>Does Runex support GitHub?</h2>
+            <h2 id="github" className="scroll-mt-28">Does Runex support GitHub?</h2>
             <p>
               Yes. Runex uses a <strong>GitHub App</strong> for repository
               access, branch selection, webhook verification, and automated
@@ -144,7 +160,7 @@ https://<deployment-slug>.runex.cloud
               .
             </p>
 
-            <h2>Does Runex support Docker?</h2>
+            <h2 id="docker" className="scroll-mt-28">Does Runex support Docker?</h2>
             <p>
               Yes. Provide a production Dockerfile; Runex builds the image, runs
               it in isolation, and serves HTTPS. You do not need to operate
@@ -152,7 +168,7 @@ https://<deployment-slug>.runex.cloud
               <Link href="/deploy/docker">Deploy Docker</Link>.
             </p>
 
-            <h2>Who is Runex for?</h2>
+            <h2 id="who-for" className="scroll-mt-28">Who is Runex for?</h2>
             <p>
               Developers and small teams who want easy application deployment —
               including full-stack apps where a frontend and backend API both
@@ -163,7 +179,7 @@ https://<deployment-slug>.runex.cloud
               .
             </p>
 
-            <h2>Documentation</h2>
+            <h2 id="documentation" className="scroll-mt-28">Documentation</h2>
             <ul>
               <li>
                 <Link href="/docs/getting-started">Getting started</Link>
@@ -187,7 +203,7 @@ https://<deployment-slug>.runex.cloud
               </li>
             </ul>
 
-            <h2>FAQ</h2>
+            <h2 id="faq" className="scroll-mt-28">FAQ</h2>
             <div className="not-prose mt-4">
               <FAQ items={faqs} />
             </div>

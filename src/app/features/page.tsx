@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { FeatureGrid, SectionHeading } from "@/components/FeatureGrid";
 import { PageHero } from "@/components/PageHero";
+import { HookSidebar } from "@/components/HookSidebar";
 import { buildMetadata } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -83,9 +84,18 @@ const roadmap = [
   },
 ];
 
+
+const hookSections = [
+  { id: "core", label: "Core" },
+  { id: "visibility", label: "Visibility" },
+  { id: "roadmap", label: "Roadmap" },
+] as const;
+
 export default function FeaturesPage() {
   return (
     <>
+      <HookSidebar sections={hookSections} />
+
       <PageHero
         eyebrow="Features"
         title="Deployment features that match the product."
@@ -99,7 +109,7 @@ export default function FeaturesPage() {
         </Button>
       </PageHero>
 
-      <section className="border-b border-card-border py-20">
+      <section id="core" className="scroll-mt-28 border-b border-card-border py-20">
         <Container>
           <SectionHeading
             eyebrow="Core"
@@ -110,7 +120,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section className="border-b border-card-border py-20">
+      <section id="visibility" className="scroll-mt-28 border-b border-card-border py-20">
         <Container>
           <SectionHeading
             eyebrow="Visibility"
@@ -120,7 +130,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      <section id="roadmap" className="scroll-mt-28 py-20">
         <Container>
           <SectionHeading
             eyebrow="Roadmap"

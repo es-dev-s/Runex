@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { buildMetadata } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -15,9 +16,20 @@ export const metadata: Metadata = buildMetadata({
   path: "/about",
 });
 
+
+const bouncySections = [
+  { id: "why", label: "Why" },
+  { id: "what", label: "What" },
+  { id: "emphasize", label: "Emphasize" },
+  { id: "avoid", label: "Avoid" },
+  { id: "learn", label: "Learn" },
+] as const;
+
 export default function AboutPage() {
   return (
     <>
+      <BouncyIndicator sections={bouncySections} />
+
       <PageHero
         eyebrow="About"
         title="What is Runex?"
@@ -34,7 +46,7 @@ export default function AboutPage() {
       <section className="border-b border-card-border py-16 sm:py-20">
         <Container className="max-w-3xl prose-runex">
           <FadeIn>
-            <h2>Why Runex exists</h2>
+            <h2 id="why" className="scroll-mt-28">Why Runex exists</h2>
             <p>
               Deploying an application should not require reinventing
               infrastructure for every project. Developers still spend too much
@@ -49,7 +61,7 @@ export default function AboutPage() {
               <code>cname.runex.cloud</code>.
             </p>
 
-            <h2>What Runex is</h2>
+            <h2 id="what" className="scroll-mt-28">What Runex is</h2>
             <p>
               Runex is a developer-focused deployment platform (a PaaS-style
               experience) for shipping applications without manually operating a
@@ -58,7 +70,7 @@ export default function AboutPage() {
               <a href="https://runex.cloud">runex.cloud</a>.
             </p>
 
-            <h2>What we emphasize</h2>
+            <h2 id="emphasize" className="scroll-mt-28">What we emphasize</h2>
             <ul>
               <li>Easy deployment for developers</li>
               <li>GitHub App–based repository deploy</li>
@@ -68,7 +80,7 @@ export default function AboutPage() {
               <li>Clear separation of current vs roadmap features</li>
             </ul>
 
-            <h2>What we avoid</h2>
+            <h2 id="avoid" className="scroll-mt-28">What we avoid</h2>
             <ul>
               <li>Fake ratings, fake benchmarks, or invented customer stories</li>
               <li>Compliance claims we have not earned</li>
@@ -76,7 +88,7 @@ export default function AboutPage() {
               <li>Salesradar or unrelated product branding</li>
             </ul>
 
-            <h2>Learn more</h2>
+            <h2 id="learn" className="scroll-mt-28">Learn more</h2>
             <p>
               Start with the dedicated{" "}
               <Link href="/what-is-runex">What is Runex?</Link> entity page,

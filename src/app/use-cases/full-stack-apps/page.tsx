@@ -7,6 +7,7 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { BouncyIndicator } from "@/components/BouncyIndicator";
 import { breadcrumbJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -30,6 +31,15 @@ const faqs = [
   },
 ];
 
+
+const bouncySections = [
+  { id: "architecture", label: "Architecture" },
+  { id: "workflow", label: "Workflow" },
+  { id: "stacks", label: "Stacks" },
+  { id: "databases", label: "Databases" },
+  { id: "faq", label: "FAQ" },
+] as const;
+
 export default function FullStackUseCasePage() {
   return (
     <>
@@ -41,6 +51,8 @@ export default function FullStackUseCasePage() {
           { name: "Full-stack apps", path: "/use-cases/full-stack-apps" },
         ])}
       />
+
+      <BouncyIndicator sections={bouncySections} />
 
       <PageHero
         eyebrow="Use case"
@@ -58,7 +70,7 @@ export default function FullStackUseCasePage() {
       <section className="border-b border-card-border py-16">
         <Container className="max-w-3xl prose-runex">
           <FadeIn>
-            <h2>Architecture on Runex</h2>
+            <h2 id="architecture" className="scroll-mt-28">Architecture on Runex</h2>
             <p>
               A common full-stack layout looks like this — Runex hosts the
               application services; data stores stay where you already run them
@@ -83,7 +95,7 @@ External database (provider of your choice)
               <code>app.example.com</code> and <code>api.example.com</code>.
             </p>
 
-            <h2>Typical workflow</h2>
+            <h2 id="workflow" className="scroll-mt-28">Typical workflow</h2>
             <ol>
               <li>
                 Push frontend and API code to GitHub (monorepo or separate
@@ -106,7 +118,7 @@ External database (provider of your choice)
               </li>
             </ol>
 
-            <h2>Stacks that fit</h2>
+            <h2 id="stacks" className="scroll-mt-28">Stacks that fit</h2>
             <ul>
               <li>
                 <Link href="/deploy/nextjs">Next.js</Link> frontend or full-stack
@@ -127,7 +139,7 @@ External database (provider of your choice)
               </li>
             </ul>
 
-            <h2>Databases — accurate expectations</h2>
+            <h2 id="databases" className="scroll-mt-28">Databases — accurate expectations</h2>
             <p>
               Full-stack apps almost always need a database. On Runex, treat
               databases as <strong>external</strong> unless your dashboard
@@ -135,7 +147,7 @@ External database (provider of your choice)
               environment variables; never commit secrets.
             </p>
 
-            <h2>FAQ</h2>
+            <h2 id="faq" className="scroll-mt-28">FAQ</h2>
             <div className="not-prose mt-4">
               <FAQ items={faqs} />
             </div>

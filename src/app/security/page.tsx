@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { FadeIn } from "@/components/Motion";
+import { HookSidebar } from "@/components/HookSidebar";
 import { buildMetadata } from "@/lib/seo";
 import { appSignUpUrl } from "@/lib/site";
 
@@ -85,9 +86,28 @@ const sections = [
   },
 ];
 
+
+const hookSections = [
+  { id: "workload-isolation", label: "Isolation" },
+  { id: "container-security", label: "Containers" },
+  { id: "network-isolation", label: "Network" },
+  { id: "database-isolation", label: "Databases" },
+  { id: "tls", label: "TLS" },
+  { id: "secrets", label: "Secrets" },
+  { id: "webhooks", label: "Webhooks" },
+  { id: "build-isolation", label: "Builds" },
+  { id: "resource-limits", label: "Limits" },
+  { id: "access-control", label: "Access" },
+  { id: "logging", label: "Logging" },
+  { id: "compliance", label: "Compliance" },
+  { id: "vulnerability", label: "Reporting" },
+] as const;
+
 export default function SecurityPage() {
   return (
     <>
+      <HookSidebar sections={hookSections} />
+
       <PageHero
         eyebrow="Security"
         title="Security at Runex"
@@ -116,7 +136,7 @@ export default function SecurityPage() {
           <div className="mt-12 space-y-10">
             {sections.map((section) => (
               <FadeIn key={section.id}>
-                <article id={section.id} className="scroll-mt-24">
+                <article id={section.id} className="scroll-mt-28">
                   <div className="flex flex-wrap items-center gap-3">
                     <h2 className="text-xl font-semibold tracking-tight text-foreground">
                       {section.title}

@@ -72,9 +72,9 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
   - Primary buttons: `bg-accent text-black` for readable contrast on orange fill
 - Nav chrome: **always-split** three floating dark-glass pills (logo | links | Login+Deploy); dense ~4px gaps; no joined outer parent / no join↔split scroll animation. Inset `boxShadow` rings only — no CSS `borderWidth` (avoids white border blink). Subtle top-pad / shadow when scrolled.
 - Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
-- Homepage proximity sidebar (`ProximitySidebar`): left-side Rare-style section nav (lg+ only); Introduction → Deploy; nearest label in `#FC4C01`, neighbors graduated opacity/scale; `aria-current`; reduced-motion skips scale. Overlay (pointer-events on links only) so 1280px content is not crushed.
+- Homepage proximity sidebar (`ProximitySidebar`): left-side Rare-style section nav (lg+ only); Introduction → Deploy; nearest label in accent, neighbors graduated opacity/scale; footer-gated (hidden over footer); `aria-current`; reduced-motion skips scale. Overlay (pointer-events on links only).
 - Homepage testimonials: Rare-style **3-column vertical marquee** — placed **after FAQ, before final CTA**. Placeholders — replace before launch. No review/rating schema.
-- Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer: full-bleed wider shell (`max-w-7xl`), soft top hairline + accent bloom + oversized RUNEX wordmark; no harsh double borders. Card/frame borders on tiles unchanged.
+- Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer: full-bleed two-column (`RUNEX` left / link columns right, `max-w-[1600px]`), soft accent glow behind wordmark, legal under hairline. Card/frame borders on tiles unchanged.
 - Homepage section ids (sidebar): `introduction`, `capabilities`, `how-it-works`, `stacks`, `learn`, `faq`, `voices`, `deploy` (`scroll-mt-28`).
 
 ## Stack
@@ -88,3 +88,20 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
 
 - Push remotes unless asked (local git commit only)
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
+
+
+## Polish pass — footer + section indicators (2026-09-24)
+
+Local Legion only (no clone, no push).
+
+| Item | Detail |
+| --- | --- |
+| Footer | Full-bleed shell (`max-w-[1600px]`, wide `px-6/8/12/16`); **RUNEX** large left wordmark + soft `#FC4C01` glow; PRODUCT/DOCS/COMPARE/COMPANY columns right; legal row under hairline; `data-site-footer` |
+| Footer gate | `useFooterGate` observes `[data-site-footer]` (fallback `footer`); fades indicators to opacity 0 + `pointer-events: none` when footer intersects |
+| Homepage | `ProximitySidebar` only (+ footer gate). Stacks: monochrome inline SVGs via `StackIcons` / `stackIconMap` (GitHub, Next.js, Node.js, Python, Go, Docker) |
+| Hook sidebar | `what-is-runex`, `features`, `security` — L-tick active marker; lg+; reduced-motion; footer-gated. Docs left nav unchanged (no double nav) |
+| Bouncy indicator | `pricing`, `deploy`, `about`, `use-cases/full-stack-apps` — spring thumb; labels on hover/active; footer-gated; instant jump if reduced-motion |
+| Skipped | `use-cases` index (<2 sections); docs article pages (DocsNav already present) |
+
+Verify: `npm run build` (must pass). Commit message: `feat: full-width footer; footer-gated indicators (proximity/hook/bouncy)`.
+

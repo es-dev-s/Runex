@@ -14,6 +14,7 @@ import {
   ProximitySidebar,
   type ProximitySection,
 } from "@/components/ProximitySidebar";
+import { stackIconMap, type StackName } from "@/components/StackIcons";
 import { faqJsonLd } from "@/lib/seo";
 import { appSignUpUrl, siteConfig } from "@/lib/site";
 
@@ -92,7 +93,7 @@ const steps = [
   },
 ];
 
-const tech = [
+const tech: { name: StackName; href: string }[] = [
   { name: "GitHub", href: "/deploy/github" },
   { name: "Next.js", href: "/deploy/nextjs" },
   { name: "Node.js", href: "/deploy/nodejs" },
@@ -352,16 +353,24 @@ export default function HomePage() {
             description="Start at the deploy hub, or jump to Next.js, Node.js, Python, Go, Docker, and GitHub."
           />
           <Stagger className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            {tech.map((t) => (
-              <StaggerItem key={t.name}>
-                <Link
-                  href={t.href}
-                  className="frame-tight flex h-full items-center justify-center px-4 py-8 text-center text-sm font-semibold tracking-tight text-foreground transition hover:border-accent/40"
-                >
-                  {t.name}
-                </Link>
-              </StaggerItem>
-            ))}
+            {tech.map((t) => {
+              const Icon = stackIconMap[t.name];
+              return (
+                <StaggerItem key={t.name}>
+                  <Link
+                    href={t.href}
+                    className="frame-tight group flex h-full flex-col items-center justify-center gap-3 px-4 py-7 text-center transition hover:border-accent/35"
+                  >
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-muted transition group-hover:border-accent/40 group-hover:text-accent">
+                      <Icon className="h-[22px] w-[22px]" />
+                    </span>
+                    <span className="text-[13px] font-semibold tracking-tight text-foreground/90 transition group-hover:text-foreground">
+                      {t.name}
+                    </span>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
           </Stagger>
         </Container>
       </section>
