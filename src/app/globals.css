@@ -284,35 +284,67 @@ body {
   margin: 1.5rem 0;
 }
 
-/* Customer voices — the second set makes the horizontal track seamless. */
+/* Customer voices — Rare-style 3 vertical columns, independent speeds/directions. */
 .testimonials-marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
-}
-
-.testimonials-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: testimonials-marquee 48s linear infinite;
-}
-
-.testimonials-marquee:hover .testimonials-marquee-track {
-  animation-play-state: paused;
-}
-
-.testimonials-marquee-set {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.875rem;
-  padding-right: 0.875rem;
+  height: clamp(420px, 52vw, 500px);
+  overflow: hidden;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+}
+
+.testimonials-marquee-column {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.testimonials-marquee-column-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  will-change: transform;
+}
+
+/* Col 1: up, slow */
+.testimonials-marquee-column--1 .testimonials-marquee-column-track {
+  animation: testimonials-marquee-up 42s linear infinite;
+}
+
+/* Col 2: down, medium */
+.testimonials-marquee-column--2 .testimonials-marquee-column-track {
+  animation: testimonials-marquee-down 28s linear infinite;
+}
+
+/* Col 3: up, faster */
+.testimonials-marquee-column--3 .testimonials-marquee-column-track {
+  animation: testimonials-marquee-up 20s linear infinite;
+}
+
+.testimonials-marquee:hover .testimonials-marquee-column-track {
+  animation-play-state: paused;
 }
 
 .testimonials-marquee-card {
   display: flex;
   min-height: 192px;
-  width: min(78vw, 320px);
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
+  flex-shrink: 0;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-tile);
   background: var(--card);
@@ -325,34 +357,81 @@ body {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--card-border));
 }
 
-@keyframes testimonials-marquee {
+@keyframes testimonials-marquee-up {
   from {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes testimonials-marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.testimonials-marquee-column--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .testimonials-marquee {
+    grid-template-columns: 1fr;
+    height: clamp(380px, 70vw, 460px);
+  }
+
+  .testimonials-marquee-column--desktop {
+    display: none;
+  }
+
+  .testimonials-marquee-column--mobile {
+    display: block;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .testimonials-marquee-track {
+  .testimonials-marquee {
+    height: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-marquee-column {
+    overflow: visible;
+  }
+
+  .testimonials-marquee-column--desktop {
     display: block;
-    width: auto;
-    animation: none;
   }
 
-  .testimonials-marquee-set {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 0.875rem;
-    padding-right: 0;
+  .testimonials-marquee-column--mobile {
+    display: none !important;
   }
 
-  .testimonials-marquee-copy {
+  .testimonials-marquee-column-track {
+    animation: none !important;
+  }
+
+  /* Static grid: show only the unduplicated pair in each desktop column */
+  .testimonials-marquee-column-track > .testimonials-marquee-card:nth-child(n + 3) {
     display: none;
   }
 
-  .testimonials-marquee-card {
-    width: auto;
+  @media (min-width: 640px) {
+    .testimonials-marquee {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .testimonials-marquee {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 }

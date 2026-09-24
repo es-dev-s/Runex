@@ -298,7 +298,7 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-card-border py-24 sm:py-28">
+      <section className="py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="How it works"
@@ -326,7 +326,7 @@ export default function HomePage() {
       </section>
 
       {/* Technologies */}
-      <section className="border-t border-card-border py-24 sm:py-28">
+      <section className="py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Stacks"
@@ -349,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* Learn */}
-      <section className="border-t border-card-border py-24 sm:py-28">
+      <section className="py-24 sm:py-28">
         <Container>
           <SectionHeading
             eyebrow="Learn"
@@ -377,7 +377,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-card-border py-24 sm:py-28">
+      <section className="py-24 sm:py-28">
         <Container>
           <SectionHeading eyebrow="FAQ" title="Straight answers." />
           <FAQ items={faqs} />

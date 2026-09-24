@@ -35,35 +35,69 @@ const testimonials = [
   },
 ] as const;
 
-function TestimonialSet({ copy = false }: { copy?: boolean }) {
+type Testimonial = (typeof testimonials)[number];
+
+/** Split six voices into three columns of two (desktop / tablet). */
+const columns: Testimonial[][] = [
+  [testimonials[0], testimonials[1]],
+  [testimonials[2], testimonials[3]],
+  [testimonials[4], testimonials[5]],
+];
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className={`testimonials-marquee-set${copy ? " testimonials-marquee-copy" : ""}`}>
-      {testimonials.map((testimonial) => (
-        <figure
-          className="testimonials-marquee-card"
-          key={`${copy ? "copy-" : ""}${testimonial.name}`}
-        >
-          <blockquote className="text-[15px] leading-relaxed tracking-tight text-foreground">
-            “{testimonial.quote}”
-          </blockquote>
-          <figcaption className="mt-7 flex items-center gap-3">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 font-mono text-[10px] font-semibold text-accent">
-              {testimonial.name[0]}
-            </span>
-            <span>
-              <span className="block text-xs font-semibold text-foreground">{testimonial.name}</span>
-              <span className="mt-0.5 block text-[11px] text-muted-dim">{testimonial.role}</span>
-            </span>
-          </figcaption>
-        </figure>
-      ))}
+    <figure className="testimonials-marquee-card">
+      <blockquote className="text-[15px] leading-relaxed tracking-tight text-foreground">
+        “{testimonial.quote}”
+      </blockquote>
+      <figcaption className="mt-7 flex items-center gap-3">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent/15 font-mono text-[10px] font-semibold text-accent">
+          {testimonial.name[0]}
+        </span>
+        <span>
+          <span className="block text-xs font-semibold text-foreground">
+            {testimonial.name}
+          </span>
+          <span className="mt-0.5 block text-[11px] text-muted-dim">
+            {testimonial.role}
+          </span>
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
+function MarqueeColumn({
+  items,
+  columnIndex,
+  className = "",
+}: {
+  items: readonly Testimonial[];
+  columnIndex: number;
+  className?: string;
+}) {
+  // Duplicate the set so translateY(-50%) loops seamlessly.
+  const loop = [...items, ...items];
+
+  return (
+    <div
+      className={`testimonials-marquee-column testimonials-marquee-column--${columnIndex + 1} ${className}`.trim()}
+    >
+      <div className="testimonials-marquee-column-track">
+        {loop.map((testimonial, i) => (
+          <TestimonialCard
+            key={`${columnIndex}-${i}-${testimonial.name}`}
+            testimonial={testimonial}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
 export function TestimonialsMarquee() {
   return (
-    <section className="overflow-hidden border-y border-card-border py-20 sm:py-24">
+    <section className="overflow-hidden py-20 sm:py-24">
       <Container>
         <FadeIn>
           <div className="max-w-2xl">
@@ -77,14 +111,28 @@ export function TestimonialsMarquee() {
             </p>
           </div>
         </FadeIn>
-      </Container>
 
-      <div className="testimonials-marquee mt-10" aria-label="Runex customer voices">
-        <div className="testimonials-marquee-track">
-          <TestimonialSet />
-          <TestimonialSet copy />
+        <div
+          className="testimonials-marquee mt-10"
+          aria-label="Runex customer voices"
+        >
+          {/* Desktop / tablet: 3 independent columns */}
+          {columns.map((items, i) => (
+            <MarqueeColumn
+              key={i}
+              items={items}
+              columnIndex={i}
+              className="testimonials-marquee-column--desktop"
+            />
+          ))}
+          {/* Mobile: one column with all six so nothing is hidden */}
+          <MarqueeColumn
+            items={testimonials}
+            columnIndex={0}
+            className="testimonials-marquee-column--mobile"
+          />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

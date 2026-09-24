@@ -72,7 +72,8 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
   - Primary buttons: `bg-accent text-black` for readable contrast on orange fill
 - Nav chrome: inset `boxShadow` rings only — no CSS `borderWidth` on Header clusters (avoids white border blink on hard reload)
 - Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
-- Homepage testimonials marquee: six sample customer voices are placeholders; replace with real quotes before launch. No review/rating schema.
+- Homepage testimonials: Rare-style **3-column vertical marquee** (2 cards/col, duplicated for seamless loop); top/bottom `mask-image` fades; independent speeds/directions (col1 ↑ 42s, col2 ↓ 28s, col3 ↑ 20s); pause on hover; `prefers-reduced-motion` → static grid. Placeholders — replace before launch. No review/rating schema.
+- Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer keeps a restrained top edge. Card/frame borders on tiles unchanged.
 
 ## Stack
 
