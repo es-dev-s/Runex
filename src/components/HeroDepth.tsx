@@ -40,14 +40,6 @@ export function HeroDepth({ className = "" }: { className?: string }) {
         }}
       />
 
-      {/* One refined angular accent — single soft hairline under the bloom */}
-      <div
-        className="absolute left-1/2 top-[52%] h-px w-[min(42vw,280px)] -translate-x-1/2"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, rgba(252,76,1,0.22) 30%, rgba(244,244,245,0.08) 50%, rgba(252,76,1,0.22) 70%, transparent 100%)",
-        }}
-      />
 
       {/* Faint peripheral frame — far from H1, never a full grid */}
       <div
