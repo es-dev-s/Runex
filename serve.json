@@ -1,0 +1,50 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/docs/troubleshooting/custom-domain",
+      "destination": "/documentation/troubleshooting/custom-domain-not-working",
+      "type": 301
+    },
+    {
+      "source": "/docs/troubleshooting/deployment-failed",
+      "destination": "/documentation/troubleshooting/deployment-failed",
+      "type": 301
+    },
+    {
+      "source": "/docs/troubleshooting/port-configuration",
+      "destination": "/documentation/troubleshooting/port-configuration",
+      "type": 301
+    },
+    {
+      "source": "/docs/troubleshooting",
+      "destination": "/documentation/troubleshooting",
+      "type": 301
+    },
+    {
+      "source": "/docs/deploy-from-github",
+      "destination": "/documentation/github-app-setup",
+      "type": 301
+    },
+    {
+      "source": "/docs/custom-domains",
+      "destination": "/documentation/custom-domain-setup",
+      "type": 301
+    },
+    {
+      "source": "/docs/getting-started",
+      "destination": "/documentation/getting-started",
+      "type": 301
+    },
+    {
+      "source": "/docs/environment-variables",
+      "destination": "/documentation/environment-variables",
+      "type": 301
+    },
+    {
+      "source": "/docs",
+      "destination": "/documentation",
+      "type": 301
+    }
+  ]
+}

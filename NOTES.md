@@ -1,4 +1,4 @@
-# Runex public site — NOTES
+# Runex public site: NOTES
 
 Built on Legion at:
 
@@ -34,7 +34,7 @@ Entity sentence preserved across homepage, `/what-is-runex`, about, JSON-LD:
 | --- | --- |
 | `/what-is-runex` brand entity + FAQ JSON-LD | Shipped |
 | `/deploy` hub + `/deploy/github` commercial | Shipped |
-| `/use-cases` + `/use-cases/full-stack-apps` | Shipped (external DBs only — no invented managed DB) |
+| `/use-cases` + `/use-cases/full-stack-apps` | Shipped (rebuilt 2026-09-25 with managed databases) |
 | Homepage H1/copy/FAQ AEO polish (§11 / §12) | Shipped |
 | `siteConfig` description + keywords; Org `slogan` / `alternateName` | Shipped (`sameAs` empty until real URLs) |
 | Blog: `what-is-a-paas`, `paas-vs-vps`, `how-to-deploy-a-nextjs-app`, `how-to-deploy-a-docker-container` | Shipped |
@@ -46,20 +46,24 @@ Entity sentence preserved across homepage, `/what-is-runex`, about, JSON-LD:
 | Compare: vs Netlify + vs VPS | Shipped (nice-to-have) |
 | No SearchAction schema | Skipped (no on-site search) |
 
-## Gaps vs keyword report roadmap (remaining — ops / later content)
+## Gaps vs keyword report roadmap (remaining: ops / later content)
 
-1. **More blog volume** — report §18 lists ~30 topics; we have 8 posts total.
-2. **More use-case pages** — developers / startups / agencies not built (only full-stack).
-3. **Docs depth** — logs, HTTPS-only page, deployments reference still optional.
-4. **External authority** — GitHub org, Product Hunt, Dev.to, HN, example repos (not this repo).
-5. **Search Console + Bing Webmaster + Bing AI Performance** — operational setup.
-6. **`sameAs` profiles** — add to `siteConfig.sameAs` only when real public URLs exist.
-7. **Screenshots / case studies** — still missing.
-8. **Live pricing amounts** — still dashboard source of truth only.
+1. **More blog volume**: report §18 lists ~30 topics; we have 8 posts total.
+2. **More use-case pages**: developers / startups / agencies not built (only full-stack).
+3. **Docs depth**: logs, HTTPS-only page, deployments reference still optional.
+4. **External authority**: GitHub org, Product Hunt, Dev.to, HN, example repos (not this repo).
+5. **Search Console + Bing Webmaster + Bing AI Performance**: operational setup.
+6. **`sameAs` profiles**: add to `siteConfig.sameAs` only when real public URLs exist.
+7. **Screenshots / case studies**: still missing.
+8. **Live pricing amounts**: still dashboard source of truth only.
 
-## Accuracy rules (unchanged)
+## Accuracy rules (updated 2026-09-25)
 
-Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network isolation as product fact unless enforced and documented. Claim: GitHub App deploy, `*.runex.cloud`, `cname.runex.cloud`, HTTPS, container isolation, env vars, custom domains.
+Runex provides the full competitor feature set except SSH deploys, deployment templates, and SAML SSO; GitHub is the only Git provider. Claim: GitHub App deploy, Dockerfile deploy, `*.runex.cloud`, `cname.runex.cloud`, automatic SSL, preview deployments, rollbacks, zero-downtime deploys, autoscaling, managed PostgreSQL/MySQL/Redis/MongoDB, private networking, cron jobs, logs/metrics/alerts, env vars, team roles + audit log (Teams, early access). Never invent SOC 2 / ISO 27001 / HIPAA, military-grade, DDoS protection, fake ratings, or prices.
+
+## Static HTML site (2026-09-25)
+
+The Next.js app was replaced by standalone `.html` files with inlined CSS and JS (run with `npx serve .`). Every page follows the AEO/GEO skill in `.cursor/skills/aeo-geo-content-writing`: answer-first hero, question headings, FAQ JSON-LD matching the visible FAQ, one unique primary keyword per page. `compare.html` is the hub for the five `compare/runex-vs-*.html` sub-pages (shared breadcrumbs and sub-navigation); docs, deploy, and company pages have their own sub-navigation strips.
 
 
 ## Design system
@@ -70,10 +74,10 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
   - `--accent-soft: #ff6a2b` (hover)
   - `--accent-dim` / `--accent-glow`: rgba(252, 76, 1, …)
   - Primary buttons: `bg-accent text-black` for readable contrast on orange fill
-- Nav chrome: **always-split** three floating dark-glass pills (logo | links | Login+Deploy); dense ~4px gaps; no joined outer parent / no join↔split scroll animation. Inset `boxShadow` rings only — no CSS `borderWidth` (avoids white border blink). Subtle top-pad / shadow when scrolled.
-- Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain — **no** perspective/angular line grids, hex fragments, or circular watermarks
+- Nav chrome: **always-split** three floating dark-glass pills (logo | links | Login+Deploy); dense ~4px gaps; no joined outer parent / no join↔split scroll animation. Inset `boxShadow` rings only: no CSS `borderWidth` (avoids white border blink). Subtle top-pad / shadow when scrolled.
+- Hero depth (`HeroDepth`): soft orange bloom + vignette + faint grain: **no** perspective/angular line grids, hex fragments, or circular watermarks
 - Homepage proximity sidebar (`ProximitySidebar`): left-side Rare-style section nav (lg+ only); Introduction → Deploy; nearest label in accent, neighbors graduated opacity/scale; footer-gated (hidden over footer); `aria-current`; reduced-motion skips scale. Overlay (pointer-events on links only).
-- Homepage testimonials: Rare-style **3-column vertical marquee** — placed **after FAQ, before final CTA**. Placeholders — replace before launch. No review/rating schema.
+- Homepage testimonials: Rare-style **3-column vertical marquee**: placed **after FAQ, before final CTA**. Placeholders: replace before launch. No review/rating schema.
 - Homepage section rhythm: no full-bleed `border-t` / `border-y` rails between sections (padding + blackspace only). Footer: full-bleed two-column (`RUNEX` left / link columns right, `max-w-[1600px]`), soft accent glow behind wordmark, legal under hairline. Card/frame borders on tiles unchanged.
 - Homepage section ids (sidebar): `introduction`, `capabilities`, `how-it-works`, `stacks`, `learn`, `faq`, `voices`, `deploy` (`scroll-mt-28`).
 
@@ -82,7 +86,7 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
 - `framer-motion` for scroll/entrance motion
 - `next-mdx-remote` + `gray-matter` + `reading-time` for blog
-- RareUI craft: always-split Header, ProximitySidebar, HeroDepth, wide Footer, bottom marquee — SEO work is content + structure
+- RareUI craft: always-split Header, ProximitySidebar, HeroDepth, wide Footer, bottom marquee: SEO work is content + structure
 
 ## Do not
 
@@ -90,7 +94,7 @@ Never invent SOC2, military-grade, fake ratings, zero-downtime, DDoS, network is
 - Touch VPS / harbor dashboard repo / other Harbor services from this tree
 
 
-## Polish pass — footer + section indicators (2026-09-24)
+## Polish pass: footer + section indicators (2026-09-24)
 
 Local Legion only (no clone, no push).
 
@@ -99,8 +103,8 @@ Local Legion only (no clone, no push).
 | Footer | Full-bleed shell (`max-w-[1600px]`, wide `px-6/8/12/16`); **RUNEX** large left wordmark + soft `#FC4C01` glow; PRODUCT/DOCS/COMPARE/COMPANY columns right; legal row under hairline; `data-site-footer` |
 | Footer gate | `useFooterGate` observes `[data-site-footer]` (fallback `footer`); fades indicators to opacity 0 + `pointer-events: none` when footer intersects |
 | Homepage | `ProximitySidebar` only (+ footer gate). Stacks: monochrome inline SVGs via `StackIcons` / `stackIconMap` (GitHub, Next.js, Node.js, Python, Go, Docker) |
-| Hook sidebar | `what-is-runex`, `features`, `security` — L-tick active marker; lg+; reduced-motion; footer-gated. Docs left nav unchanged (no double nav) |
-| Bouncy indicator | `pricing`, `deploy`, `about`, `use-cases/full-stack-apps` — spring thumb; labels on hover/active; footer-gated; instant jump if reduced-motion |
+| Hook sidebar | `what-is-runex`, `features`, `security`: L-tick active marker; lg+; reduced-motion; footer-gated. Docs left nav unchanged (no double nav) |
+| Bouncy indicator | `pricing`, `deploy`, `about`, `use-cases/full-stack-apps`: spring thumb; labels on hover/active; footer-gated; instant jump if reduced-motion |
 | Skipped | `use-cases` index (<2 sections); docs article pages (DocsNav already present) |
 
 Verify: `npm run build` (must pass). Commit message: `feat: full-width footer; footer-gated indicators (proximity/hook/bouncy)`.
@@ -112,8 +116,8 @@ Local Legion only (no clone, no push).
 | Item | Detail |
 | --- | --- |
 | Assets | Cleaned `public/runex.svg` (~2.3KB, C2PA `<metadata>` stripped; fill `#FD4E00`); compact crop `public/runex-mark.svg` for nav/favicon |
-| Component | `BrandAura` / `RunexLogoMark` — faded (~0.08–0.20) + blurred (26–36px) + faint sharp layer; `pointer-events-none`; `aria-hidden`; placements `tr` / `tl` / `br` / `bl` / `center` / `hero-right` |
-| Hero | `HeroDepth` — large `hero-right` aura behind H1 (under vignette/content) |
+| Component | `BrandAura` / `RunexLogoMark`: faded (~0.08–0.20) + blurred (26–36px) + faint sharp layer; `pointer-events-none`; `aria-hidden`; placements `tr` / `tl` / `br` / `bl` / `center` / `hero-right` |
+| Hero | `HeroDepth`: large `hero-right` aura behind H1 (under vignette/content) |
 | Nav | `Header` `RunexMark` → crisp `/runex-mark.svg` ~18px (no blur) |
 | Pages | `PageHero` default `tr`; Deploy templates `br`; Compare templates `bl`; `CTASection` `br` (faint); Footer `bl` (very faint); Docs shell `tr` (optional ultra-faint) |
 | Metadata | `layout.tsx` icons → `/runex-mark.svg` |
@@ -131,7 +135,7 @@ Local Legion only (no clone, no push). Accent unchanged `#FC4C01`.
 | Bouncy rail | Default **right** side (progress rail); damper spring (360/30); footer gate uses opacity+visibility; soft accent glow on thumb |
 | Hook / Proximity | Same footer-gate visibility polish; still left-side labeled nav (lg+) |
 | Newly wired | `DeployPage` (all `/deploy/{stack}`), `/deploy/github`, `ComparePage` (all compares), `/use-cases`, `/blog`, `/blog/[slug]` (Hook from `##` headings) |
-| Intentionally none | `/docs/*` — `DocsNav` already present (avoid double nav) |
+| Intentionally none | `/docs/*`: `DocsNav` already present (avoid double nav) |
 
 Verify: `npm run build`. Commit: `style: premium scrollbar + consistent section indicators`.
 

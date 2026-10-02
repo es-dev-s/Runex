@@ -1,27 +1,26 @@
 # Runex public marketing site
 
-Next.js (App Router) marketing + SEO/AEO site for [Runex](https://runex.cloud) — easy deployment platform for developers.
+Static marketing + SEO/AEO site for [Runex](https://runex.cloud): easy deployment platform for developers.
 
-## Develop
+Every page is a standalone `.html` file: all CSS (including the Geist fonts) is inlined in a `<style>` block, images are embedded as data URIs, and the small script for animations, the mobile menu, section sidebars, and the copy button is inlined at the end of `<body>`. There is no build step and no dependencies.
 
-```bash
-cp .env.example .env.local   # if needed
-npm install
-npm run dev
-```
+## View locally
 
-Open [http://localhost:3000](http://localhost:3000).
-
-`npm run dev` binds `0.0.0.0:3000` so the site is reachable on your LAN (e.g. `http://<LAN-IP>:3000`).
-
-Login / Deploy CTAs use `NEXT_PUBLIC_APP_URL` (default `https://runex.cloud`) and link to `/sign-in` and `/sign-up`.
-
-## Build
+Open `index.html` directly in a browser, or serve the folder:
 
 ```bash
-npm run build
-npm start
+npx serve .
 ```
+
+Internal links use relative `.html` paths, so navigation works both from `file://` and from any static host.
+
+## Deploy
+
+Upload the folder to any static host. `sitemap.xml` and canonical URLs use clean paths (`/features`, not `/features.html`), so enable clean URLs on the host (Netlify, Vercel, and Cloudflare Pages serve `features.html` for `/features` by default).
+
+## Editing
+
+Pages share markup (header, footer, styles, script) by copy, not by include. A change to shared parts must be applied to every `.html` file.
 
 ## Notes
 

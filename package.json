@@ -1,30 +1,12 @@
 {
-  "name": "runex-public",
-  "version": "0.1.0",
+  "name": "runex",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "framer-motion": "^13.4.3",
-    "gray-matter": "^4.0.3",
-    "next": "16.3.6",
-    "next-mdx-remote": "^6.0.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "reading-time": "^1.5.0"
+    "dev": "serve . -l 3000",
+    "start": "serve ."
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "serve": "^14.2.4"
   }
 }

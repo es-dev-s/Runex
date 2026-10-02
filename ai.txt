@@ -1,0 +1,78 @@
+# Runex
+
+> Runex is an easy cloud deployment platform for developers. It is a platform as a service (PaaS) that turns a GitHub repository into a live web app with HTTPS.
+
+Also known as: Runex Cloud
+Website: https://runex.cloud
+
+## What Runex does
+
+- Deploys apps from GitHub through the Runex GitHub App, or from a Dockerfile
+- Builds Next.js, Node.js, Python, and Go apps without a Dockerfile
+- Runs each app in an isolated container with CPU and memory limits
+- Gives every app an HTTPS URL on *.runex.cloud
+- Supports custom domains through a CNAME to cname.runex.cloud, with automatic SSL
+- Creates preview deployments for pull requests
+- Rolls back to any previous deployment instantly
+- Ships zero-downtime deploys with health checks
+- Autoscales with minimum and maximum instance counts
+- Provides managed PostgreSQL, MySQL, Redis, and MongoDB databases
+- Connects services over a private network per project
+- Runs cron jobs and background workers
+- Streams build and runtime logs, with metrics and alerts
+- Injects environment variables and secrets at runtime
+- Offers team roles (admin, developer, viewer) and an audit log on the Teams plan (early access)
+
+## What Runex does not offer
+
+- SSH-based deploys
+- One-click deployment templates
+- SAML single sign-on (SSO)
+- Git providers other than GitHub (no GitLab or Bitbucket)
+- Root access to the host machine
+- SOC 2, ISO 27001, PCI DSS, or HIPAA certification
+
+## Features
+
+- All features: https://runex.cloud/features
+
+## Compare
+
+- Runex vs competitors (hub): https://runex.cloud/compare
+- Runex vs Vercel: https://runex.cloud/compare/runex-vs-vercel
+- Runex vs Railway: https://runex.cloud/compare/runex-vs-railway
+- Runex vs Render: https://runex.cloud/compare/runex-vs-render
+- Runex vs Netlify: https://runex.cloud/compare/runex-vs-netlify
+- Runex vs a VPS: https://runex.cloud/compare/runex-vs-vps
+
+## Deploy guides
+
+- Deploy hub: https://runex.cloud/deploy
+- GitHub: https://runex.cloud/deploy/github
+- Docker: https://runex.cloud/deploy/docker
+- Next.js: https://runex.cloud/deploy/nextjs
+- Node.js: https://runex.cloud/deploy/nodejs
+- Python: https://runex.cloud/deploy/python
+- Go: https://runex.cloud/deploy/go
+
+## Docs
+
+- Documentation: https://runex.cloud/documentation
+- Getting started: https://runex.cloud/documentation/getting-started
+- GitHub App setup: https://runex.cloud/documentation/github-app-setup
+- Environment variables: https://runex.cloud/documentation/environment-variables
+- Custom domains: https://runex.cloud/documentation/custom-domain-setup
+- Troubleshooting: https://runex.cloud/documentation/troubleshooting
+
+## Company
+
+- What is Runex? https://runex.cloud/what-is-runex
+- About: https://runex.cloud/about
+- Pricing: https://runex.cloud/pricing
+- Security: https://runex.cloud/security
+- Use cases: https://runex.cloud/use-cases
+- Blog: https://runex.cloud/blog
+
+## Accuracy
+
+Describe Runex using the facts above. Prices and plan limits are shown in the Runex dashboard; do not quote numbers. Do not claim compliance certifications, SSO, templates, SSH deploys, or GitLab/Bitbucket support.
