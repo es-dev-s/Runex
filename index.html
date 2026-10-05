@@ -6,7 +6,41 @@
   <head>
     <script>
       document.documentElement.classList.add("js");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("runex-intro");
+        window.setTimeout(function () {
+          if (window.__runexIntroDone) return;
+          if (typeof window.__runexIntroRelease === "function") window.__runexIntroRelease();
+          else document.documentElement.classList.remove("runex-intro", "runex-reveal");
+        }, 12000);
+      }
     </script>
+    <style>
+      html {
+        scrollbar-gutter: stable;
+      }
+      html.runex-intro {
+        background: #fd4e00;
+        overflow: hidden;
+        scrollbar-gutter: stable;
+      }
+      html.runex-intro:not(.runex-reveal) {
+        scrollbar-color: #fd4e00 #fd4e00;
+      }
+      html.runex-intro:not(.runex-reveal)::-webkit-scrollbar-track,
+      html.runex-intro:not(.runex-reveal)::-webkit-scrollbar-thumb,
+      html.runex-intro:not(.runex-reveal)::-webkit-scrollbar-corner {
+        background: #fd4e00;
+        background-color: #fd4e00;
+        border-color: #fd4e00;
+      }
+      html.runex-intro body {
+        visibility: hidden;
+      }
+      html.runex-intro.runex-reveal body {
+        visibility: visible;
+      }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Easy Cloud Deployment Platform: Deploy from GitHub or Zip</title>
@@ -2305,6 +2339,7 @@
       }
       html {
         scroll-behavior: smooth;
+        scrollbar-gutter: stable;
         scrollbar-width: thin;
         scrollbar-color: #52525b #070707;
         overflow-x: clip;
@@ -2713,6 +2748,31 @@
         min-height: 40px;
         padding: 0;
       }
+      .header-cluster > .header-pill {
+        height: 40px;
+        min-height: 40px;
+        max-height: 40px;
+        box-sizing: border-box;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .header-cluster > .header-pill.header-pill--action {
+        padding: 4px;
+      }
+      .header-cluster .header-pill nav a {
+        display: inline-flex;
+        align-items: center;
+        height: 28px;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 1;
+      }
+      .header-pill--action a {
+        height: 32px;
+        padding: 0 14px;
+        font-size: 13px;
+        line-height: 1;
+      }
       [data-scrolled] .header-inner {
         padding-top: 10px;
       }
@@ -2771,12 +2831,23 @@
         }
       }
       .section-nav {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(-16px, -50%, 0);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0.7s;
+      }
+      .section-nav[data-shown] {
         opacity: 1;
         visibility: visible;
+        transform: translate3d(0, -50%, 0);
       }
       .section-nav[data-gated] {
         opacity: 0;
         visibility: hidden;
+        transform: translate3d(-16px, -50%, 0);
       }
       .section-nav[data-gated] * {
         pointer-events: none !important;
@@ -3651,12 +3722,18 @@
         color: #8a8a93;
         transition: color 0.25s ease;
       }
-      .lp-logo svg {
+      .lp-logo svg,
+      .lp-logo img {
         width: 42px;
         height: 42px;
+        object-fit: contain;
         transition:
           transform 0.25s ease,
           filter 0.25s ease;
+      }
+      .lp-logo img.lp-mark--wide {
+        width: 68px;
+        height: 30px;
       }
       .lp-logo span {
         font-size: 14px;
@@ -3675,7 +3752,9 @@
         color: var(--accent);
       }
       .lp-logo:hover svg,
-      .lp-logo:focus-visible svg {
+      .lp-logo:focus-visible svg,
+      .lp-logo:hover img,
+      .lp-logo:focus-visible img {
         transform: translateY(-4px);
         filter: drop-shadow(0 8px 20px rgba(252, 76, 1, 0.5));
       }
@@ -4096,12 +4175,33 @@
         scrollbar-color: #d4d4d8 #fff;
       }
       html:has(.home-light) ::-webkit-scrollbar-track,
-      html:has(.home-light) ::-webkit-scrollbar-corner {
+      html:has(.home-light) ::-webkit-scrollbar-corner,
+      html:has(.home-light)::-webkit-scrollbar-track,
+      html:has(.home-light)::-webkit-scrollbar-corner {
         background: #fff;
       }
-      html:has(.home-light) ::-webkit-scrollbar-thumb {
+      html:has(.home-light) ::-webkit-scrollbar-thumb,
+      html:has(.home-light)::-webkit-scrollbar-thumb {
         background-color: #d4d4d8;
         border-color: #fff;
+      }
+      html.runex-intro:not(.runex-reveal),
+      html.runex-intro:not(.runex-reveal):has(.home-light) {
+        background: #fd4e00;
+      }
+      html.runex-intro,
+      html.runex-intro:has(.home-light) {
+        scrollbar-color: #fd4e00 #fd4e00;
+      }
+      html.runex-intro::-webkit-scrollbar-track,
+      html.runex-intro::-webkit-scrollbar-thumb,
+      html.runex-intro::-webkit-scrollbar-corner,
+      html.runex-intro:has(.home-light)::-webkit-scrollbar-track,
+      html.runex-intro:has(.home-light)::-webkit-scrollbar-thumb,
+      html.runex-intro:has(.home-light)::-webkit-scrollbar-corner {
+        background: #fd4e00;
+        background-color: #fd4e00;
+        border-color: #fd4e00;
       }
       .home-light {
         --background: #ffffff;
@@ -4174,6 +4274,150 @@
       /* Hero */
       .home-light .lp-hero {
         background: linear-gradient(180deg, #eef5fc 0%, #f7fafd 34%, #fff 72%);
+        padding: 6.5rem 1.5rem 3.5rem;
+      }
+      @media (min-width: 1024px) {
+        .home-light .lp-hero {
+          padding: 7.5rem 2.5rem 4.5rem;
+        }
+      }
+      .lp-hero-sheet {
+        position: relative;
+        z-index: 2;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0;
+        background: transparent;
+      }
+      .lp-hero-copy {
+        max-width: 46rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .lp-hero-copy .lp-lead,
+      .lp-hero-copy .lp-actions,
+      .lp-hero-copy .lp-points {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .lp-hero-copy .lp-actions,
+      .lp-hero-copy .lp-points {
+        justify-content: center;
+      }
+      .lp-hero-copy .lp-h1 {
+        font-size: clamp(2.75rem, 5.6vw, 4.75rem);
+        letter-spacing: -0.04em;
+      }
+      .lp-hero-copy .lp-lead {
+        margin-top: 1rem;
+        max-width: 36rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+      .lp-hero-copy .lp-lead strong {
+        font-weight: 560;
+      }
+      .lp-hero-stage {
+        margin-top: 2.75rem;
+        transform: translate3d(0, calc(var(--hero-p, 0) * -28px), 0);
+        will-change: transform;
+      }
+      .lp-hero-stage .hx-dash {
+        margin: 0;
+      }
+      .lp-hero-stage .hx-window {
+        border-radius: 1.5rem;
+      }
+      .lp-hero-stage .hx-main {
+        padding: 1.15rem 1.25rem 1.5rem;
+      }
+      .lp-hero-stage .hx-banner {
+        height: 10rem;
+      }
+      @media (min-width: 1024px) {
+        .lp-hero-stage .hx-app {
+          min-height: 40rem;
+        }
+        .lp-hero-stage .hx-banner {
+          height: 11.5rem;
+        }
+        .lp-hero-stage .hx-card-art {
+          height: 7.4rem;
+        }
+      }
+      .hx-live {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-top: 0.75rem;
+        padding: 0.55rem 0.75rem;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px var(--hx-line);
+        font-size: 12px;
+        color: #3f3f46;
+      }
+      .hx-live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(252, 76, 1, 0.14);
+        animation: hx-live-pulse 1.6s ease-in-out infinite;
+      }
+      .hx-live-name {
+        min-width: 0;
+        overflow: hidden;
+        font-weight: 600;
+        color: #18181b;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .hx-live-track {
+        position: relative;
+        flex: 1;
+        height: 3px;
+        border-radius: 999px;
+        background: #ececef;
+        overflow: hidden;
+      }
+      .hx-live-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 40%;
+        border-radius: inherit;
+        background: var(--accent);
+        animation: hx-live-run 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      }
+      .hx-live-state {
+        min-width: 4.5rem;
+        text-align: right;
+        font-weight: 600;
+        color: #18181b;
+      }
+      @keyframes hx-live-run {
+        0% { width: 8%; }
+        70% { width: 100%; }
+        100% { width: 100%; }
+      }
+      @keyframes hx-live-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(0.82); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hx-live-dot,
+        .hx-live-fill {
+          animation: none;
+        }
+        .hx-live-fill {
+          width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .lp-hero-stage {
+          transform: none;
+        }
       }
       .home-light .lp-hero > .absolute > .absolute:first-of-type {
         opacity: 0.5;
@@ -4892,7 +5136,9 @@
           0 16px 34px rgba(15, 15, 20, 0.08);
       }
       .home-light .lp-logo:hover svg,
-      .home-light .lp-logo:focus-visible svg {
+      .home-light .lp-logo:focus-visible svg,
+      .home-light .lp-logo:hover img,
+      .home-light .lp-logo:focus-visible img {
         filter: none;
       }
       .home-light .lp-logo span,
@@ -4964,24 +5210,121 @@
 
       /* Closing scene */
       .home-light .lp-cta {
-        padding-bottom: clamp(17rem, 34vw, 27rem);
-        background:
-          linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.9) 30%, rgba(255, 255, 255, 0) 62%),
-          url("images/runex-tower.jpg") 62% 100% / cover no-repeat;
+        display: grid;
+        overflow: hidden;
+        padding: 5.5rem 0 0;
+        background: #fff;
+        text-align: center;
       }
       .home-light .lp-cta::before,
       .home-light .lp-cta > .pointer-events-none {
         display: none;
       }
       .home-light .lp-cta::after {
+        display: none;
+      }
+      .lp-cta-copy {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1.5rem 2.75rem;
+      }
+      .lp-cta-visual {
+        position: relative;
+        min-height: 22rem;
+        overflow: hidden;
+        background: #fff;
+      }
+      .lp-cta-visual::after {
         content: "";
         position: absolute;
-        left: 0;
+        z-index: 0;
+        right: -12%;
+        top: 18%;
+        width: 78%;
+        height: 64%;
+        border-radius: 50%;
+        background: rgba(254, 97, 19, 0.14);
+        filter: blur(72px);
+        pointer-events: none;
+      }
+      .lp-cta-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(180deg, #fff 0%, transparent 22%, transparent 78%, #fff 100%);
+      }
+      .lp-cta-flower {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .lp-cta .flower {
+        position: absolute;
         right: 0;
         bottom: 0;
-        height: 5rem;
-        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.9));
+        width: calc(var(--fh, 420px) * 359 / 675);
+        height: var(--fh, 420px);
         pointer-events: none;
+      }
+      .lp-cta .flower canvas {
+        position: absolute;
+        display: block;
+      }
+      .js [data-reveal="flower"] {
+        transition-duration: 1.15s;
+      }
+      .js [data-reveal="flower"]:not(.is-revealed) {
+        opacity: 0;
+        transform: translate3d(42px, 16px, 0);
+      }
+      @media (min-width: 1024px) {
+        .home-light .lp-cta {
+          grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
+          align-items: stretch;
+          min-height: 38rem;
+          padding: 0;
+          text-align: left;
+        }
+        .lp-cta-copy {
+          align-items: flex-start;
+          padding: 5.5rem 2.75rem 5.5rem clamp(8.5rem, 14vw, 12.5rem);
+        }
+        .home-light .lp-cta .lp-cta-h,
+        .home-light .lp-cta .lp-cta-p {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .home-light .lp-cta .lp-actions {
+          justify-content: flex-start;
+        }
+        .lp-cta-visual {
+          min-height: 100%;
+          background: #fff;
+        }
+        .lp-cta-visual::after {
+          right: -6%;
+          top: 12%;
+          width: 70%;
+          height: 76%;
+          background: rgba(254, 97, 19, 0.1);
+          filter: blur(90px);
+        }
+        .lp-cta-visual::before {
+          background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.55) 22%, transparent 58%);
+        }
+        .lp-cta .flower {
+          top: 50%;
+          bottom: auto;
+          height: var(--fh, 560px);
+          transform: translateY(-50%);
+        }
       }
 
       /* Footer */
@@ -5397,6 +5740,7 @@
       .ax-chain svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
       .ax-chain b { width: 0.8rem; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.95); box-shadow: 0 1px 3px rgba(20, 50, 90, 0.25); }
     </style>
+    <link rel="stylesheet" href="scrollbar.css" />
   </head>
   <body class="home-light flex min-h-full flex-col bg-background text-foreground">
     <script type="application/ld+json">
@@ -5503,15 +5847,10 @@
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span>
             </nav>
           </div>
-          <div class="header-pill pointer-events-auto flex items-center outline-none shrink-0 gap-1.5">
+          <div class="header-pill header-pill--action pointer-events-auto flex items-center outline-none shrink-0">
             <a
-              href="https://runex.cloud/sign-in"
-              class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent text-muted hover:text-foreground !px-3 !py-1 text-[13px]"
-              rel="noopener noreferrer"
-              >Login</a
-            ><a
-              href="https://runex.cloud/sign-up"
-              class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-3.5 !py-1.5 text-[13px]"
+              href="https://app.runex.cloud"
+              class="inline-flex items-center justify-center rounded-full bg-accent font-semibold tracking-tight text-black outline-none ring-0 transition-colors duration-200 hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
               rel="noopener noreferrer"
               >Deploy</a
             >
@@ -5531,13 +5870,8 @@
         </nav>
         <div class="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
           <a
-            href="https://runex.cloud/sign-in"
-            class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] min-h-11 w-full"
-            rel="noopener noreferrer"
-            >Login</a
-          ><a
-            href="https://runex.cloud/sign-up"
-            class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft min-h-11 w-full"
+            href="https://app.runex.cloud"
+            class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-transparent bg-accent px-5 py-2.5 text-sm font-semibold tracking-tight text-black outline-none ring-0 transition-colors duration-200 hover:bg-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             rel="noopener noreferrer"
             >Deploy</a
           >
@@ -5635,122 +5969,114 @@
       </script>
 
       <section id="introduction" class="lp-hero scroll-mt-28">
-        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-          <div class="lp-grid-bg"></div>
-          <div class="lp-flower lp-flower--hero" data-flower="0.12"></div>
-          <div
-            class="absolute right-[-10%] top-[34%] h-[640px] w-[780px] -translate-y-1/2"
-            style="
-              background: radial-gradient(
-                ellipse 60% 55% at 50% 50%,
-                rgba(252, 76, 1, 0.16) 0%,
-                rgba(252, 76, 1, 0.05) 40%,
-                transparent 72%
-              );
-            "
-          ></div>
-          <div
-            class="absolute inset-0 z-[2]"
-            style="background: linear-gradient(180deg, transparent 0%, transparent 70%, var(--background) 100%)"
-          ></div>
-        </div>
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div class="lp-hero-grid">
-            <div>
-              <div data-reveal="hero" style="--reveal-delay: 0.04s; --reveal-y: 18px">
-                <p class="lp-eyebrow">Cloud deployment platform</p>
-              </div>
-              <div data-reveal="hero" style="--reveal-delay: 0.12s; --reveal-y: 18px">
-                <h1 class="display lp-h1">Push to GitHub.<br /><em class="lp-grad">Get a live HTTPS URL.</em></h1>
-              </div>
-              <div data-reveal="hero" style="--reveal-delay: 0.22s; --reveal-y: 18px">
-                <p class="lp-lead">
-                  <strong>Runex is an easy cloud deployment platform for developers.</strong> Connect a repo or upload a
-                  zip, and Runex builds it, runs it in an isolated container, and serves it on <span class="lp-mono">*.runex.cloud</span>.
-                  No servers to manage.
-                </p>
-              </div>
-              <div class="lp-actions" data-reveal="hero" style="--reveal-delay: 0.32s; --reveal-y: 18px">
-                <a
-                  href="https://runex.cloud/sign-up"
-                  class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3"
-                  rel="noopener noreferrer"
-                  >Deploy your first app →</a
-                ><a
-                  href="how-it-works.html"
-                  class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3"
-                  >See how it works</a
-                >
-              </div>
-              <div data-reveal="hero" style="--reveal-delay: 0.4s; --reveal-y: 18px">
-                <ul class="lp-points" aria-label="What Runex provides">
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>GitHub, zip &amp; Dockerfile deploys</li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>HTTPS by default</li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Custom domains</li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Isolated containers</li>
-                </ul>
-              </div>
+        <div class="lp-hero-sheet">
+          <div class="lp-hero-copy">
+            <div data-reveal="hero" style="--reveal-delay: 0.04s; --reveal-y: 18px">
+              <p class="lp-eyebrow">Cloud deployment platform</p>
             </div>
-
-            <div data-reveal="hero" style="--reveal-delay: 0.28s; --reveal-y: 24px">
-              <div class="hx-stage">
-                <div class="hx-art" aria-hidden="true">
-                  <img src="images/runex-tower.jpg" alt="" width="1024" height="576" fetchpriority="high" decoding="async" />
-                </div>
-                <div class="hx-drop" aria-hidden="true">
-                  <span class="hx-drop-ic"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5M11 7h1M11 10h1M11 13h1M10.5 16h2v2h-2z"/></svg></span>
-                  <span class="hx-drop-t"><b>storefront.zip</b><i>Dropped · 2.4 MB</i></span>
-                </div>
-                <div class="hx-detect" aria-hidden="true"><span></span>Next.js detected</div>
-                <div class="hx-float">
-              <div data-deploy-exhibit="true" data-step="0" class="lp-console">
-                <div class="lp-console-bar">
-                  <span class="lp-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-                  <span class="lp-console-status"
-                    ><span class="deploy-status-dot h-1.5 w-1.5 rounded-full bg-accent"></span
-                    ><span data-deploy-status="true">In progress</span></span
-                  >
-                </div>
-                <div class="lp-console-body">
-                  <p class="text-zinc-600"># acme/storefront · main</p>
-                  <ul class="mt-4 space-y-3">
-                    <li data-deploy-stage="true" data-state="active" class="deploy-stage flex items-start gap-3">
-                      <span class="deploy-stage-dot mt-1 h-1.5 w-1.5 shrink-0 rounded-full"></span
-                      ><span
-                        ><span class="deploy-stage-label block">Connecting GitHub App</span
-                        ><span class="text-zinc-600">repo access · branch main</span></span
-                      >
-                    </li>
-                    <li data-deploy-stage="true" data-state="pending" class="deploy-stage flex items-start gap-3">
-                      <span class="deploy-stage-dot mt-1 h-1.5 w-1.5 shrink-0 rounded-full"></span
-                      ><span
-                        ><span class="deploy-stage-label block">Building container</span
-                        ><span class="text-zinc-600">detect · install · compile</span></span
-                      >
-                    </li>
-                    <li data-deploy-stage="true" data-state="pending" class="deploy-stage flex items-start gap-3">
-                      <span class="deploy-stage-dot mt-1 h-1.5 w-1.5 shrink-0 rounded-full"></span
-                      ><span
-                        ><span class="deploy-stage-label block">Starting runtime</span
-                        ><span class="text-zinc-600">isolated · CPU &amp; memory limits</span></span
-                      >
-                    </li>
-                    <li data-deploy-stage="true" data-state="pending" class="deploy-stage flex items-start gap-3">
-                      <span class="deploy-stage-dot mt-1 h-1.5 w-1.5 shrink-0 rounded-full"></span
-                      ><span
-                        ><span class="deploy-stage-label block">Live over HTTPS</span
-                        ><span class="text-zinc-600">https://storefront.runex.cloud</span></span
-                      >
-                    </li>
-                  </ul>
-                </div>
-                <div class="lp-console-foot"><span>example deploy</span><span>container isolation</span></div>
-              </div>
-                </div>
-              </div>
+            <div data-reveal="hero" style="--reveal-delay: 0.12s; --reveal-y: 18px">
+              <h1 class="display lp-h1">Push to GitHub.<br /><em class="lp-grad">Get a live HTTPS URL.</em></h1>
+            </div>
+            <div data-reveal="hero" style="--reveal-delay: 0.22s; --reveal-y: 18px">
+              <p class="lp-lead">
+                <strong>Runex is an easy cloud deployment platform for developers.</strong> Connect a repo or upload a
+                zip, and Runex builds it, runs it in an isolated container, and serves it on <span class="lp-mono">*.runex.cloud</span>.
+                No servers to manage.
+              </p>
+            </div>
+            <div class="lp-actions" data-reveal="hero" style="--reveal-delay: 0.32s; --reveal-y: 18px">
+              <a
+                href="https://app.runex.cloud"
+                class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3"
+                rel="noopener noreferrer"
+                >Deploy your first app →</a
+              ><a
+                href="how-it-works.html"
+                class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3"
+                >See how it works</a
+              >
+            </div>
+            <div data-reveal="hero" style="--reveal-delay: 0.4s; --reveal-y: 18px">
+              <ul class="lp-points" aria-label="What Runex provides">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>GitHub, zip &amp; Dockerfile deploys</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>HTTPS by default</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Custom domains</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Isolated containers</li>
+              </ul>
             </div>
           </div>
-
+          <div class="lp-hero-stage" data-reveal="hero" style="--reveal-delay: 0.2s; --reveal-y: 28px">
+          <figure class="hx-dash">
+            <div class="hx-window" data-hx-tilt>
+              <div class="hx-chrome" aria-hidden="true">
+                <span class="hx-chrome-dots"><span></span><span></span><span></span></span>
+                <span class="hx-chrome-url">runex.cloud/projects</span>
+                <span class="hx-chrome-dots hx-chrome-dots--ghost"><span></span><span></span><span></span></span>
+              </div>
+              <div class="hx-app" aria-hidden="true">
+                <aside class="hx-side">
+                  <div class="hx-brand"><span class="hx-brand-mark lp-flower"></span>Runex</div>
+                  <div class="hx-ws">acme's workspace<svg viewBox="0 0 24 24"><path d="m8 9 4-4 4 4M8 15l4 4 4-4"/></svg></div>
+                  <div class="hx-new"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New project</div>
+                  <nav class="hx-nav">
+                    <span class="is-active"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>Projects</span>
+                    <span><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Usage</span>
+                    <span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a5.5 5.5 0 0 1 3.5 6"/></svg>People</span>
+                    <small>More</small>
+                    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>General</span>
+                    <span><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg>Plans</span>
+                    <span><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Billing</span>
+                    <span><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Audit logs</span>
+                  </nav>
+                  <div class="hx-user"><span>A</span>acme</div>
+                </aside>
+                <div class="hx-main">
+                  <div class="hx-top">Projects<svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+                  <div class="hx-banner">
+                    <img src="images/runex-tower.jpg" alt="" width="1024" height="576" fetchpriority="high" decoding="async" />
+                    <div class="hx-banner-text"><b>Push = redeploy.</b><span>Every push to your branch ships automatically</span></div>
+                  </div>
+                  <div class="hx-live" data-hx-live aria-hidden="true">
+                    <span class="hx-live-dot"></span>
+                    <span class="hx-live-name">acme/storefront</span>
+                    <span class="hx-live-track"><span class="hx-live-fill"></span></span>
+                    <span class="hx-live-state" data-hx-live-state>Building</span>
+                  </div>
+                  <div class="hx-grid">
+                    <div class="hx-card">
+                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24" class="is-fill"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg></span><span class="hx-chip-t"><b>acme/storefront</b><i class="is-ok">Running</i></span></span></div>
+                      <div class="hx-card-foot"><span class="hx-card-name">storefront</span><span class="hx-st is-ok">Ready</span><span class="hx-time">2m ago</span></div>
+                    </div>
+                    <div class="hx-card">
+                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg></span><span class="hx-chip-t"><b>acme/api</b><i class="is-ok">Running</i></span></span></div>
+                      <div class="hx-card-foot"><span class="hx-card-name">api</span><span class="hx-st is-ok">Ready</span><span class="hx-time">1h ago</span></div>
+                    </div>
+                    <div class="hx-card">
+                      <div class="hx-card-art"><span class="hx-chip hx-chip--build"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7.2l7.4 3.6"/></svg></span><span class="hx-chip-t"><b>storefront · pr-42</b><i class="is-build">Building</i></span></span></div>
+                      <div class="hx-card-foot"><span class="hx-card-name">preview</span><span class="hx-st is-build">Building</span><span class="hx-time">now</span></div>
+                    </div>
+                    <div class="hx-card">
+                      <div class="hx-card-art">
+                        <span class="hx-chip hx-chip--pair"><span class="hx-chip-ic hx-chip-ic--pg"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-13M4.5 12c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8"/></svg></span><span class="hx-chip-t"><b>Postgres</b><i class="is-ok">Running</i></span></span>
+                        <span class="hx-chip hx-chip--pair hx-chip--offset"><span class="hx-chip-ic hx-chip-ic--redis"><svg viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><span class="hx-chip-t"><b>Redis</b><i class="is-ok">Running</i></span></span>
+                      </div>
+                      <div class="hx-card-foot"><span class="hx-card-name">data</span><span class="hx-st is-idle">Idle</span><span class="hx-time">1d ago</span></div>
+                    </div>
+                    <div class="hx-card">
+                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="hx-chip-t"><b>nightly-report</b><i class="is-ok">Scheduled</i></span></span></div>
+                      <div class="hx-card-foot"><span class="hx-card-name">cron</span><span class="hx-st is-ok">Ready</span><span class="hx-time">6h ago</span></div>
+                    </div>
+                    <div class="hx-card">
+                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg></span><span class="hx-chip-t"><b>acme/worker</b><i class="is-off">Stopped</i></span></span></div>
+                      <div class="hx-card-foot"><span class="hx-card-name">worker</span><span class="hx-st is-off">Stopped</span><span class="hx-time">2d ago</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="lp-sr">Illustrative Runex dashboard with example projects and their deployment status.</figcaption>
+          </figure>
+          </div>
         </div>
       </section>
 
@@ -5925,70 +6251,6 @@
               <p>On *.runex.cloud or your own domain</p>
             </div>
           </div>
-          <figure class="hx-dash" data-reveal="fade" style="--reveal-delay: 0.1s; --reveal-y: 28px">
-            <div class="hx-window" data-hx-tilt>
-              <div class="hx-chrome" aria-hidden="true">
-                <span class="hx-chrome-dots"><span></span><span></span><span></span></span>
-                <span class="hx-chrome-url">runex.cloud/projects</span>
-                <span class="hx-chrome-dots hx-chrome-dots--ghost"><span></span><span></span><span></span></span>
-              </div>
-              <div class="hx-app" aria-hidden="true">
-                <aside class="hx-side">
-                  <div class="hx-brand"><span class="hx-brand-mark lp-flower"></span>Runex</div>
-                  <div class="hx-ws">acme's workspace<svg viewBox="0 0 24 24"><path d="m8 9 4-4 4 4M8 15l4 4 4-4"/></svg></div>
-                  <div class="hx-new"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New project</div>
-                  <nav class="hx-nav">
-                    <span class="is-active"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>Projects</span>
-                    <span><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Usage</span>
-                    <span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a5.5 5.5 0 0 1 3.5 6"/></svg>People</span>
-                    <small>More</small>
-                    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>General</span>
-                    <span><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg>Plans</span>
-                    <span><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Billing</span>
-                    <span><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Audit logs</span>
-                  </nav>
-                  <div class="hx-user"><span>A</span>acme</div>
-                </aside>
-                <div class="hx-main">
-                  <div class="hx-top">Projects<svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-                  <div class="hx-banner">
-                    <img src="images/runex-tower.jpg" alt="" width="1024" height="576" loading="lazy" decoding="async" />
-                    <div class="hx-banner-text"><b>Push = redeploy.</b><span>Every push to your branch ships automatically</span></div>
-                  </div>
-                  <div class="hx-grid">
-                    <div class="hx-card">
-                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24" class="is-fill"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg></span><span class="hx-chip-t"><b>acme/storefront</b><i class="is-ok">Running</i></span></span></div>
-                      <div class="hx-card-foot"><span class="hx-card-name">storefront</span><span class="hx-st is-ok">Ready</span><span class="hx-time">2m ago</span></div>
-                    </div>
-                    <div class="hx-card">
-                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg></span><span class="hx-chip-t"><b>acme/api</b><i class="is-ok">Running</i></span></span></div>
-                      <div class="hx-card-foot"><span class="hx-card-name">api</span><span class="hx-st is-ok">Ready</span><span class="hx-time">1h ago</span></div>
-                    </div>
-                    <div class="hx-card">
-                      <div class="hx-card-art"><span class="hx-chip hx-chip--build"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7.2l7.4 3.6"/></svg></span><span class="hx-chip-t"><b>storefront · pr-42</b><i class="is-build">Building</i></span></span></div>
-                      <div class="hx-card-foot"><span class="hx-card-name">preview</span><span class="hx-st is-build">Building</span><span class="hx-time">now</span></div>
-                    </div>
-                    <div class="hx-card">
-                      <div class="hx-card-art">
-                        <span class="hx-chip hx-chip--pair"><span class="hx-chip-ic hx-chip-ic--pg"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-13M4.5 12c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8"/></svg></span><span class="hx-chip-t"><b>Postgres</b><i class="is-ok">Running</i></span></span>
-                        <span class="hx-chip hx-chip--pair hx-chip--offset"><span class="hx-chip-ic hx-chip-ic--redis"><svg viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><span class="hx-chip-t"><b>Redis</b><i class="is-ok">Running</i></span></span>
-                      </div>
-                      <div class="hx-card-foot"><span class="hx-card-name">data</span><span class="hx-st is-idle">Idle</span><span class="hx-time">1d ago</span></div>
-                    </div>
-                    <div class="hx-card">
-                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="hx-chip-t"><b>nightly-report</b><i class="is-ok">Scheduled</i></span></span></div>
-                      <div class="hx-card-foot"><span class="hx-card-name">cron</span><span class="hx-st is-ok">Ready</span><span class="hx-time">6h ago</span></div>
-                    </div>
-                    <div class="hx-card">
-                      <div class="hx-card-art"><span class="hx-chip"><span class="hx-chip-ic"><svg viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg></span><span class="hx-chip-t"><b>acme/worker</b><i class="is-off">Stopped</i></span></span></div>
-                      <div class="hx-card-foot"><span class="hx-card-name">worker</span><span class="hx-st is-off">Stopped</span><span class="hx-time">2d ago</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption class="lp-sr">Illustrative Runex dashboard with example projects and their deployment status.</figcaption>
-          </figure>
         </div>
       </section>
 
@@ -6109,22 +6371,22 @@
           </div>
           <div class="lp-logos" data-stagger="true">
             <a class="lp-logo" href="deploy/nextjs.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.5 15.5h-1.8l-5.1-7.2v7.2H7.8V6.5h1.9l5 7v-7h1.8v11z" ></path></svg><h3 class="lp-logo-name">Next.js</h3><small>Guide →</small></a
+              ><img src="assets/stacks/nextjs.svg" alt="" width="42" height="42" /><h3 class="lp-logo-name">Next.js</h3><small>Guide →</small></a
             >
             <a class="lp-logo" href="deploy/nodejs.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M12 1.85 2.55 7.25v9.5L12 22.15l9.45-5.4v-9.5L12 1.85zm0 1.9 7.55 4.32v7.86L12 20.25l-7.55-4.32V8.07L12 3.75z" ></path> <path d="M10.35 9.2c-.95 0-1.7.35-2.05 1-.2.35-.3.8-.3 1.3 0 1 .45 1.6 1.25 1.9l1 .35c.45.15.6.35.6.7 0 .4-.35.65-.95.65H8.5v1.25h1.4c1.15 0 1.95-.45 2.3-1.15.15-.35.25-.75.25-1.2 0-1.05-.5-1.65-1.4-2l-1-.35c-.4-.15-.55-.35-.55-.65 0-.35.3-.55.8-.55h1.35V9.2h-1.3zm4.05 0h-1.5v6.2h1.5V9.2z" ></path></svg><h3 class="lp-logo-name">Node.js</h3><small>Guide →</small></a
+              ><img src="assets/stacks/nodejs.svg" alt="" width="42" height="42" /><h3 class="lp-logo-name">Node.js</h3><small>Guide →</small></a
             >
             <a class="lp-logo" href="deploy/python.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M12.15 2c-2.55 0-2.4.95-2.4.95l.02 2.05h2.45v.6H7.4S4.8 5.35 4.8 9.2c0 3.85 1.7 3.7 1.7 3.7h1v-1.8s-.05-2.05 2-2.05h3.5s1.95.05 1.95-1.9V4.05S15.25 2 12.15 2zm-1.45 1.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" ></path> <path d="M11.85 22c2.55 0 2.4-.95 2.4-.95l-.02-2.05h-2.45v-.6h4.82s2.6.25 2.6-3.6c0-3.85-1.7-3.7-1.7-3.7h-1v1.8s.05 2.05-2 2.05h-3.5s-1.95-.05-1.95 1.9v3.2S8.75 22 11.85 22zm1.45-1.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z" ></path></svg><h3 class="lp-logo-name">Python</h3><small>Guide →</small></a
+              ><img src="assets/stacks/python.svg" alt="" width="42" height="42" /><h3 class="lp-logo-name">Python</h3><small>Guide →</small></a
             >
             <a class="lp-logo" href="deploy/go.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M7.2 8.6c-2.35 0-3.9 1.35-3.9 3.4 0 2.1 1.55 3.4 3.9 3.4 1.35 0 2.4-.5 3.05-1.35l-1.15-.85c-.4.5-1 .8-1.85.8-1.25 0-2.05-.75-2.15-1.9h5.45c.05-.25.1-.55.1-.85 0-2.05-1.5-3.65-3.45-3.65zm0 1.35c1.1 0 1.8.65 1.9 1.65H5.25c.15-1 .85-1.65 1.95-1.65zM14.35 8.75v2.35c.45-.55 1.15-.9 2.05-.9 1.55 0 2.55 1.05 2.55 2.7v3.55h-1.55v-3.3c0-.95-.5-1.5-1.35-1.5-.85 0-1.45.6-1.45 1.55v3.25h-1.55V8.75h1.3z" ></path></svg><h3 class="lp-logo-name">Go</h3><small>Guide →</small></a
+              ><img class="lp-mark--wide" src="assets/stacks/go.svg" alt="" width="68" height="30" /><h3 class="lp-logo-name">Go</h3><small>Guide →</small></a
             >
             <a class="lp-logo" href="deploy/docker.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M4.5 11.25h2.1v2H4.5v-2zm2.55 0h2.1v2h-2.1v-2zm2.55 0h2.1v2h-2.1v-2zm-5.1-2.4h2.1v2H4.5v-2zm2.55 0h2.1v2h-2.1v-2zm2.55 0h2.1v2h-2.1v-2zm2.55 0h2.1v2h-2.1v-2zm0 2.4h2.1v2h-2.1v-2zm2.55-1.2v2.6h2.15v-.4c1.1-.2 1.95-.7 2.5-1.55.3-.45.45-.95.45-1.5V9.4H17.1v.35c0 .9-.7 1.55-1.85 1.7h-.65zM7.05 6.45h2.1v2h-2.1v-2zm2.55 0h2.1v2h-2.1v-2zm2.55 0h2.1v2h-2.1v-2z" ></path> <path d="M3.2 14.4c.55 2.35 2.85 4.1 6.55 4.1 4.55 0 7.85-2.05 9.35-5.55H3.4c-.15 0-.2.1-.2.15z"></path></svg><h3 class="lp-logo-name">Docker</h3><small>Guide →</small></a
+              ><img src="assets/stacks/docker.svg" alt="" width="42" height="42" /><h3 class="lp-logo-name">Docker</h3><small>Guide →</small></a
             >
             <a class="lp-logo" href="deploy/github.html" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px"
-              ><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" ></path></svg><h3 class="lp-logo-name">GitHub</h3><small>Guide →</small></a
+              ><img src="assets/stacks/github.svg" alt="" width="42" height="42" /><h3 class="lp-logo-name">GitHub</h3><small>Guide →</small></a
             >
           </div>
         </div>
@@ -6345,31 +6607,13 @@
       </section>
 
       <section id="deploy" class="lp-cta scroll-mt-28">
-        <div
-                class="pointer-events-none absolute z-0 overflow-visible bottom-[-12%] right-[-6%] h-[min(50vw,320px)] w-[min(56vw,400px)] opacity-90"
-                aria-hidden="true"
-              >
-                <img
-                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTI4MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTI4MCAxMDI0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJ1bmV4Ij4NCiAgPHBhdGggZmlsbD0iI0ZENEUwMCIgZD0iTTU4Mi42NDkgMzQ5LjY0NUM2MDMuNjY0IDM0OC4zMjkgNjE1LjYzNyAzNzEuNTUyIDY0Mi40OTQgMzY4LjM5NkM2NjUuMjAxIDM2NS43MjcgNjcwLjAxNSAzNTYuOTYxIDY4OC45MTkgMzQ5LjY1MkM2OTcuNzU2IDM0Ni4yMzYgNzE2Ljg1IDM1Ny45NiA3MTcuNDA1IDM3MC4xOTRDNzE4LjgxIDQwMS4xNDcgNzAwLjE2NCA0MzIuMzA1IDY4Mi41MjQgNDU2LjYwOUM2NzMuMzgyIDQ2Ny45NDkgNjYzLjg0OCA0ODEuMjA2IDY0OS40NTYgNDg2LjA2N0M2NDEuODUyIDQ4OC42MzUgNjMwLjI1OSA0ODcuNzk4IDYyMy4yNzMgNDgzLjQwNkM1OTUuMSA0NjQuMzI2IDU3NS4zMTcgNDI2LjI1MiA1NjQuMDczIDM5NC45OTFDNTU2LjgwOCAzNzQuNzkxIDU2MC42NzIgMzU1Ljg2MSA1ODIuNjQ5IDM0OS42NDVaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik03NjUuNjY5IDQwNS44MzhDNzc1LjE4NSA0MDUuMDc4IDc4My4yOTEgNDA4LjMwNiA3ODkuMzM5IDQxNS45MDVDNzk4LjgxNSA0MjcuODEyIDc5MS44NiA0NDEuMjkyIDc4OS43NjIgNDU0LjQ2N0M3ODYuOTQ5IDQ3Mi4xMzggNzkzLjE3OSA0ODkuMzU3IDgwNS45NTcgNTAxLjc4OUM4MTUuMjc2IDUxMC45ODIgODI5LjU1MyA1MjAuMjk2IDgyNi42ODUgNTM1LjM4M0M4MjUuNTcgNTQxLjI0NyA4MjIuMDI3IDU0OC45NDMgODE2Ljc3MSA1NTIuMDY3Qzc5Ny43NTYgNTYzLjM3IDc2OC43NzYgNTU4LjUxOSA3NDguMjM2IDU1NC43NDlDNzA3LjI4MiA1NDQuODAxIDY1NC40NTcgNTI5LjQ5NSA2ODcuNTY4IDQ3Ni43MzFDNzA0LjI1NyA0NTAuMTM2IDczNC4xNzMgNDEzLjk1OCA3NjUuNjY5IDQwNS44MzhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik02NzguNzEzIDU1NS4yN0M2NzkuNDU2IDU1NS4yMjQgNjgwLjIgNTU1LjE5IDY4MC45NDQgNTU1LjE2NkM3MTEuNTEzIDU1NC4yMjQgNzYyLjA2MiA1NzcuMzc3IDc4NS4yMjggNTk4LjAzQzc5NS43NSA2MDcuNDExIDgwMi40MzkgNjIwLjg1OSA3OTQuNTIxIDYzNC4zMDVDNzg0LjQxMSA2NTEuNDcxIDc2My40MTggNjQ0LjYyIDc0Ny40NTUgNjUwLjM5NUM3MzcuNzk3IDY1My44ODggNzMyLjI2MyA2NTguMTM0IDcyNS4xNjcgNjY1LjU2OUM3MTQuMzExIDY3OC43NyA3MDkuODQ1IDcwNC43MTQgNjkyLjU2NyA3MDguMDE4QzY1MC42MDcgNzE1LjY4NCA2NDcuMTU2IDYzNi44MDEgNjQ3LjMxNiA2MTAuMDQ2QzY0Ny40NjcgNTg0Ljg5OSA2NTEuMjExIDU2MS45MDUgNjc4LjcxMyA1NTUuMjdaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01MDUuMzU1IDQwNS44ODhDNTM4LjUxNSA0MDIuMzY5IDU5Mi4yMDEgNDY3Ljg4NSA2MDAuODA0IDQ5Ny40NDVDNjExLjM3MyA1MzMuNzYgNTYyLjMxOCA1NDYuNzE5IDUzNy4xNiA1NTMuMTc5QzUyNS43NTUgNTU2LjA1NSA1MTQuMDI0IDU1Ny4yMTEgNTAzLjkzNSA1NTguNjNDNDU4LjE0NyA1NjUuMDcxIDQyOS4zNzggNTMzLjc0NSA0NzMuNjY3IDUwMS4xNDZDNDg1LjkzOCA0OTIuMTE1IDQ5Mi42ODcgNDY3LjYwOCA0ODguOTc5IDQ1Mi40MjVDNDg0LjAxNiA0MzIuMTA2IDQ4MC4zNjggNDE0Ljc3MyA1MDUuMzU1IDQwNS44ODhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01OTAuMDU1IDU1NS4zNDVDNTk0LjIyOCA1NTQuODk2IDU5OC40NDcgNTU1LjEyMiA2MDIuNTQ5IDU1Ni4wMTRDNjExLjMyOSA1NTcuODkxIDYxOC45OCA1NjMuMjM1IDYyMy43NjUgNTcwLjgzNEM2MzYuNDE2IDU5MS4yNDkgNjMxLjc5NSA2MzkuODUgNjI2LjQ4OCA2NjIuOTYzQzYyMi4yOTIgNjgxLjI0MiA2MTIuMSA3MTQuNzExIDU4Ni45MDYgNzA4LjczQzU2OC42NzEgNzA0LjQwMSA1NjguNDczIDY4Ny42ODkgNTYwLjA4MyA2NzMuOTc1QzU1MS4wNTIgNjYxLjAwMSA1MzkuNjIyIDY1MS4xMzUgNTIzLjcxOCA2NDguNDUxQzUxOS42NzcgNjQ3Ljg4NCA1MTUuNDEzIDY0Ny40MDEgNTExLjM0NSA2NDcuMTNDNDk3Ljg5IDY0Ni4yMzMgNDgzLjk5MyA2NDEuMTg2IDQ4MS41NDggNjI2LjE0OEM0NzguNzU3IDYwOC45ODIgNDkzLjEwOCA1OTcuNTE0IDUwNS43MjggNTg4Ljc0N0M1MzAuOTUyIDU3MS4zODIgNTU5Ljc4NCA1NTkuOTYyIDU5MC4wNTUgNTU1LjM0NVoiLz4NCjwvc3ZnPg0K"
-                  alt=""
-                  class="absolute inset-0 h-full w-full object-contain select-none"
-                  style="opacity: 0.102; filter: blur(26px)"
-                  draggable="false"
-                /><img
-                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTI4MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTI4MCAxMDI0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJ1bmV4Ij4NCiAgPHBhdGggZmlsbD0iI0ZENEUwMCIgZD0iTTU4Mi42NDkgMzQ5LjY0NUM2MDMuNjY0IDM0OC4zMjkgNjE1LjYzNyAzNzEuNTUyIDY0Mi40OTQgMzY4LjM5NkM2NjUuMjAxIDM2NS43MjcgNjcwLjAxNSAzNTYuOTYxIDY4OC45MTkgMzQ5LjY1MkM2OTcuNzU2IDM0Ni4yMzYgNzE2Ljg1IDM1Ny45NiA3MTcuNDA1IDM3MC4xOTRDNzE4LjgxIDQwMS4xNDcgNzAwLjE2NCA0MzIuMzA1IDY4Mi41MjQgNDU2LjYwOUM2NzMuMzgyIDQ2Ny45NDkgNjYzLjg0OCA0ODEuMjA2IDY0OS40NTYgNDg2LjA2N0M2NDEuODUyIDQ4OC42MzUgNjMwLjI1OSA0ODcuNzk4IDYyMy4yNzMgNDgzLjQwNkM1OTUuMSA0NjQuMzI2IDU3NS4zMTcgNDI2LjI1MiA1NjQuMDczIDM5NC45OTFDNTU2LjgwOCAzNzQuNzkxIDU2MC42NzIgMzU1Ljg2MSA1ODIuNjQ5IDM0OS42NDVaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik03NjUuNjY5IDQwNS44MzhDNzc1LjE4NSA0MDUuMDc4IDc4My4yOTEgNDA4LjMwNiA3ODkuMzM5IDQxNS45MDVDNzk4LjgxNSA0MjcuODEyIDc5MS44NiA0NDEuMjkyIDc4OS43NjIgNDU0LjQ2N0M3ODYuOTQ5IDQ3Mi4xMzggNzkzLjE3OSA0ODkuMzU3IDgwNS45NTcgNTAxLjc4OUM4MTUuMjc2IDUxMC45ODIgODI5LjU1MyA1MjAuMjk2IDgyNi42ODUgNTM1LjM4M0M4MjUuNTcgNTQxLjI0NyA4MjIuMDI3IDU0OC45NDMgODE2Ljc3MSA1NTIuMDY3Qzc5Ny43NTYgNTYzLjM3IDc2OC43NzYgNTU4LjUxOSA3NDguMjM2IDU1NC43NDlDNzA3LjI4MiA1NDQuODAxIDY1NC40NTcgNTI5LjQ5NSA2ODcuNTY4IDQ3Ni43MzFDNzA0LjI1NyA0NTAuMTM2IDczNC4xNzMgNDEzLjk1OCA3NjUuNjY5IDQwNS44MzhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik02NzguNzEzIDU1NS4yN0M2NzkuNDU2IDU1NS4yMjQgNjgwLjIgNTU1LjE5IDY4MC45NDQgNTU1LjE2NkM3MTEuNTEzIDU1NC4yMjQgNzYyLjA2MiA1NzcuMzc3IDc4NS4yMjggNTk4LjAzQzc5NS43NSA2MDcuNDExIDgwMi40MzkgNjIwLjg1OSA3OTQuNTIxIDYzNC4zMDVDNzg0LjQxMSA2NTEuNDcxIDc2My40MTggNjQ0LjYyIDc0Ny40NTUgNjUwLjM5NUM3MzcuNzk3IDY1My44ODggNzMyLjI2MyA2NTguMTM0IDcyNS4xNjcgNjY1LjU2OUM3MTQuMzExIDY3OC43NyA3MDkuODQ1IDcwNC43MTQgNjkyLjU2NyA3MDguMDE4QzY1MC42MDcgNzE1LjY4NCA2NDcuMTU2IDYzNi44MDEgNjQ3LjMxNiA2MTAuMDQ2QzY0Ny40NjcgNTg0Ljg5OSA2NTEuMjExIDU2MS45MDUgNjc4LjcxMyA1NTUuMjdaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01MDUuMzU1IDQwNS44ODhDNTM4LjUxNSA0MDIuMzY5IDU5Mi4yMDEgNDY3Ljg4NSA2MDAuODA0IDQ5Ny40NDVDNjExLjM3MyA1MzMuNzYgNTYyLjMxOCA1NDYuNzE5IDUzNy4xNiA1NTMuMTc5QzUyNS43NTUgNTU2LjA1NSA1MTQuMDI0IDU1Ny4yMTEgNTAzLjkzNSA1NTguNjNDNDU4LjE0NyA1NjUuMDcxIDQyOS4zNzggNTMzLjc0NSA0NzMuNjY3IDUwMS4xNDZDNDg1LjkzOCA0OTIuMTE1IDQ5Mi42ODcgNDY3LjYwOCA0ODguOTc5IDQ1Mi40MjVDNDg0LjAxNiA0MzIuMTA2IDQ4MC4zNjggNDE0Ljc3MyA1MDUuMzU1IDQwNS44ODhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01OTAuMDU1IDU1NS4zNDVDNTk0LjIyOCA1NTQuODk2IDU5OC40NDcgNTU1LjEyMiA2MDIuNTQ5IDU1Ni4wMTRDNjExLjMyOSA1NTcuODkxIDYxOC45OCA1NjMuMjM1IDYyMy43NjUgNTcwLjgzNEM2MzYuNDE2IDU5MS4yNDkgNjMxLjc5NSA2MzkuODUgNjI2LjQ4OCA2NjIuOTYzQzYyMi4yOTIgNjgxLjI0MiA2MTIuMSA3MTQuNzExIDU4Ni45MDYgNzA4LjczQzU2OC42NzEgNzA0LjQwMSA1NjguNDczIDY4Ny42ODkgNTYwLjA4MyA2NzMuOTc1QzU1MS4wNTIgNjYxLjAwMSA1MzkuNjIyIDY1MS4xMzUgNTIzLjcxOCA2NDguNDUxQzUxOS42NzcgNjQ3Ljg4NCA1MTUuNDEzIDY0Ny40MDEgNTExLjM0NSA2NDcuMTNDNDk3Ljg5IDY0Ni4yMzMgNDgzLjk5MyA2NDEuMTg2IDQ4MS41NDggNjI2LjE0OEM0NzguNzU3IDYwOC45ODIgNDkzLjEwOCA1OTcuNTE0IDUwNS43MjggNTg4Ljc0N0M1MzAuOTUyIDU3MS4zODIgNTU5Ljc4NCA1NTkuOTYyIDU5MC4wNTUgNTU1LjM0NVoiLz4NCjwvc3ZnPg0K"
-                  alt=""
-                  class="absolute inset-0 h-full w-full object-contain select-none"
-                  style="opacity: 0.12; filter: blur(1.5px)"
-                  draggable="false"
-                />
-              </div>
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8" data-reveal="fade" style="--reveal-delay: 0s; --reveal-y: 14px">
+        <div class="lp-cta-copy" data-reveal="fade" style="--reveal-delay: 0s; --reveal-y: 22px">
           <p class="lp-kicker" style="position: relative">Next step</p>
           <h2 class="display lp-cta-h">Ready to ship <span class="lp-grad">your first app?</span></h2>
           <p class="lp-cta-p">Sign up, connect GitHub or drop a zip. Your HTTPS URL is next.</p>
           <div class="lp-actions">
             <a
-              href="https://runex.cloud/sign-up"
+              href="https://app.runex.cloud"
               class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3"
               rel="noopener noreferrer"
               >Deploy with Runex →</a
@@ -6378,6 +6622,11 @@
               href="documentation/getting-started.html"
               >Getting started guide</a
             >
+          </div>
+        </div>
+        <div class="lp-cta-visual" data-reveal="fade" style="--reveal-delay: 0.1s; --reveal-y: 28px">
+          <div class="lp-cta-flower" data-reveal="flower" style="--reveal-delay: 0.22s" aria-hidden="true">
+            <div class="flower"><canvas id="sakura"></canvas></div>
           </div>
         </div>
       </section>
@@ -6521,7 +6770,7 @@
             });
           });
 
-          var fades = document.querySelectorAll('[data-reveal="fade"]');
+          var fades = document.querySelectorAll('[data-reveal="fade"], [data-reveal="flower"]');
           var staggers = document.querySelectorAll("[data-stagger]");
 
           if (!("IntersectionObserver" in window)) {
@@ -6690,6 +6939,7 @@
           var activeId = ids[0];
           var ranks = {};
           var gated = false;
+          var pastHero = false;
 
           var render = function () {
             links.forEach(function (a, i) {
@@ -6711,12 +6961,19 @@
               var index = Math.max(0, ids.indexOf(activeId));
               thumb.style.transform = "translateY(" + index * track + "px)";
             }
-            if (gated) {
-              nav.setAttribute("data-gated", "");
-              nav.setAttribute("aria-hidden", "true");
+            if (gated || !pastHero) {
+              nav.removeAttribute("data-shown");
+              if (gated) {
+                nav.setAttribute("data-gated", "");
+                nav.setAttribute("aria-hidden", "true");
+              } else {
+                nav.removeAttribute("data-gated");
+                nav.setAttribute("aria-hidden", "true");
+              }
             } else {
               nav.removeAttribute("data-gated");
               nav.removeAttribute("aria-hidden");
+              nav.setAttribute("data-shown", "");
             }
           };
 
@@ -6743,6 +7000,8 @@
               ranks[d.id] = i;
             });
             activeId = bestId;
+            var next = document.getElementById("what-is-runex");
+            pastHero = !!(next && next.getBoundingClientRect().top < window.innerHeight * 0.82);
             render();
           };
 
@@ -6773,11 +7032,43 @@
           });
         }
 
+        function initHeroDeploy() {
+          var label = document.querySelector("[data-hx-live-state]");
+          if (!label || reduced()) return;
+          var states = ["Building", "Ready", "Running"];
+          var i = 0;
+          window.setInterval(function () {
+            i = (i + 1) % states.length;
+            label.textContent = states[i];
+          }, 2400);
+        }
+
+        function initHeroMotion() {
+          var stage = document.querySelector(".lp-hero-stage");
+          if (!stage || reduced()) return;
+          var raf = 0;
+          var tick = function () {
+            var rect = stage.getBoundingClientRect();
+            var vh = window.innerHeight || 1;
+            var p = Math.min(1, Math.max(0, (vh * 0.2 - rect.top) / (vh * 0.9)));
+            stage.style.setProperty("--hero-p", p.toFixed(4));
+          };
+          var onScroll = function () {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(tick);
+          };
+          tick();
+          window.addEventListener("scroll", onScroll, { passive: true });
+          window.addEventListener("resize", onScroll);
+        }
+
         function init() {
           initReveals();
           initHeader();
           initCopyButtons();
           initDeployExhibits();
+          initHeroDeploy();
+          initHeroMotion();
           document.querySelectorAll("[data-section-nav]").forEach(initSectionNav);
         }
 
@@ -6839,5 +7130,8 @@
         window.addEventListener("resize", onScroll);
       })();
     </script>
+    <script src="flower.js"></script>
+    <script src="intro.js"></script>
+    <script src="scrollbar.js"></script>
   </body>
 </html>

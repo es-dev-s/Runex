@@ -1,0 +1,72 @@
+html {
+  scrollbar-width: none !important;
+  scrollbar-gutter: auto !important;
+}
+html::-webkit-scrollbar,
+html::-webkit-scrollbar-track,
+html::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-corner {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.rx-scroll {
+  position: fixed;
+  z-index: 60;
+  top: 12px;
+  right: 4px;
+  bottom: 12px;
+  width: 12px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+html.runex-intro .rx-scroll {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.rx-scroll.is-live {
+  visibility: visible;
+  pointer-events: auto;
+}
+.rx-scroll-thumb {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 3px;
+  border-radius: 999px;
+  background: rgba(24, 24, 27, 0.5);
+  transform: translate3d(0, 0, 0);
+  transition:
+    width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease;
+}
+body:not(.home-light) .rx-scroll-thumb {
+  background: rgba(255, 255, 255, 0.42);
+}
+.rx-scroll.is-live:hover .rx-scroll-thumb,
+.rx-scroll.is-drag .rx-scroll-thumb {
+  left: 2px;
+  width: 5px;
+  background: #fc4c01;
+}
+@media (pointer: coarse) {
+  .rx-scroll,
+  .rx-scroll.is-live {
+    pointer-events: none;
+  }
+  .rx-scroll-thumb {
+    left: 0;
+    width: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rx-scroll-thumb {
+    transition: none;
+  }
+}

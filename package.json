@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "serve . -l 3000",
-    "start": "serve ."
+    "start": "serve .",
+    "build:scroll": "esbuild scripts/scrollbar.mjs --bundle --format=iife --outfile=scrollbar.js --minify"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "serve": "^14.2.4"
+  },
+  "dependencies": {
+    "motion": "^14.0.0"
   }
 }
