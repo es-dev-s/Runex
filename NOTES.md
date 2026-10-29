@@ -55,11 +55,11 @@ Entity sentence preserved across homepage, `/what-is-runex`, about, JSON-LD:
 5. **Search Console + Bing Webmaster + Bing AI Performance**: operational setup.
 6. **`sameAs` profiles**: add to `siteConfig.sameAs` only when real public URLs exist.
 7. **Screenshots / case studies**: still missing.
-8. **Live pricing amounts**: still dashboard source of truth only.
+8. **Live pricing amounts**: published on `/pricing` (Hobby free, Pro NPR 999/month, Founding Member NPR 2,500/year for the first 30, deploy-for-you NPR 3,000 once). Payment details are sent by email only. Never put a payment QR, bank name, or account number on the site.
 
 ## Accuracy rules (updated 2026-09-25)
 
-Runex provides the full competitor feature set except SSH deploys, deployment templates, and SAML SSO; GitHub is the only Git provider. Claim: GitHub App deploy, Dockerfile deploy, `*.runex.cloud`, `cname.runex.cloud`, automatic SSL, preview deployments, rollbacks, zero-downtime deploys, autoscaling, managed PostgreSQL/MySQL/Redis/MongoDB, private networking, cron jobs, logs/metrics/alerts, env vars, team roles + audit log (Teams, early access). Never invent SOC 2 / ISO 27001 / HIPAA, military-grade, DDoS protection, fake ratings, or prices.
+Runex provides the full competitor feature set except SSH deploys, deployment templates, and SAML SSO; GitHub is the only Git provider. Claim: GitHub App deploy, Dockerfile deploy, `*.runex.cloud`, `cname.runex.cloud`, automatic SSL, preview deployments, rollbacks, zero-downtime deploys, autoscaling, managed PostgreSQL/MySQL/Redis/MongoDB, private networking, cron jobs, logs/metrics/alerts, env vars, team roles + audit log (Teams, early access). Never invent SOC 2 / ISO 27001 / HIPAA, military-grade, DDoS protection, fake ratings, or prices beyond the public amounts on `/pricing`. Never publish payment account details.
 
 ## Static HTML site (2026-09-25)
 

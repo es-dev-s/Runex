@@ -5380,9 +5380,11 @@
       @media (min-width:768px){.sf-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
       @media (min-width:1024px){.sf-nav{max-width:44rem;gap:2rem 2.5rem}}
       .sf-bottom{position:relative;margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:1rem}
-      .sf-legal-end{display:flex;align-items:center;gap:1.25rem}
+      .sf-legal-end{display:flex;align-items:center;flex-wrap:wrap;gap:0.9rem 1.25rem}
       .sf-disclaimer-link{color:#dc2626 !important;font-weight:560;text-decoration:none;text-underline-offset:3px}
       .sf-disclaimer-link:hover{text-decoration:underline}
+      .sf-legal-link{color:var(--muted-dim);font-weight:560;text-decoration:none;text-underline-offset:3px}
+      .sf-legal-link:hover{color:var(--foreground);text-decoration:underline}
       .sf-legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1.5rem;font-size:13px;color:var(--muted-dim)}
       .sf-legal p{margin:0}
       .home-light [data-site-footer]{background:#fff !important;border-top:1px solid rgba(10,10,10,.06) !important}
@@ -5752,7 +5754,8 @@
         "url": "https://runex.cloud",
         "logo": "https://runex.cloud/runex-mark.svg",
         "description": "Runex is an easy cloud deployment platform. Upload a zip or connect a GitHub repo and get a live HTTPS app with previews, rollbacks, and autoscaling.",
-        "slogan": "Easy deployment platform for developers."
+        "slogan": "Easy deployment platform for developers.",
+        "email": "support@runex.cloud"
       }
     </script>
     <script type="application/ld+json">
@@ -5777,8 +5780,8 @@
         "description": "Runex is an easy cloud deployment platform. Upload a zip or connect a GitHub repo and get a live HTTPS app with previews, rollbacks, and autoscaling.",
         "offers": {
           "@type": "Offer",
-          "priceCurrency": "USD",
-          "description": "Free tier available; current paid plan prices and quotas are shown in the Runex dashboard",
+          "priceCurrency": "NPR",
+          "description": "Hobby is free. Pro is NPR 999 per month (about $8). Public prices: https://runex.cloud/pricing",
           "availability": "https://schema.org/InStock"
         }
       }
@@ -5796,7 +5799,7 @@
               href="index.html"
               ><span class="relative inline-flex shrink-0 items-center justify-center leading-none h-[20px] w-[20px]"
                 ><img
-                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjQ0MCAzMzAgNDAwIDQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJSdW5leCI+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01ODIuNjQ5IDM0OS42NDVDNjAzLjY2NCAzNDguMzI5IDYxNS42MzcgMzcxLjU1MiA2NDIuNDk0IDM2OC4zOTZDNjY1LjIwMSAzNjUuNzI3IDY3MC4wMTUgMzU2Ljk2MSA2ODguOTE5IDM0OS42NTJDNjk3Ljc1NiAzNDYuMjM2IDcxNi44NSAzNTcuOTYgNzE3LjQwNSAzNzAuMTk0QzcxOC44MSA0MDEuMTQ3IDcwMC4xNjQgNDMyLjMwNSA2ODIuNTI0IDQ1Ni42MDlDNjczLjM4MiA0NjcuOTQ5IDY2My44NDggNDgxLjIwNiA2NDkuNDU2IDQ4Ni4wNjdDNjQxLjg1MiA0ODguNjM1IDYzMC4yNTkgNDg3Ljc5OCA2MjMuMjczIDQ4My40MDZDNTk1LjEgNDY0LjMyNiA1NzUuMzE3IDQyNi4yNTIgNTY0LjA3MyAzOTQuOTkxQzU1Ni44MDggMzc0Ljc5MSA1NjAuNjcyIDM1NS44NjEgNTgyLjY0OSAzNDkuNjQ1WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNzY1LjY2OSA0MDUuODM4Qzc3NS4xODUgNDA1LjA3OCA3ODMuMjkxIDQwOC4zMDYgNzg5LjMzOSA0MTUuOTA1Qzc5OC44MTUgNDI3LjgxMiA3OTEuODYgNDQxLjI5MiA3ODkuNzYyIDQ1NC40NjdDNzg2Ljk0OSA0NzIuMTM4IDc5My4xNzkgNDg5LjM1NyA4MDUuOTU3IDUwMS43ODlDODE1LjI3NiA1MTAuOTgyIDgyOS41NTMgNTIwLjI5NiA4MjYuNjg1IDUzNS4zODNDODI1LjU3IDU0MS4yNDcgODIyLjAyNyA1NDguOTQzIDgxNi43NzEgNTUyLjA2N0M3OTcuNzU2IDU2My4zNyA3NjguNzc2IDU1OC41MTkgNzQ4LjIzNiA1NTQuNzQ5QzcwNy4yODIgNTQ0LjgwMSA2NTQuNDU3IDUyOS40OTUgNjg3LjU2OCA0NzYuNzMxQzcwNC4yNTcgNDUwLjEzNiA3MzQuMTczIDQxMy45NTggNzY1LjY2OSA0MDUuODM4WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNjc4LjcxMyA1NTUuMjdDNjc5LjQ1NiA1NTUuMjI0IDY4MC4yIDU1NS4xOSA2ODAuOTQ0IDU1NS4xNjZDNzExLjUxMyA1NTQuMjI0IDc2Mi4wNjIgNTc3LjM3NyA3ODUuMjI4IDU5OC4wM0M3OTUuNzUgNjA3LjQxMSA4MDIuNDM5IDYyMC44NTkgNzk0LjUyMSA2MzQuMzA1Qzc4NC40MTEgNjUxLjQ3MSA3NjMuNDE4IDY0NC42MiA3NDcuNDU1IDY1MC4zOTVDNzM3Ljc5NyA2NTMuODg4IDczMi4yNjMgNjU4LjEzNCA3MjUuMTY3IDY2NS41NjlDNzE0LjMxMSA2NzguNzcgNzA5Ljg0NSA3MDQuNzE0IDY5Mi41NjcgNzA4LjAxOEM2NTAuNjA3IDcxNS42ODQgNjQ3LjE1NiA2MzYuODAxIDY0Ny4zMTYgNjEwLjA0NkM2NDcuNDY3IDU4NC44OTkgNjUxLjIxMSA1NjEuOTA1IDY3OC43MTMgNTU1LjI3WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNTA1LjM1NSA0MDUuODg4QzUzOC41MTUgNDAyLjM2OSA1OTIuMjAxIDQ2Ny44ODUgNjAwLjgwNCA0OTcuNDQ1QzYxMS4zNzMgNTMzLjc2IDU2Mi4zMTggNTQ2LjcxOSA1MzcuMTYgNTUzLjE3OUM1MjUuNzU1IDU1Ni4wNTUgNTE0LjAyNCA1NTcuMjExIDUwMy45MzUgNTU4LjYzQzQ1OC4xNDcgNTY1LjA3MSA0MjkuMzc4IDUzMy43NDUgNDczLjY2NyA1MDEuMTQ2QzQ4NS45MzggNDkyLjExNSA0OTIuNjg3IDQ2Ny42MDggNDg4Ljk3OSA0NTIuNDI1QzQ4NC4wMTYgNDMyLjEwNiA0ODAuMzY4IDQxNC43NzMgNTA1LjM1NSA0MDUuODg4WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNTkwLjA1NSA1NTUuMzQ1QzU5NC4yMjggNTU0Ljg5NiA1OTguNDQ3IDU1NS4xMjIgNjAyLjU0OSA1NTYuMDE0QzYxMS4zMjkgNTU3Ljg5MSA2MTguOTggNTYzLjIzNSA2MjMuNzY1IDU3MC44MzRDNjM2LjQxNiA1OTEuMjQ5IDYzMS43OTUgNjM5Ljg1IDYyNi40ODggNjYyLjk2M0M2MjIuMjkyIDY4MS4yNDIgNjEyLjEgNzE0LjcxMSA1ODYuOTA2IDcwOC43M0M1NjguNjcxIDcwNC40MDEgNTY4LjQ3MyA2ODcuNjg5IDU2MC4wODMgNjczLjk3NUM1NTEuMDUyIDY2MS4wMDEgNTM5LjYyMiA2NTEuMTM1IDUyMy43MTggNjQ4LjQ1MUM1MTkuNjc3IDY0Ny44ODQgNTE1LjQxMyA2NDcuNDAxIDUxMS4zNDUgNjQ3LjEzQzQ5Ny44OSA2NDYuMjMzIDQ4My45OTMgNjQxLjE4NiA0ODEuNTQ4IDYyNi4xNDhDNDc4Ljc1NyA2MDguOTgyIDQ5My4xMDggNTk3LjUxNCA1MDUuNzI4IDU4OC43NDdDNTMwLjk1MiA1NzEuMzgyIDU1OS43ODQgNTU5Ljk2MiA1OTAuMDU1IDU1NS4zNDVaIi8+DQo8L3N2Zz4NCg=="
+                  src="assets/runex.svg#mark"
                   alt=""
                   class="pointer-events-none block h-full w-full select-none object-contain"
                   draggable="false"
@@ -5832,7 +5835,7 @@
               href="index.html"
               ><span class="relative inline-flex shrink-0 items-center justify-center leading-none h-[20px] w-[20px]"
                 ><img
-                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjQ0MCAzMzAgNDAwIDQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJSdW5leCI+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01ODIuNjQ5IDM0OS42NDVDNjAzLjY2NCAzNDguMzI5IDYxNS42MzcgMzcxLjU1MiA2NDIuNDk0IDM2OC4zOTZDNjY1LjIwMSAzNjUuNzI3IDY3MC4wMTUgMzU2Ljk2MSA2ODguOTE5IDM0OS42NTJDNjk3Ljc1NiAzNDYuMjM2IDcxNi44NSAzNTcuOTYgNzE3LjQwNSAzNzAuMTk0QzcxOC44MSA0MDEuMTQ3IDcwMC4xNjQgNDMyLjMwNSA2ODIuNTI0IDQ1Ni42MDlDNjczLjM4MiA0NjcuOTQ5IDY2My44NDggNDgxLjIwNiA2NDkuNDU2IDQ4Ni4wNjdDNjQxLjg1MiA0ODguNjM1IDYzMC4yNTkgNDg3Ljc5OCA2MjMuMjczIDQ4My40MDZDNTk1LjEgNDY0LjMyNiA1NzUuMzE3IDQyNi4yNTIgNTY0LjA3MyAzOTQuOTkxQzU1Ni44MDggMzc0Ljc5MSA1NjAuNjcyIDM1NS44NjEgNTgyLjY0OSAzNDkuNjQ1WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNzY1LjY2OSA0MDUuODM4Qzc3NS4xODUgNDA1LjA3OCA3ODMuMjkxIDQwOC4zMDYgNzg5LjMzOSA0MTUuOTA1Qzc5OC44MTUgNDI3LjgxMiA3OTEuODYgNDQxLjI5MiA3ODkuNzYyIDQ1NC40NjdDNzg2Ljk0OSA0NzIuMTM4IDc5My4xNzkgNDg5LjM1NyA4MDUuOTU3IDUwMS43ODlDODE1LjI3NiA1MTAuOTgyIDgyOS41NTMgNTIwLjI5NiA4MjYuNjg1IDUzNS4zODNDODI1LjU3IDU0MS4yNDcgODIyLjAyNyA1NDguOTQzIDgxNi43NzEgNTUyLjA2N0M3OTcuNzU2IDU2My4zNyA3NjguNzc2IDU1OC41MTkgNzQ4LjIzNiA1NTQuNzQ5QzcwNy4yODIgNTQ0LjgwMSA2NTQuNDU3IDUyOS40OTUgNjg3LjU2OCA0NzYuNzMxQzcwNC4yNTcgNDUwLjEzNiA3MzQuMTczIDQxMy45NTggNzY1LjY2OSA0MDUuODM4WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNjc4LjcxMyA1NTUuMjdDNjc5LjQ1NiA1NTUuMjI0IDY4MC4yIDU1NS4xOSA2ODAuOTQ0IDU1NS4xNjZDNzExLjUxMyA1NTQuMjI0IDc2Mi4wNjIgNTc3LjM3NyA3ODUuMjI4IDU5OC4wM0M3OTUuNzUgNjA3LjQxMSA4MDIuNDM5IDYyMC44NTkgNzk0LjUyMSA2MzQuMzA1Qzc4NC40MTEgNjUxLjQ3MSA3NjMuNDE4IDY0NC42MiA3NDcuNDU1IDY1MC4zOTVDNzM3Ljc5NyA2NTMuODg4IDczMi4yNjMgNjU4LjEzNCA3MjUuMTY3IDY2NS41NjlDNzE0LjMxMSA2NzguNzcgNzA5Ljg0NSA3MDQuNzE0IDY5Mi41NjcgNzA4LjAxOEM2NTAuNjA3IDcxNS42ODQgNjQ3LjE1NiA2MzYuODAxIDY0Ny4zMTYgNjEwLjA0NkM2NDcuNDY3IDU4NC44OTkgNjUxLjIxMSA1NjEuOTA1IDY3OC43MTMgNTU1LjI3WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNTA1LjM1NSA0MDUuODg4QzUzOC41MTUgNDAyLjM2OSA1OTIuMjAxIDQ2Ny44ODUgNjAwLjgwNCA0OTcuNDQ1QzYxMS4zNzMgNTMzLjc2IDU2Mi4zMTggNTQ2LjcxOSA1MzcuMTYgNTUzLjE3OUM1MjUuNzU1IDU1Ni4wNTUgNTE0LjAyNCA1NTcuMjExIDUwMy45MzUgNTU4LjYzQzQ1OC4xNDcgNTY1LjA3MSA0MjkuMzc4IDUzMy43NDUgNDczLjY2NyA1MDEuMTQ2QzQ4NS45MzggNDkyLjExNSA0OTIuNjg3IDQ2Ny42MDggNDg4Ljk3OSA0NTIuNDI1QzQ4NC4wMTYgNDMyLjEwNiA0ODAuMzY4IDQxNC43NzMgNTA1LjM1NSA0MDUuODg4WiIvPg0KICA8cGF0aCBmaWxsPSIjRkQ0RTAwIiBkPSJNNTkwLjA1NSA1NTUuMzQ1QzU5NC4yMjggNTU0Ljg5NiA1OTguNDQ3IDU1NS4xMjIgNjAyLjU0OSA1NTYuMDE0QzYxMS4zMjkgNTU3Ljg5MSA2MTguOTggNTYzLjIzNSA2MjMuNzY1IDU3MC44MzRDNjM2LjQxNiA1OTEuMjQ5IDYzMS43OTUgNjM5Ljg1IDYyNi40ODggNjYyLjk2M0M2MjIuMjkyIDY4MS4yNDIgNjEyLjEgNzE0LjcxMSA1ODYuOTA2IDcwOC43M0M1NjguNjcxIDcwNC40MDEgNTY4LjQ3MyA2ODcuNjg5IDU2MC4wODMgNjczLjk3NUM1NTEuMDUyIDY2MS4wMDEgNTM5LjYyMiA2NTEuMTM1IDUyMy43MTggNjQ4LjQ1MUM1MTkuNjc3IDY0Ny44ODQgNTE1LjQxMyA2NDcuNDAxIDUxMS4zNDUgNjQ3LjEzQzQ5Ny44OSA2NDYuMjMzIDQ4My45OTMgNjQxLjE4NiA0ODEuNTQ4IDYyNi4xNDhDNDc4Ljc1NyA2MDguOTgyIDQ5My4xMDggNTk3LjUxNCA1MDUuNzI4IDU4OC43NDdDNTMwLjk1MiA1NzEuMzgyIDU1OS43ODQgNTU5Ljk2MiA1OTAuMDU1IDU1NS4zNDVaIi8+DQo8L3N2Zz4NCg=="
+                  src="assets/runex.svg#mark"
                   alt=""
                   class="pointer-events-none block h-full w-full select-none object-contain"
                   draggable="false"
@@ -5844,7 +5847,7 @@
               <span class="flex items-center"><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="how-it-works.html">How it works</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="features.html">Features</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="pricing.html">Pricing</a></span>
-              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span>
+              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span><span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="contact.html">Contact</a></span>
             </nav>
           </div>
           <div class="header-pill header-pill--action pointer-events-auto flex items-center outline-none shrink-0">
@@ -5867,6 +5870,7 @@
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="features.html">Features</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="pricing.html">Pricing</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="documentation.html">Docs</a>
+          <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="contact.html">Contact</a>
         </nav>
         <div class="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
           <a
@@ -5961,7 +5965,7 @@
               "name": "Is there a free way to host a web app?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes, many platforms have free tiers. Runex is free to start on its Hobby plan, with GitHub and zip deploys, HTTPS, and isolated containers; paid plan prices are in the dashboard."
+                "text": "Yes, many platforms have free tiers. Runex is free to start on its Hobby plan, with GitHub and zip deploys, HTTPS, and isolated containers; Pro is NPR 999 per month (about $8)."
               }
             }
           ]
@@ -6528,7 +6532,7 @@
             <p class="lp-kicker">Pricing</p>
             <h2 class="display lp-h2">How much does Runex cost?</h2>
             <p class="lp-answer">
-              <strong>Free to start.</strong> Paid prices live in the dashboard, so you never see a stale number.
+              <strong>Free to start.</strong> Pro is NPR 999 a month, about $8 internationally.
             </p>
           </div>
           <div class="lp-plans" data-stagger="true">
@@ -6538,9 +6542,9 @@
               <p class="lp-plan-text">Deploy from GitHub or a zip with HTTPS and isolated containers.</p>
             </div>
             <div class="lp-plan" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px">
-              <p class="lp-plan-name">Production</p>
-              <p class="lp-plan-price">In dashboard</p>
-              <p class="lp-plan-text">Higher resource allowances and more concurrent deploys.</p>
+              <p class="lp-plan-name">Pro</p>
+              <p class="lp-plan-price">NPR 999</p>
+              <p class="lp-plan-text">Per month, about $8 internationally. Higher allowances and more concurrent deploys.</p>
             </div>
             <div class="lp-plan" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px">
               <p class="lp-plan-name">Teams</p>
@@ -6598,7 +6602,7 @@
               </details>
               <details>
                 <summary><span>Is there a free way to host a web app?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
-                <p class="lp-faq-answer">Yes, many platforms have free tiers. Runex is free to start on its Hobby plan, with GitHub and zip deploys, HTTPS, and isolated containers; paid plan prices are in the dashboard.</p>
+                <p class="lp-faq-answer">Yes, many platforms have free tiers. Runex is free to start on its Hobby plan, with GitHub and zip deploys, HTTPS, and isolated containers; Pro is NPR 999 per month (about $8).</p>
               </details>
             </div>
           </div>
@@ -6645,13 +6649,13 @@
         aria-hidden="true"
       >
         <img
-          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTI4MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTI4MCAxMDI0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJ1bmV4Ij4NCiAgPHBhdGggZmlsbD0iI0ZENEUwMCIgZD0iTTU4Mi42NDkgMzQ5LjY0NUM2MDMuNjY0IDM0OC4zMjkgNjE1LjYzNyAzNzEuNTUyIDY0Mi40OTQgMzY4LjM5NkM2NjUuMjAxIDM2NS43MjcgNjcwLjAxNSAzNTYuOTYxIDY4OC45MTkgMzQ5LjY1MkM2OTcuNzU2IDM0Ni4yMzYgNzE2Ljg1IDM1Ny45NiA3MTcuNDA1IDM3MC4xOTRDNzE4LjgxIDQwMS4xNDcgNzAwLjE2NCA0MzIuMzA1IDY4Mi41MjQgNDU2LjYwOUM2NzMuMzgyIDQ2Ny45NDkgNjYzLjg0OCA0ODEuMjA2IDY0OS40NTYgNDg2LjA2N0M2NDEuODUyIDQ4OC42MzUgNjMwLjI1OSA0ODcuNzk4IDYyMy4yNzMgNDgzLjQwNkM1OTUuMSA0NjQuMzI2IDU3NS4zMTcgNDI2LjI1MiA1NjQuMDczIDM5NC45OTFDNTU2LjgwOCAzNzQuNzkxIDU2MC42NzIgMzU1Ljg2MSA1ODIuNjQ5IDM0OS42NDVaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik03NjUuNjY5IDQwNS44MzhDNzc1LjE4NSA0MDUuMDc4IDc4My4yOTEgNDA4LjMwNiA3ODkuMzM5IDQxNS45MDVDNzk4LjgxNSA0MjcuODEyIDc5MS44NiA0NDEuMjkyIDc4OS43NjIgNDU0LjQ2N0M3ODYuOTQ5IDQ3Mi4xMzggNzkzLjE3OSA0ODkuMzU3IDgwNS45NTcgNTAxLjc4OUM4MTUuMjc2IDUxMC45ODIgODI5LjU1MyA1MjAuMjk2IDgyNi42ODUgNTM1LjM4M0M4MjUuNTcgNTQxLjI0NyA4MjIuMDI3IDU0OC45NDMgODE2Ljc3MSA1NTIuMDY3Qzc5Ny43NTYgNTYzLjM3IDc2OC43NzYgNTU4LjUxOSA3NDguMjM2IDU1NC43NDlDNzA3LjI4MiA1NDQuODAxIDY1NC40NTcgNTI5LjQ5NSA2ODcuNTY4IDQ3Ni43MzFDNzA0LjI1NyA0NTAuMTM2IDczNC4xNzMgNDEzLjk1OCA3NjUuNjY5IDQwNS44MzhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik02NzguNzEzIDU1NS4yN0M2NzkuNDU2IDU1NS4yMjQgNjgwLjIgNTU1LjE5IDY4MC45NDQgNTU1LjE2NkM3MTEuNTEzIDU1NC4yMjQgNzYyLjA2MiA1NzcuMzc3IDc4NS4yMjggNTk4LjAzQzc5NS43NSA2MDcuNDExIDgwMi40MzkgNjIwLjg1OSA3OTQuNTIxIDYzNC4zMDVDNzg0LjQxMSA2NTEuNDcxIDc2My40MTggNjQ0LjYyIDc0Ny40NTUgNjUwLjM5NUM3MzcuNzk3IDY1My44ODggNzMyLjI2MyA2NTguMTM0IDcyNS4xNjcgNjY1LjU2OUM3MTQuMzExIDY3OC43NyA3MDkuODQ1IDcwNC43MTQgNjkyLjU2NyA3MDguMDE4QzY1MC42MDcgNzE1LjY4NCA2NDcuMTU2IDYzNi44MDEgNjQ3LjMxNiA2MTAuMDQ2QzY0Ny40NjcgNTg0Ljg5OSA2NTEuMjExIDU2MS45MDUgNjc4LjcxMyA1NTUuMjdaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01MDUuMzU1IDQwNS44ODhDNTM4LjUxNSA0MDIuMzY5IDU5Mi4yMDEgNDY3Ljg4NSA2MDAuODA0IDQ5Ny40NDVDNjExLjM3MyA1MzMuNzYgNTYyLjMxOCA1NDYuNzE5IDUzNy4xNiA1NTMuMTc5QzUyNS43NTUgNTU2LjA1NSA1MTQuMDI0IDU1Ny4yMTEgNTAzLjkzNSA1NTguNjNDNDU4LjE0NyA1NjUuMDcxIDQyOS4zNzggNTMzLjc0NSA0NzMuNjY3IDUwMS4xNDZDNDg1LjkzOCA0OTIuMTE1IDQ5Mi42ODcgNDY3LjYwOCA0ODguOTc5IDQ1Mi40MjVDNDg0LjAxNiA0MzIuMTA2IDQ4MC4zNjggNDE0Ljc3MyA1MDUuMzU1IDQwNS44ODhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01OTAuMDU1IDU1NS4zNDVDNTk0LjIyOCA1NTQuODk2IDU5OC40NDcgNTU1LjEyMiA2MDIuNTQ5IDU1Ni4wMTRDNjExLjMyOSA1NTcuODkxIDYxOC45OCA1NjMuMjM1IDYyMy43NjUgNTcwLjgzNEM2MzYuNDE2IDU5MS4yNDkgNjMxLjc5NSA2MzkuODUgNjI2LjQ4OCA2NjIuOTYzQzYyMi4yOTIgNjgxLjI0MiA2MTIuMSA3MTQuNzExIDU4Ni45MDYgNzA4LjczQzU2OC42NzEgNzA0LjQwMSA1NjguNDczIDY4Ny42ODkgNTYwLjA4MyA2NzMuOTc1QzU1MS4wNTIgNjYxLjAwMSA1MzkuNjIyIDY1MS4xMzUgNTIzLjcxOCA2NDguNDUxQzUxOS42NzcgNjQ3Ljg4NCA1MTUuNDEzIDY0Ny40MDEgNTExLjM0NSA2NDcuMTNDNDk3Ljg5IDY0Ni4yMzMgNDgzLjk5MyA2NDEuMTg2IDQ4MS41NDggNjI2LjE0OEM0NzguNzU3IDYwOC45ODIgNDkzLjEwOCA1OTcuNTE0IDUwNS43MjggNTg4Ljc0N0M1MzAuOTUyIDU3MS4zODIgNTU5Ljc4NCA1NTkuOTYyIDU5MC4wNTUgNTU1LjM0NVoiLz4NCjwvc3ZnPg0K"
+          src="assets/runex.svg"
           alt=""
           class="absolute inset-0 h-full w-full object-contain select-none"
           style="opacity: 0.085; filter: blur(36px)"
           draggable="false"
         /><img
-          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTI4MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTI4MCAxMDI0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlJ1bmV4Ij4NCiAgPHBhdGggZmlsbD0iI0ZENEUwMCIgZD0iTTU4Mi42NDkgMzQ5LjY0NUM2MDMuNjY0IDM0OC4zMjkgNjE1LjYzNyAzNzEuNTUyIDY0Mi40OTQgMzY4LjM5NkM2NjUuMjAxIDM2NS43MjcgNjcwLjAxNSAzNTYuOTYxIDY4OC45MTkgMzQ5LjY1MkM2OTcuNzU2IDM0Ni4yMzYgNzE2Ljg1IDM1Ny45NiA3MTcuNDA1IDM3MC4xOTRDNzE4LjgxIDQwMS4xNDcgNzAwLjE2NCA0MzIuMzA1IDY4Mi41MjQgNDU2LjYwOUM2NzMuMzgyIDQ2Ny45NDkgNjYzLjg0OCA0ODEuMjA2IDY0OS40NTYgNDg2LjA2N0M2NDEuODUyIDQ4OC42MzUgNjMwLjI1OSA0ODcuNzk4IDYyMy4yNzMgNDgzLjQwNkM1OTUuMSA0NjQuMzI2IDU3NS4zMTcgNDI2LjI1MiA1NjQuMDczIDM5NC45OTFDNTU2LjgwOCAzNzQuNzkxIDU2MC42NzIgMzU1Ljg2MSA1ODIuNjQ5IDM0OS42NDVaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik03NjUuNjY5IDQwNS44MzhDNzc1LjE4NSA0MDUuMDc4IDc4My4yOTEgNDA4LjMwNiA3ODkuMzM5IDQxNS45MDVDNzk4LjgxNSA0MjcuODEyIDc5MS44NiA0NDEuMjkyIDc4OS43NjIgNDU0LjQ2N0M3ODYuOTQ5IDQ3Mi4xMzggNzkzLjE3OSA0ODkuMzU3IDgwNS45NTcgNTAxLjc4OUM4MTUuMjc2IDUxMC45ODIgODI5LjU1MyA1MjAuMjk2IDgyNi42ODUgNTM1LjM4M0M4MjUuNTcgNTQxLjI0NyA4MjIuMDI3IDU0OC45NDMgODE2Ljc3MSA1NTIuMDY3Qzc5Ny43NTYgNTYzLjM3IDc2OC43NzYgNTU4LjUxOSA3NDguMjM2IDU1NC43NDlDNzA3LjI4MiA1NDQuODAxIDY1NC40NTcgNTI5LjQ5NSA2ODcuNTY4IDQ3Ni43MzFDNzA0LjI1NyA0NTAuMTM2IDczNC4xNzMgNDEzLjk1OCA3NjUuNjY5IDQwNS44MzhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik02NzguNzEzIDU1NS4yN0M2NzkuNDU2IDU1NS4yMjQgNjgwLjIgNTU1LjE5IDY4MC45NDQgNTU1LjE2NkM3MTEuNTEzIDU1NC4yMjQgNzYyLjA2MiA1NzcuMzc3IDc4NS4yMjggNTk4LjAzQzc5NS43NSA2MDcuNDExIDgwMi40MzkgNjIwLjg1OSA3OTQuNTIxIDYzNC4zMDVDNzg0LjQxMSA2NTEuNDcxIDc2My40MTggNjQ0LjYyIDc0Ny40NTUgNjUwLjM5NUM3MzcuNzk3IDY1My44ODggNzMyLjI2MyA2NTguMTM0IDcyNS4xNjcgNjY1LjU2OUM3MTQuMzExIDY3OC43NyA3MDkuODQ1IDcwNC43MTQgNjkyLjU2NyA3MDguMDE4QzY1MC42MDcgNzE1LjY4NCA2NDcuMTU2IDYzNi44MDEgNjQ3LjMxNiA2MTAuMDQ2QzY0Ny40NjcgNTg0Ljg5OSA2NTEuMjExIDU2MS45MDUgNjc4LjcxMyA1NTUuMjdaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01MDUuMzU1IDQwNS44ODhDNTM4LjUxNSA0MDIuMzY5IDU5Mi4yMDEgNDY3Ljg4NSA2MDAuODA0IDQ5Ny40NDVDNjExLjM3MyA1MzMuNzYgNTYyLjMxOCA1NDYuNzE5IDUzNy4xNiA1NTMuMTc5QzUyNS43NTUgNTU2LjA1NSA1MTQuMDI0IDU1Ny4yMTEgNTAzLjkzNSA1NTguNjNDNDU4LjE0NyA1NjUuMDcxIDQyOS4zNzggNTMzLjc0NSA0NzMuNjY3IDUwMS4xNDZDNDg1LjkzOCA0OTIuMTE1IDQ5Mi42ODcgNDY3LjYwOCA0ODguOTc5IDQ1Mi40MjVDNDg0LjAxNiA0MzIuMTA2IDQ4MC4zNjggNDE0Ljc3MyA1MDUuMzU1IDQwNS44ODhaIi8+DQogIDxwYXRoIGZpbGw9IiNGRDRFMDAiIGQ9Ik01OTAuMDU1IDU1NS4zNDVDNTk0LjIyOCA1NTQuODk2IDU5OC40NDcgNTU1LjEyMiA2MDIuNTQ5IDU1Ni4wMTRDNjExLjMyOSA1NTcuODkxIDYxOC45OCA1NjMuMjM1IDYyMy43NjUgNTcwLjgzNEM2MzYuNDE2IDU5MS4yNDkgNjMxLjc5NSA2MzkuODUgNjI2LjQ4OCA2NjIuOTYzQzYyMi4yOTIgNjgxLjI0MiA2MTIuMSA3MTQuNzExIDU4Ni45MDYgNzA4LjczQzU2OC42NzEgNzA0LjQwMSA1NjguNDczIDY4Ny42ODkgNTYwLjA4MyA2NzMuOTc1QzU1MS4wNTIgNjYxLjAwMSA1MzkuNjIyIDY1MS4xMzUgNTIzLjcxOCA2NDguNDUxQzUxOS42NzcgNjQ3Ljg4NCA1MTUuNDEzIDY0Ny40MDEgNTExLjM0NSA2NDcuMTNDNDk3Ljg5IDY0Ni4yMzMgNDgzLjk5MyA2NDEuMTg2IDQ4MS41NDggNjI2LjE0OEM0NzguNzU3IDYwOC45ODIgNDkzLjEwOCA1OTcuNTE0IDUwNS43MjggNTg4Ljc0N0M1MzAuOTUyIDU3MS4zODIgNTU5Ljc4NCA1NTkuOTYyIDU5MC4wNTUgNTU1LjM0NVoiLz4NCjwvc3ZnPg0K"
+          src="assets/runex.svg"
           alt=""
           class="absolute inset-0 h-full w-full object-contain select-none"
           style="opacity: 0.1; filter: blur(1.5px)"
@@ -6715,6 +6719,7 @@
                   <li><a class="sf-link" href="what-is-runex.html">What is Runex?</a></li>
                   <li><a class="sf-link" href="about.html">About</a></li>
                   <li><a class="sf-link" href="use-cases.html">Use cases</a></li>
+                  <li><a class="sf-link" href="contact.html">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -6724,7 +6729,7 @@
         <div class="sf-bottom">
           <div class="sf-legal">
             <p>© 2026 Runex. All rights reserved.</p>
-            <p class="sf-legal-end"><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
+            <p class="sf-legal-end"><a class="sf-legal-link" href="terms.html">Terms</a><a class="sf-legal-link" href="privacy.html">Privacy</a><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
           </div>
         </div>
       </div>
