@@ -4881,9 +4881,11 @@
       @media (min-width:768px){.sf-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
       @media (min-width:1024px){.sf-nav{max-width:44rem;gap:2rem 2.5rem}}
       .sf-bottom{position:relative;margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:1rem}
-      .sf-legal-end{display:flex;align-items:center;gap:1.25rem}
+      .sf-legal-end{display:flex;align-items:center;flex-wrap:wrap;gap:0.9rem 1.25rem}
       .sf-disclaimer-link{color:#dc2626 !important;font-weight:560;text-decoration:none;text-underline-offset:3px}
       .sf-disclaimer-link:hover{text-decoration:underline}
+      .sf-legal-link{color:var(--muted-dim);font-weight:560;text-decoration:none;text-underline-offset:3px}
+      .sf-legal-link:hover{color:var(--foreground);text-decoration:underline}
       .sf-legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1.5rem;font-size:13px;color:var(--muted-dim)}
       .sf-legal p{margin:0}
       .home-light [data-site-footer]{background:#fff !important;border-top:1px solid rgba(10,10,10,.06) !important}
@@ -6318,7 +6320,8 @@
         "url": "https://runex.cloud",
         "logo": "https://runex.cloud/runex-mark.svg",
         "description": "Runex is an easy cloud deployment platform for developers. Deploy applications from GitHub or Docker to HTTPS on *.runex.cloud, without manually managing deployment infrastructure.",
-        "slogan": "Easy deployment platform for developers."
+        "slogan": "Easy deployment platform for developers.",
+        "email": "support@runex.cloud"
       }
     </script>
     <script type="application/ld+json">
@@ -6343,8 +6346,8 @@
         "description": "Runex is an easy cloud deployment platform for developers. Deploy applications from GitHub or Docker to HTTPS on *.runex.cloud, without manually managing deployment infrastructure.",
         "offers": {
           "@type": "Offer",
-          "priceCurrency": "USD",
-          "description": "Free tier available; current paid plan prices and quotas are shown in the Runex dashboard",
+          "priceCurrency": "NPR",
+          "description": "Hobby is free. Pro is NPR 999 per month (about $8). Public prices: https://runex.cloud/pricing",
           "availability": "https://schema.org/InStock"
         }
       }
@@ -6410,7 +6413,7 @@
               <span class="flex items-center"><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="how-it-works.html">How it works</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="features.html">Features</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="pricing.html">Pricing</a></span>
-              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span>
+              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span><span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="contact.html">Contact</a></span>
             </nav>
           </div>
           <div class="header-pill pointer-events-auto flex items-center outline-none shrink-0 gap-1.5">
@@ -6438,6 +6441,7 @@
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="features.html">Features</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="pricing.html">Pricing</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="documentation.html">Docs</a>
+          <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="contact.html">Contact</a>
         </nav>
         <div class="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
           <a
@@ -6465,7 +6469,7 @@
       "name": "How do I contact the Runex team?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use the contact channels listed on runex.cloud. For security issues, say so in your message and don't post exploit details publicly."
+        "text": "Email support@runex.cloud or use the contact page. We reply within 24 hours. For security issues, say so in your message and don't post exploit details publicly."
       }
     },
     {
@@ -6681,7 +6685,7 @@
             <div class="lp-faq" data-reveal="fade" style="--reveal-delay: 0.04s; --reveal-y: 14px">
               <details>
                 <summary><span>How do I contact the Runex team?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
-                <p class="lp-faq-answer">Use the contact channels listed on runex.cloud. For <a class="lp-inline-link" data-il href="security.html">security</a> issues, say so in your message and don't post exploit details publicly.</p>
+                <p class="lp-faq-answer">Email <a class="lp-inline-link" data-il href="mailto:support@runex.cloud">support@runex.cloud</a> or use the <a class="lp-inline-link" data-il href="contact.html">contact page</a>. We reply within 24 hours. For <a class="lp-inline-link" data-il href="security.html">security</a> issues, say so in your message and don't post exploit details publicly.</p>
               </details>
               <details>
                 <summary><span>What doesn't Runex do?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
@@ -6791,6 +6795,7 @@
                   <li><a class="sf-link" href="what-is-runex.html">What is Runex?</a></li>
                   <li><a class="sf-link" href="about.html" aria-current="page">About</a></li>
                   <li><a class="sf-link" href="use-cases.html">Use cases</a></li>
+                  <li><a class="sf-link" href="contact.html">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -6800,7 +6805,7 @@
         <div class="sf-bottom">
           <div class="sf-legal">
             <p>© 2026 Runex. All rights reserved.</p>
-            <p class="sf-legal-end"><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
+            <p class="sf-legal-end"><a class="sf-legal-link" href="terms.html">Terms</a><a class="sf-legal-link" href="privacy.html">Privacy</a><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
           </div>
         </div>
       </div>

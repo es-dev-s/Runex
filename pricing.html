@@ -12,7 +12,7 @@
     <title>Free App Hosting: Plans and Pricing for Developers</title>
     <meta
       name="description"
-      content="Runex pricing starts with a free Hobby plan to deploy from GitHub with HTTPS. Production adds higher limits; Teams adds roles and audit logs. Compare plans."
+      content="Hobby is free. Pro is NPR 999 per month (about $8). Founding members get a year of Pro for NPR 2,500. Teams is early access."
     />
     <meta name="application-name" content="Runex" />
     <meta
@@ -24,7 +24,7 @@
     <meta property="og:title" content="Free App Hosting: Plans and Pricing for Developers" />
     <meta
       property="og:description"
-      content="Runex pricing starts with a free Hobby plan to deploy from GitHub with HTTPS. Production adds higher limits; Teams adds roles and audit logs. Compare plans."
+      content="Hobby is free. Pro is NPR 999 per month (about $8). Founding members get a year of Pro for NPR 2,500. Teams is early access."
     />
     <meta property="og:url" content="https://runex.cloud/pricing" />
     <meta property="og:site_name" content="Runex" />
@@ -39,7 +39,7 @@
     <meta name="twitter:title" content="Free App Hosting: Plans and Pricing for Developers" />
     <meta
       name="twitter:description"
-      content="Runex pricing starts with a free Hobby plan to deploy from GitHub with HTTPS. Production adds higher limits; Teams adds roles and audit logs. Compare plans."
+      content="Hobby is free. Pro is NPR 999 per month (about $8). Founding members get a year of Pro for NPR 2,500. Teams is early access."
     />
     <meta name="twitter:image" content="https://runex.cloud/og/runex-og.png" />
     <link
@@ -3934,6 +3934,41 @@
         line-height: 1.55;
         color: var(--muted);
       }
+      .lp-plan-meta {
+        margin: 0.45rem 0 0;
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+      .lp-offer {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: left;
+        padding: 1.5rem 1.35rem;
+        border-radius: 1.4rem;
+      }
+      .lp-offer .lp-h3 { margin: 0.35rem 0 0; font-size: clamp(1.6rem, 3vw, 2.15rem); }
+      .lp-offer p { margin: 0.65rem 0 0; max-width: 40rem; font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+      .lp-paynote {
+        margin: 1.5rem auto 0;
+        max-width: 40rem;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+      @media (min-width: 768px) {
+        .lp-offer {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+          padding: 1.75rem;
+        }
+        .lp-offer .lp-actions { margin: 0; flex-shrink: 0; }
+      }
 
       /* FAQ */
       .lp-faq details {
@@ -4881,9 +4916,11 @@
       @media (min-width:768px){.sf-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
       @media (min-width:1024px){.sf-nav{max-width:44rem;gap:2rem 2.5rem}}
       .sf-bottom{position:relative;margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:1rem}
-      .sf-legal-end{display:flex;align-items:center;gap:1.25rem}
+      .sf-legal-end{display:flex;align-items:center;flex-wrap:wrap;gap:0.9rem 1.25rem}
       .sf-disclaimer-link{color:#dc2626 !important;font-weight:560;text-decoration:none;text-underline-offset:3px}
       .sf-disclaimer-link:hover{text-decoration:underline}
+      .sf-legal-link{color:var(--muted-dim);font-weight:560;text-decoration:none;text-underline-offset:3px}
+      .sf-legal-link:hover{color:var(--foreground);text-decoration:underline}
       .sf-legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1.5rem;font-size:13px;color:var(--muted-dim)}
       .sf-legal p{margin:0}
       .home-light [data-site-footer]{background:#fff !important;border-top:1px solid rgba(10,10,10,.06) !important}
@@ -5775,6 +5812,10 @@
       .home-light .lp-plan--main::before {
         display: none;
       }
+      .home-light .lp-offer {
+        background: #fff;
+        box-shadow: var(--hx-shadow), inset 0 0 0 1px var(--hx-line);
+      }
       .home-light .lp-faq details + details::before {
         background: linear-gradient(90deg, rgba(10, 10, 10, 0.09), rgba(10, 10, 10, 0.03) 80%, transparent);
       }
@@ -6318,7 +6359,8 @@
         "url": "https://runex.cloud",
         "logo": "https://runex.cloud/runex-mark.svg",
         "description": "Runex is an easy cloud deployment platform for developers. Deploy applications from GitHub or Docker to HTTPS on *.runex.cloud, without manually managing deployment infrastructure.",
-        "slogan": "Easy deployment platform for developers."
+        "slogan": "Easy deployment platform for developers.",
+        "email": "support@runex.cloud"
       }
     </script>
     <script type="application/ld+json">
@@ -6341,12 +6383,44 @@
         "operatingSystem": "Web",
         "url": "https://runex.cloud",
         "description": "Runex is an easy cloud deployment platform for developers. Deploy applications from GitHub or Docker to HTTPS on *.runex.cloud, without manually managing deployment infrastructure.",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "USD",
-          "description": "Free tier available; current paid plan prices and quotas are shown in the Runex dashboard",
-          "availability": "https://schema.org/InStock"
-        }
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Hobby",
+            "price": "0",
+            "priceCurrency": "NPR",
+            "description": "Free Hobby plan for side projects, prototypes, and trying Runex.",
+            "availability": "https://schema.org/InStock",
+            "url": "https://runex.cloud/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "Pro",
+            "price": "999",
+            "priceCurrency": "NPR",
+            "description": "Pro plan at NPR 999 per month, about $8 per month internationally.",
+            "availability": "https://schema.org/InStock",
+            "url": "https://runex.cloud/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "Founding Member",
+            "price": "2500",
+            "priceCurrency": "NPR",
+            "description": "One full year of Pro for NPR 2,500, limited to the first 30 users.",
+            "availability": "https://schema.org/LimitedAvailability",
+            "url": "https://runex.cloud/pricing"
+          },
+          {
+            "@type": "Offer",
+            "name": "We deploy it for you",
+            "price": "3000",
+            "priceCurrency": "NPR",
+            "description": "One-time service, about $30. We deploy your app with a custom domain, HTTPS, and a database, live within 24 hours.",
+            "availability": "https://schema.org/InStock",
+            "url": "https://runex.cloud/pricing"
+          }
+        ]
       }
     </script>
     <header
@@ -6410,7 +6484,7 @@
               <span class="flex items-center"><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="how-it-works.html">How it works</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="features.html">Features</a></span>
               <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="pricing.html">Pricing</a></span>
-              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span>
+              <span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="documentation.html">Docs</a></span><span class="flex items-center"><span class="mx-0.5 h-3 w-px bg-white/10 sm:mx-1" aria-hidden="true"></span><a class="rounded-full px-2.5 py-1.5 text-[12.5px] text-muted outline-none transition-colors hover:text-foreground lg:px-2.5 lg:text-[13px]" href="contact.html">Contact</a></span>
             </nav>
           </div>
           <div class="header-pill pointer-events-auto flex items-center outline-none shrink-0 gap-1.5">
@@ -6438,6 +6512,7 @@
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="features.html">Features</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="pricing.html">Pricing</a>
           <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="documentation.html">Docs</a>
+          <a class="rounded-xl px-3 py-3 text-[15px] text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground" href="contact.html">Contact</a>
         </nav>
         <div class="mt-3 flex flex-col gap-2 border-t border-white/[0.06] pt-3">
           <a
@@ -6470,10 +6545,18 @@
     },
     {
       "@type": "Question",
-      "name": "Where can I see current Runex prices and limits?",
+      "name": "How much is Runex Pro?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In the Runex dashboard after you sign in. Prices and quotas are kept there so they're always current, instead of on a marketing page that can go stale."
+        "text": "Pro is NPR 999 per month, about $8 per month outside Nepal. Founding Member is NPR 2,500 for one full year of Pro, limited to the first 30 users. Email support@runex.cloud and we'll send payment details. Local payment is available in Nepal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you deploy my app for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We deploy it for you for NPR 3,000 once, about $30. That includes a custom domain, HTTPS, and a database, and the app is live within 24 hours. Email support@runex.cloud with what you want to deploy and which plan you want."
       }
     },
     {
@@ -6534,7 +6617,7 @@
                 <h1 class="display lp-h1">Start free. <em class="lp-grad">Pay when you grow.</em></h1>
               </div>
               <div data-reveal="hero" style="--reveal-delay: 0.22s; --reveal-y: 18px">
-                <p class="lp-lead"><strong>Runex has a free Hobby plan for deploying apps from GitHub, plus paid Production and Teams plans.</strong> Current prices and limits are shown in your dashboard, so the number you see is always the live one.</p>
+                <p class="lp-lead"><strong>Hobby is free. Pro is NPR 999 per month, about $8 a month internationally.</strong> Founding members get one year of Pro for NPR 2,500, for the first 30 users. Teams is early access.</p>
               </div>
               <div class="lp-actions" data-reveal="hero" style="--reveal-delay: 0.32s; --reveal-y: 18px">
                 <a href="https://app.runex.cloud" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3" rel="noopener noreferrer">Start deploying →</a><a href="#plans" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3">Compare plans</a>
@@ -6543,7 +6626,7 @@
                 <ul class="lp-points" aria-label="Highlights">
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Free Hobby plan</li>
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Same deploy flow on every plan</li>
-                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Live prices in the dashboard</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>Pro at NPR 999/month</li>
                 </ul>
               </div>
             </div>
@@ -6556,10 +6639,10 @@
                 <div class="lp-console-body">
                   <dl class="lp-kv">
                     <dt>hobby</dt><dd><span class="lp-live">free</span></dd>
-                    <dt>production</dt><dd>higher limits <span>· paid</span></dd>
+                    <dt>pro</dt><dd>NPR 999/month <span>· about $8</span></dd>
+                    <dt>founding</dt><dd>NPR 2,500 <span>· one year, first 30</span></dd>
                     <dt>teams</dt><dd>roles + audit log <span>· early access</span></dd>
-                    <dt>prices</dt><dd>shown in dashboard</dd>
-                    <dt>deploy flow</dt><dd>identical on every plan</dd>
+                    <dt>deploy for you</dt><dd>NPR 3,000 <span>· once</span></dd>
                   </dl>
                 </div>
                 <div class="lp-console-foot"><span>runex pricing</span><span>runex</span></div>
@@ -6575,6 +6658,7 @@
         <ul class="flex flex-col gap-1.5 pl-4 xl:pl-6 2xl:pl-8">
           <li class="pointer-events-auto"><a href="#overview" data-section-link="overview" aria-current="location" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 1; transform: scale(1); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Overview</span></a></li>
           <li class="pointer-events-auto"><a href="#plans" data-section-link="plans" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 0.55; transform: scale(0.97); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Plans</span></a></li>
+          <li class="pointer-events-auto"><a href="#deploy-for-you" data-section-link="deploy-for-you" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 0.35; transform: scale(0.94); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Deploy for you</span></a></li>
           <li class="pointer-events-auto"><a href="#compare-plans" data-section-link="compare-plans" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 0.35; transform: scale(0.94); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Compare plans</span></a></li>
           <li class="pointer-events-auto"><a href="#every-app" data-section-link="every-app" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 0.22; transform: scale(0.92); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Every app</span></a></li>
           <li class="pointer-events-auto"><a href="#vs-vps" data-section-link="vs-vps" class="group relative flex items-center gap-2.5 py-0.5 outline-none transition-[opacity,transform] duration-300 ease-out" style="opacity: 0.22; transform: scale(0.92); transform-origin: left center"><span class="proximity-tick h-px w-3 shrink-0 transition-colors duration-300" aria-hidden="true"></span><span class="section-label text-[11px] font-medium tracking-[0.04em] transition-colors duration-300">Cost vs a VPS</span></a></li>
@@ -6588,7 +6672,7 @@
           <div class="lp-head lp-head--center" data-reveal="fade" style="--reveal-delay: 0s; --reveal-y: 14px">
               <p class="lp-kicker">Plans</p>
               <h2 class="display lp-h2">How much does Runex cost?</h2>
-              <p class="lp-answer"><strong>Hobby is free. Production and Teams are paid plans.</strong> Exact prices and quotas live in the dashboard, where they're always current.</p>
+              <p class="lp-answer"><strong>Hobby is free. Pro is NPR 999 per month.</strong> Teams is early access. A one-time deploy service is NPR 3,000.</p>
             </div>
           <div class="lp-plans" data-stagger="true">
             <div class="lp-plan lp-plan--main" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px">
@@ -6599,35 +6683,66 @@
               <div class="sp-plan-cta"><a href="https://app.runex.cloud" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3" rel="noopener noreferrer">Start free →</a></div>
             </div>
             <div class="lp-plan" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px">
-              <p class="lp-plan-name">Production</p>
-              <p class="lp-plan-price">In dashboard</p>
+              <p class="lp-plan-name">Pro</p>
+              <p class="lp-plan-price">NPR 999</p>
+              <p class="lp-plan-meta">per month · about $8 internationally</p>
               <p class="lp-plan-text">For apps with real users and steady traffic.</p>
               <ul class="sp-plan-list"><li>Everything in Hobby</li><li>Higher CPU and memory allowances</li><li>More concurrent deployments</li><li>Room for replicas and databases</li></ul>
-              <div class="sp-plan-cta"><a href="https://app.runex.cloud" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3" rel="noopener noreferrer">View plans in app</a></div>
+              <div class="sp-plan-cta"><a href="mailto:support@runex.cloud?subject=Pro%20plan%20%28NPR%20999/month%29&body=Hi%20Runex%2C%0A%0AI%27d%20like%20the%20Pro%20plan%20%28NPR%20999/month%29.%0A%0AWhat%20I%20want%20to%20deploy%3A%0A%0A" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3">Email us about Pro</a></div>
             </div>
             <div class="lp-plan" data-reveal="item" style="--reveal-delay: 0s; --reveal-y: 12px">
               <p class="lp-plan-name">Teams</p>
               <p class="lp-plan-price">Early access</p>
               <p class="lp-plan-text">For small teams shipping together.</p>
-              <ul class="sp-plan-list"><li>Everything in Production</li><li>Invite teammates to projects</li><li>Admin, developer, and viewer roles</li><li>Audit log of every change</li></ul>
-              <div class="sp-plan-cta"><a href="https://app.runex.cloud" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3" rel="noopener noreferrer">Request early access</a></div>
+              <ul class="sp-plan-list"><li>Everything in Pro</li><li>Invite teammates to projects</li><li>Admin, developer, and viewer roles</li><li>Audit log of every change</li></ul>
+              <div class="sp-plan-cta"><a href="mailto:support@runex.cloud?subject=Teams%20early%20access&body=Hi%20Runex%2C%0A%0AI%27d%20like%20early%20access%20to%20the%20Teams%20plan.%0A%0AWhat%20I%20want%20to%20deploy%3A%0A%0A" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 bg-transparent text-foreground border border-card-border hover:border-zinc-500 hover:bg-white/[0.03] !px-6 !py-3">Request early access</a></div>
             </div>
-          </div></div>
+          </div>
+          <div class="lp-offer" data-reveal="fade" style="--reveal-delay: 0.06s; --reveal-y: 12px">
+            <div>
+              <p class="lp-kicker">Founding Member</p>
+              <h3 class="display lp-h3">One year of Pro for NPR 2,500.</h3>
+              <p>Limited to the first 30 users. That is a full year of Pro, paid once, instead of NPR 999 each month.</p>
+            </div>
+            <div class="lp-actions"><a href="mailto:support@runex.cloud?subject=Founding%20Member%20%28one%20year%20of%20Pro%29&body=Hi%20Runex%2C%0A%0AI%27d%20like%20the%20Founding%20Member%20deal%3A%20NPR%202%2C500%20for%20one%20year%20of%20Pro.%0A%0AWhat%20I%20want%20to%20deploy%3A%0A%0A" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3">Email us about this deal</a></div>
+          </div>
+          <p class="lp-paynote">Email us to get started and we'll send payment details. Local payment available in Nepal.</p>
+        </div>
         
+      </section>
+
+      
+      <section id="deploy-for-you" class="lp-section scroll-mt-28">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div class="lp-split">
+            <div class="lp-head" data-reveal="fade" style="--reveal-delay: 0s; --reveal-y: 14px">
+              <p class="lp-kicker">Service</p>
+              <h2 class="display lp-h2">Can Runex deploy my app for me?</h2>
+              <p class="lp-answer"><strong>Yes. We deploy it for you for NPR 3,000 once, about $30.</strong> Your app goes live within 24 hours with a custom domain, HTTPS, and a database.</p>
+            </div>
+            <div class="fp-prose sp-split-body" data-reveal="fade" style="--reveal-delay: 0.05s; --reveal-y: 14px">
+              <div>
+                <p>Send the repo or zip, the domain you want, and which database you need. We set up the app, the domain, and HTTPS, then write back when it is live.</p>
+                <p>Email us to get started and we'll send payment details. Local payment available in Nepal.</p>
+                <div class="lp-actions"><a href="mailto:support@runex.cloud?subject=We%20deploy%20it%20for%20you&body=Hi%20Runex%2C%0A%0AI%27d%20like%20you%20to%20deploy%20my%20app%20with%20a%20custom%20domain%2C%20HTTPS%2C%20and%20a%20database.%0A%0AWhat%20I%20want%20to%20deploy%3A%0A%0A" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight outline-none ring-0 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 border border-transparent bg-accent text-black hover:bg-accent-soft !px-6 !py-3">Email us to deploy it</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="compare-plans" class="lp-section scroll-mt-28">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div class="lp-head" data-reveal="fade" style="--reveal-delay: 0s; --reveal-y: 14px">
               <p class="lp-kicker">Compare</p>
-              <h2 class="display lp-h2">What's the difference between Hobby, Production, and Teams?</h2>
+              <h2 class="display lp-h2">What's the difference between Hobby, Pro, and Teams?</h2>
               <p class="lp-answer"><strong>The deploy flow is identical; the limits and team controls change.</strong> Every plan uses the same <a class="lp-inline-link" data-il href="documentation/github-app-setup.html">GitHub App</a>, URLs, and HTTPS.</p>
             </div>
           <div class="lp-table-wrap" data-reveal="fade" style="--reveal-delay: 0.04s; --reveal-y: 14px">
             <table class="lp-table">
-              <caption class="lp-sr">What's the difference between Hobby, Production, and Teams?</caption>
+              <caption class="lp-sr">What's the difference between Hobby, Pro, and Teams?</caption>
               <thead>
-                <tr><td></td><th scope="col"><small>Free</small>Hobby</th><th scope="col"><small>Paid</small>Production</th><th scope="col"><small>Early access</small>Teams</th></tr>
+                <tr><td></td><th scope="col"><small>Free</small>Hobby</th><th scope="col"><small>Paid</small>Pro</th><th scope="col"><small>Early access</small>Teams</th></tr>
               </thead>
               <tbody>
                 <tr><th scope="row">Best for</th><td>Side projects and prototypes</td><td>Apps with real traffic</td><td>Small teams</td></tr>
@@ -6636,7 +6751,7 @@
                 <tr><th scope="row">Resource allowances</th><td>Free-tier limits</td><td>Higher limits</td><td>Higher limits</td></tr>
                 <tr><th scope="row">Concurrent deployments</th><td>Standard</td><td>More</td><td>More</td></tr>
                 <tr><th scope="row">Team roles and audit log</th><td class="sp-no">No</td><td class="sp-no">No</td><td>Yes</td></tr>
-                <tr><th scope="row">Price</th><td>Free</td><td>Shown in dashboard</td><td>Early access</td></tr>
+                <tr><th scope="row">Price</th><td>Free</td><td>NPR 999/month</td><td>Early access</td></tr>
               </tbody>
             </table>
           </div>
@@ -6719,8 +6834,12 @@
                 <p class="lp-faq-answer">Yes. The Hobby plan is free and includes GitHub deploys, HTTPS on *.runex.cloud, custom domains, <a class="lp-inline-link" data-il href="documentation/environment-variables.html">environment variables</a>, and isolated containers. Its limits are shown in the dashboard.</p>
               </details>
               <details>
-                <summary><span>Where can I see current Runex prices and limits?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
-                <p class="lp-faq-answer">In the Runex dashboard after you sign in. Prices and quotas are kept there so they're always current, instead of on a marketing page that can go stale.</p>
+                <summary><span>How much is Runex Pro?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
+                <p class="lp-faq-answer">Pro is NPR 999 per month, about $8 per month outside Nepal. Founding Member is NPR 2,500 for one full year of Pro, limited to the first 30 users. Email <a class="lp-inline-link" data-il href="mailto:support@runex.cloud">support@runex.cloud</a> and we'll send payment details. Local payment is available in Nepal.</p>
+              </details>
+              <details>
+                <summary><span>Can you deploy my app for me?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
+                <p class="lp-faq-answer">Yes. We deploy it for you for NPR 3,000 once, about $30. That includes a custom domain, HTTPS, and a database, and the app is live within 24 hours. Email <a class="lp-inline-link" data-il href="mailto:support@runex.cloud?subject=We%20deploy%20it%20for%20you&body=Hi%20Runex%2C%0A%0AI%27d%20like%20you%20to%20deploy%20my%20app%20with%20a%20custom%20domain%2C%20HTTPS%2C%20and%20a%20database.%0A%0AWhat%20I%20want%20to%20deploy%3A%0A%0A">support@runex.cloud</a> with what you want to deploy and which plan you want.</p>
               </details>
               <details>
                 <summary><span>Do paid plans change how I deploy?</span><span class="lp-faq-icon" aria-hidden="true">+</span></summary>
@@ -6830,6 +6949,7 @@
                   <li><a class="sf-link" href="what-is-runex.html">What is Runex?</a></li>
                   <li><a class="sf-link" href="about.html">About</a></li>
                   <li><a class="sf-link" href="use-cases.html">Use cases</a></li>
+                  <li><a class="sf-link" href="contact.html">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -6839,7 +6959,7 @@
         <div class="sf-bottom">
           <div class="sf-legal">
             <p>© 2026 Runex. All rights reserved.</p>
-            <p class="sf-legal-end"><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
+            <p class="sf-legal-end"><a class="sf-legal-link" href="terms.html">Terms</a><a class="sf-legal-link" href="privacy.html">Privacy</a><a class="sf-disclaimer-link" href="disclaimer.html">Disclaimer</a><span class="font-mono text-xs tracking-wide">runex.cloud</span></p>
           </div>
         </div>
       </div>

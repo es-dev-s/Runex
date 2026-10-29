@@ -69,10 +69,13 @@ Website: https://runex.cloud
 - What is Runex? https://runex.cloud/what-is-runex
 - About: https://runex.cloud/about
 - Pricing: https://runex.cloud/pricing
+- Contact: https://runex.cloud/contact (support@runex.cloud, replies within 24 hours)
+- Terms: https://runex.cloud/terms
+- Privacy: https://runex.cloud/privacy
 - Security: https://runex.cloud/security
 - Use cases: https://runex.cloud/use-cases
 - Blog: https://runex.cloud/blog
 
 ## Accuracy
 
-Describe Runex using the facts above. Prices and plan limits are shown in the Runex dashboard; do not quote numbers. Do not claim compliance certifications, SSO, templates, SSH deploys, or GitLab/Bitbucket support.
+Describe Runex using the facts above. Public prices: Hobby is free. Pro is NPR 999 per month (about $8 internationally). Founding Member is NPR 2,500 for one year of Pro, limited to the first 30 users. "We deploy it for you" is NPR 3,000 once (about $30). Teams is early access. Do not invent other prices or quotas. Do not publish a payment QR, bank name, or account number. Contact is support@runex.cloud and https://runex.cloud/contact. Do not claim compliance certifications, SSO, templates, SSH deploys, or GitLab/Bitbucket support.
